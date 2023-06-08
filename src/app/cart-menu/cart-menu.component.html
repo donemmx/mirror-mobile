@@ -1,0 +1,35 @@
+<div data-aos="fade-in" class="menu__sidebar" *ngIf="hide">
+  <div class="menu__body">
+    <div class="menu__top">
+      <div class="menu__topLeft">
+        <p>Cart</p>
+        <small class="cursor" routerLink="/cart">View all</small>
+      </div>
+    </div>
+    <hr />
+    <div class="menu__links" *ngIf="category$| async as category">
+      <div class="grouped" *ngIf="category.cart.length == 0; else mycart">
+        <div class="title">Your cart is empty</div>
+        <p>Keep shopping</p>
+      </div>
+      <ng-template #mycart >
+          <div class="mycart" *ngFor="let course of category.cart.slice(0,3)">
+            <div class="course__card"  data-aos="fade-in" data-aos-duration="1500">
+              <div class="course__content">
+                <app-course-image [courseId]="course.courseId"></app-course-image>
+                <div class="course__text">
+                  <h4 class="title">{{course.title}}</h4>
+                  <p class="instructor">Instructor:{{course.instructor}}</p>
+                  <div class="pricing pt-1">{{course.price | currency: '$'}}</div>
+                </div>
+              </div>
+            </div>
+            
+            
+            
+          </div>
+      </ng-template>
+    </div>
+  </div>
+</div>
+<div *ngIf="hide" class="menu__overlay" (click)="hideMenu()"></div>

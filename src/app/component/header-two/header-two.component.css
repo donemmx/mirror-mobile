@@ -1,0 +1,16 @@
+.header__main{
+    padding: 10px 20px; 
+    background: var(--background-dark);
+}
+
+.header__left{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.title{
+    color: var(--white);
+    font-size: 0.95rem;
+    font-variation-settings: 'wght' 800;
+}

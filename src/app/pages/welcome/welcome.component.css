@@ -1,0 +1,76 @@
+.section {
+  padding: 20px;
+  background: var(--login-bg);
+  height: 100vh;
+  background-size: cover;
+}
+
+.welcome {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 80%;
+  height: 100%;
+  margin: auto;
+}
+
+
+.welcome__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.welcome__main{
+    display: grid;
+    grid-template-columns: 8fr 4fr;
+}
+
+.welcome__left{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.welcome__heading{
+    font-size: 1.4rem;
+    line-height: 1;
+    color: var(--black);
+    font-variation-settings: 'wght' 800;
+}
+
+.welcome__subHeading{
+    font-size: clamp(3rem, 5.5vw, 6.5rem);
+    color: var(--primary-color);
+    font-variation-settings: 'wght' 900;
+    width: 50%;
+    line-height: 1.05;
+}
+
+.welcome__btn{
+    padding: 15px 30px;
+    border: none;
+    background: var(--secondary-color);
+    color: var(--input);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 250ms ease-out;
+}
+
+.welcome__btn:hover{
+  background: var(--black);
+  color: var(--white);
+}
+
+.paragraph{
+    width: 60%;
+}
+
+.arrow {
+  height: 60px;
+  width: 60px;
+  object-fit: contain;
+  position: relative;
+  left: 20%;
+}
+

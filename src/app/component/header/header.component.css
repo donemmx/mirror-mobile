@@ -1,0 +1,289 @@
+.header__main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 80px;
+  position: fixed;
+  top: 0;
+  z-index: 1000;
+  background: var(--background-bg);
+  backdrop-filter: blur(18.5px);
+  -webkit-backdrop-filter: blur(18.5px);
+}
+.category__main {
+  position: fixed;
+  top: 80px;
+  width: 100%;
+  background: var(--blue);
+  /* background: #050794; */
+  height: 40vh;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+}
+
+.category__container {
+  width: 80%;
+  height: 60%;
+  margin: auto;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: 4fr 3fr 5fr;
+  gap: 10px;
+}
+
+.category__title {
+  font-size: 1.7rem;
+  font-weight: bold;
+  color: white;
+}
+
+.category__sections {
+  display: grid;
+  grid-gap: 10px;
+}
+
+.category__sections div {
+  color: white;
+  font-size: 0.9rem;
+  cursor: pointer;
+  font-variation-settings: "wght" 600;
+  padding: 12px 15px;
+}
+
+.profile__pic {
+  height: 40px;
+  width: 40px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.header__container {
+  width: 80%;
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.header__hamburger {
+  display: none;
+}
+
+.header__right {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  place-items: center;
+  gap: 30px;
+}
+.modified {
+  display: grid;
+  grid-template-columns: 1fr 4fr 2fr 2fr 1fr;
+  place-items: center;
+  gap: 20px;
+}
+
+.logo {
+  height: 50px;
+  width: 50px;
+  cursor: pointer;
+}
+
+.dropdown,
+li {
+  color: var(--text);
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.size {
+  font-size: 0.8rem;
+  color: var(--black);
+}
+
+/* mobile and tablet */
+.mobile {
+  display: flex;
+  position: fixed;
+  bottom: 0;
+  width: 100vw;
+  height: 70px;
+  padding: 10px;
+  box-shadow: var(--shadow-three);
+  background: var(--background);
+}
+
+.links {
+  display: flex;
+  width: 85%;
+  margin: auto;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.links a i {
+  font-size: 1.3rem;
+}
+
+::ng-deep .p-togglebutton {
+  border: none !important;
+  border-radius: 50% !important;
+  background: none !important;
+  box-shadow: none !important;
+}
+
+::ng-deep .p-sidebar {
+  background: var(--background) !important;
+  width: 100% !important;
+}
+
+::ng-deep .p-sidebar-close:focus {
+  box-shadow: none !important;
+}
+
+::ng-deep .p-sidebar-full {
+  background: var(--login-bg) !important;
+  background-size: cover !important;
+  /* mix-blend-mode: hue !important; */
+}
+
+::ng-deep .p-sidebar .p-sidebar-header,
+::ng-deep .p-sidebar .p-sidebar-footer {
+  padding: 0.25rem !important;
+}
+::ng-deep .p-sidebar .p-sidebar-footer {
+  padding: 0.15rem !important;
+}
+
+::ng-deep .p-avatar {
+  background: var(--blue);
+  color: var(--white);
+}
+
+.signup__container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 90vh;
+  position: relative;
+}
+
+.stickyLogo {
+  position: absolute;
+  top: 3%;
+  left: 5%;
+  height: 50px;
+  width: 50px;
+}
+
+.signup__content {
+  width: 35vw;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.bottom {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.join {
+  font-size: 0.9rem;
+}
+
+.join span {
+  color: var(--primary-color);
+  font-weight: bold;
+}
+
+.next {
+  padding: 16px 32px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  width: fit-content;
+}
+
+.modal {
+  position: fixed;
+  z-index: 1000;
+  background: white;
+}
+
+.header__icon {
+  color: var(--black);
+}
+
+.sidebar {
+  height: 100vh;
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  z-index: 1500;
+  position: fixed;
+  width: 100%;
+  background: var(--background);
+}
+
+.main__sidebar {
+  width: 90%;
+  display: grid;
+  grid-gap: 10px;
+}
+
+.grouped__sidebarItems {
+  display: grid;
+  grid-gap: 50px;
+  width: 70vw;
+}
+
+.desktop__menu{
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  width: 90%;
+}
+@media screen and (max-width: 1080px) {
+  .header__container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .desktop__menu{
+    display: none;
+  }
+
+  .header__right {
+    display: none;
+  }
+  .header__hamburger {
+    display: block;
+  }
+
+  .size {
+    font-size: 1rem;
+  }
+
+  .signup__content {
+    width: 50vw;
+  }
+
+  .signup__container {
+    padding-top: 50px;
+  }
+
+  .header__container {
+    width: 90%;
+  }
+}
+
+@media screen and (max-width: 560px) {
+  .signup__content {
+    width: 90vw;
+  }
+}

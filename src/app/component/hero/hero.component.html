@@ -1,0 +1,80 @@
+<div class="hero__main">
+  <div class="hero__container w-[95%] m-auto relative">
+    <div class="hero mt-2 h-[320px] bg-[#3c3cc8]">
+      <div class="top p-4 flex items-center justify-between">
+        <div class="name text-white">Hi, {{ message?.user?.name }} 👋</div>
+        <div class="icons flex gap-1">
+          <i class="pi pi-bell text-white"></i>
+        </div>
+      </div>
+      <div class="bottom p-4">
+        <div class="leftHero w-[60%]">
+          <div
+            class="text text-[1.3rem] md:text-[1.7rem] md:w-[60%] font-extrabold text-gray-200 pt-3"
+          >
+            The Pathway To Wholeness for Young Adult
+          </div>
+        </div>
+      </div>
+
+      <lottie-player
+        src="../../../assets/json/young.json"
+        autoplay
+        loop
+        background="none"
+        animation
+        style="height: 220px"
+        class="absolute top-[25%] right-[-80px] md:right-[-25%] scale-x-[-1]"
+      >
+      </lottie-player>
+    </div>
+    <div class="grouped_hero grid grid-cols-2 mt-[-90px] gap-[15px]">
+      <div class="left h-[235px] bg-[#3c3cc8] p-4 flex flex-col justify-center">
+        <small class="text-gray-200 text-left mt-4 w-[40%]">
+          Recommended Course</small
+        >
+        <div class="title text-gray-200 font-bold text-[1.15rem]">
+          {{course.title}}
+        </div>
+        <div class="">
+          <button
+            class="bg-gray-200 text-gray-900 p-1 text-[.7rem] w-[80px] mt-1 rounded-sm"
+            (click)="selectCourse()"
+          >
+            Enroll
+          </button>
+        </div>
+      </div>
+      <div class="right h-[235px] bg-[#3c3cc8] p-4">
+        <div *ngIf="category$ | async as category">
+          <p-avatar
+            [label]="label | uppercase"
+            styleClass="mr-2 "
+            size="small"
+            class="cursor"
+            shape="circle"
+            *ngIf="category.profilePic == null; else image"
+          ></p-avatar>
+          <ng-template #image>
+            <img
+              class="profile__pic rounded-full h-[20px]"
+              [src]="category.profilePic"
+              alt=""
+            />
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<p-dialog
+  [(visible)]="videoModal"
+  [modal]="true"
+  [draggable]="false"
+  [resizable]="false"
+  [style]="{ width: '70vw', height: '90vh' }"
+>
+  <div class="modal__content">
+    <app-video-modal [open]="videoModal" [videoId$]="id$"></app-video-modal>
+  </div>
+</p-dialog>

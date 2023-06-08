@@ -1,0 +1,112 @@
+
+.menu__sidebar {
+    position: fixed;
+    top: 10%;
+    right: 15%;
+    background: var(--white);
+    width: 300px;
+    border: 1px solid rgba(216, 227, 235, 0.5);
+    /* Form drop shadow 36% */
+    box-shadow: 0px 4px 25px rgba(228, 234, 239, 0.36);
+    border-radius: 10px;
+    padding: 20px;
+    z-index: 1000;
+  }
+  
+  .menu__body{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .menu__links{
+    display: grid;
+    grid-gap: 20px;
+    font-variation-settings: 'wght' 600;
+  }
+  
+  .menu__links li {
+    font-size: .85rem;
+    cursor: pointer;
+    transition: all ease-out 300ms;
+  }
+
+  .menu__link li:hover{
+    color: var(--blue);
+    font-variation-settings: 'wght' 900;
+    font-size: .95rem;
+  }
+  
+  hr {
+    height: .5px;
+    color: var(--white);
+  }
+  
+  
+  .menu__top{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  .menu__topLeft p{
+    color: var(--blue);
+    font-size: .9erm;
+    font-variation-settings: 'wght' 700;
+  }
+  
+  .menu__topLeft small{
+    font-size: .75erm;
+  }
+  
+  .menu__overlay{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0);
+    z-index: 10;
+  }
+
+
+.warning {
+    font-size: 1.1rem;
+    text-align: center;
+    width: 70%;
+    margin: auto;
+    font-variation-settings: "wght" 650;
+    line-height: 1.4;
+  }
+  
+  .btn__group {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    justify-content: center;
+  }
+  
+  .small__btn:hover,
+  .medium__btn:hover {
+    background: var(--blue);
+    color: var(--white);
+  }
+  
+  .medium__btn {
+    height: 35px;
+    width: 80px;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    justify-content: center;
+    background: var(--faded-color);
+    color: var(--blue);
+    font-size: 0.7rem;
+    border-radius: 5px;
+    border: 1px solid var(--blue);
+    cursor: pointer;
+    transition: all 200ms ease-in;
+  }
+  
+  

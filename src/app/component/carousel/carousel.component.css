@@ -1,0 +1,57 @@
+.carousel{
+    background: var(--carousel-bg);
+    padding: 50px 40px;
+}
+
+.main__content{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    place-items: center;
+    height: 75vh;
+    width: 85%;
+    margin: auto;
+}
+
+.content__left {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.head__three, .head__four, .paragraph,.small{
+    color: var(--white);
+}
+img{
+    object-fit: cover;
+}
+
+.small{
+    font-size: clamp(0.8rem, 2.5vw, 0.85rem);
+    line-height: 1.5;
+    font-weight: 300;
+    color: rgb(239, 239, 239);
+}
+
+::ng-deep .p-carousel-indicator.p-highlight button{
+    background: white !important;
+}
+
+::ng-deep .p-carousel-prev span, ::ng-deep .p-carousel-next span{
+    color: white !important;
+    font-size: 1.5rem !important;
+}
+
+@media screen and (max-width: 820px) {
+
+    .carousel{
+        padding: 50px 0px;
+    }
+
+    .main__content{
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        width: 90%;
+        height: 100%;
+    }
+
+}

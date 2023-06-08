@@ -1,0 +1,38 @@
+.hero__two{
+    height: 40vh;
+    padding: 50px 20px;
+    margin-top: 80px;
+    background: url('../../assets/children/course-child-bg.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.heroTwo__body{
+    width: 80%;
+    margin: auto;
+  
+}
+
+
+
+.heroTwo__content{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.subtitle{
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: var(--black);
+}
+
+.head__two{
+    color: var(--black);
+}

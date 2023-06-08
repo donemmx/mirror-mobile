@@ -1,0 +1,85 @@
+.pricing__card{
+    background: var(--white);
+    width: 100%; 
+    height: 18vh;
+    z-index: 900;
+    border-radius: 10px;
+    box-shadow: var(--shadow-one);
+}
+.pricing__body{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.head__three{
+    color: var(--blue);
+}
+.pricing__bottom{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 30px;
+    background: var(--white);
+    position: relative;
+}
+
+.btn__group{
+    display: flex;
+    flex-direction: column;
+}
+
+.primary__btn{
+    width: 260px;
+    color: var(--white);
+}
+
+.children {
+    background: none !important;
+    color: var(--child-theme) !important;
+}
+
+.btn__group .children{
+    background: var(--child-theme) !important;
+    color: white !important;
+    border-color: var(--child-theme) !important;
+}
+
+
+:host ::ng-deep iframe {
+    width: 100% !important;
+    height: 70vh !important;
+    object-fit: cover !important;
+  }
+  
+  :host ::ng-deep .p-dialog .p-dialog-header,:host ::ng-deep .p-dialog .p-dialog-content{
+    background: transparent ;
+  }
+  
+  :host ::ng-deep .p-dialog {
+    box-shadow: none;
+  }
+  :host ::ng-deep .p-component-overlay {
+    background-color: #000000b8;
+    transition-duration: .2s;
+  }
+  :host ::ng-deep .p-component-overlay-enter{
+    animation: none;
+  }
+  :host ::ng-deep .p-dialog .p-dialog-header .p-dialog-header-icon {
+    box-shadow: none;
+    color: #343a40;
+    border-color: transparent;
+    background: #e9ecef;
+  }
+
+
+  .tag{
+    position: absolute;
+    top: 5%;
+    right: 10%;
+    padding: 10px;
+    background: rgba(20, 255, 0, 0.1);
+    color: #1a8e42;
+    font-size: 0.75rem;
+    border-radius: 5px;
+  }

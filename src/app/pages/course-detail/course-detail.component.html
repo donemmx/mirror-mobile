@@ -1,0 +1,6 @@
+<section class="course__detail" *ngIf="message.courseSelected as course">
+    <app-hero-three [course]="course"></app-hero-three>
+    <app-pricing-card [price]="course.price" [image]="course.img" [courseId]="course.courseId" [videoId$]="videoId$"></app-pricing-card>
+    <app-course-content [description]="course.description" [learnerOutcome]="course.learningOutcomes" [courseId]="course.courseId" (videoLink)="getVideoLink($event)"></app-course-content>
+    <app-footer-bottom></app-footer-bottom>
+</section>

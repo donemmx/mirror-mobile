@@ -1,0 +1,11 @@
+<p-messages [severity]="type">
+    <ng-template pTemplate>
+        <div class="info">
+            <div class="grouped">
+                <div class="info__title">You are almost out of time!.</div>
+                <div class="ml-2">Complete Your Course Assessment Before Time Runs Out.</div>
+            </div>
+            <button class="infoBtn" *ngIf="type == 'warn'"> Take assesment</button>
+        </div>
+    </ng-template></p-messages
+  >

@@ -1,0 +1,23 @@
+
+.profile__top {
+    height: 25vh;
+    background: var(--blue);
+    display: flex;
+    flex-direction: column;
+    padding: 50px;
+    justify-content: center;
+    background-image: url(../../assets/profile/profile-bg.png);
+    background-repeat: no-repeat;
+    background-position: right;
+  }
+  
+  .profile__heading {
+    color: var(--white);
+    font-size: clamp(1.4rem, 2.5vw, 2rem);
+    font-variation-settings: "wght" 800;
+  }
+  
+  .profile__subtitle {
+    color: var(--white);
+  }
+  

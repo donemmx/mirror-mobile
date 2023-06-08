@@ -1,0 +1,17 @@
+<div data-aos="fade-in" class="menu__sidebar" *ngIf="hide">
+    <div class="menu__body">
+      <div class="menu__top">
+        <div class="menu__topLeft">
+          <p>Notification</p>
+          <small class="cursor">View all</small>
+        </div>
+      </div>
+      <hr />
+      <div class="menu__links">
+        <div class="title">No Notification yet</div>
+        <p>We'll let you know when deadlines are approaching, or there is a course update</p>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="hide" class="menu__overlay" (click)="hideMenu()"></div>
+  

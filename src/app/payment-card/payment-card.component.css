@@ -1,0 +1,129 @@
+.payment__card {
+  padding: 10px 20px;
+  margin: auto;
+  background: var(--blue);
+  border-radius: 10px;
+  box-shadow: var(--shadow-one);
+}
+
+:disabled.payment{
+    background: rgb(121, 121, 121);
+    color: var(--white);
+    border-color: var(--black);
+}
+.payment__main {
+  display: grid;
+  grid-gap: 10px;
+  width: 100%;
+}
+
+.payment__title {
+  font-size: 1.7rem;
+  color: var(--white);
+  font-variation-settings: "wght" 700;
+}
+.payment__type {
+  font-size: 1rem;
+  color: var(--white);
+  font-variation-settings: "wght" 300;
+}
+
+.payment {
+  width: 130px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: all 250ms ease-out;
+  color: var(--blue);
+}
+
+.payment:hover{
+    background: black;
+    color: var(--white);
+    border-color: var(--black);
+}
+
+.payment__mode{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+
+.whiteBtn{
+    background: var(--white);
+    color: var(--blue);
+    border: 1px solid var(--white);
+
+}
+
+.outlineBtn{
+    background: none;
+    border: 1px solid var(--white);
+    color: var(--white);
+}
+
+.payment__group{
+    display: grid;
+    gap: 10px;
+}
+
+.payment__group input{
+    width: 100%;
+    padding: 10px;
+    /* height: 50px; */
+    background: none;
+    border: none;
+    border-bottom: 1px solid var(--white);
+    outline: none;
+    color: var(--white);
+}
+
+:host ::ng-deep .p-inputtext{
+    width: 100% !important;
+    padding: 4px;
+    /* height: 50px; */
+    background: none;
+    border: none;
+    border-bottom: 1px solid var(--white);
+    outline: none;
+    color: var(--white);
+    box-shadow: none; 
+    letter-spacing: .75rem;
+    border-radius: 0;
+
+}
+
+:host ::ng-deep .p-inputtext:enabled:focus{
+    box-shadow: none;
+    border: none;
+    text-decoration: none;
+    border-radius: 0;
+}
+
+
+::placeholder{
+    color: whitesmoke;
+}
+
+.main__grouped{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+
+}
+
+label{
+    color: var(--white);
+}
+
+
+@media screen and (max-width: 580px) {
+    .payment__card{
+        width: 100%;
+    }
+    
+}

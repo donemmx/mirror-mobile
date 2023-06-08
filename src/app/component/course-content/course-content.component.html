@@ -1,0 +1,79 @@
+<section class="course__content">
+  <div class="course__container">
+    <div class="course__body">
+      <h4 class="head__four pb-2 pt-4">Learning Outcomes</h4>
+      <div class="learning__card">
+        <div
+          class="learning__cardBody"
+          data-aos="fade-down"
+          data-aos-duration="1000"
+          *ngFor="let outcome of learnerOutcome"
+        >
+          <div class="learning__text">
+            <span class="primary bold">
+              {{ outcome.heading }}
+            </span>
+            {{ outcome.details }}
+          </div>
+        </div>
+      </div>
+
+      <h4 class="head__four pb-2 pt-4">Course Content</h4>
+      <div class="course__accordion">
+          <div class="skeleton" *ngIf="loading">
+            <p-skeleton styleClass="mb-1"></p-skeleton>
+            <p-skeleton width="10rem" styleClass="mb-1"></p-skeleton>
+          </div>
+        <p-accordion>
+          <div
+            class="main__accordion"
+            *ngFor="let data of  chapters$ | async"
+          >
+            <p-accordionTab header="{{ data.chapterOrder }}">
+              <ng-template pTemplate="header">
+                <div class="header__content">
+                  <div class="header__left">{{data.title}}</div>
+                  <div class="header__right">{{data.chapterItems.length > 1 ? (data.chapterItems.length + ' ' + 'items') : (data.chapterItems.length + ' ' + 'item')}} </div>
+                </div>
+              </ng-template>
+              <ng-template pTemplate="body">
+                <div class="chapter__items" *ngFor="let details of data.chapterItems">
+                  <div class="outcome__card mt-1">
+                    <div [ngSwitch]="details.chapterItemName">
+                      <img class="itemsIcon" *ngSwitchCase="'text'" src="../../../assets/items/content.svg" alt="" />
+                      <img class="itemsIcon" *ngSwitchCase="'link'" src="../../../assets/items/link-icon.svg" alt="" />
+                      <img class="itemsIcon" *ngSwitchCase="'pdf'" src="../../../assets/items/document-icon.svg" alt="" />
+                      <img class="itemsIcon" *ngSwitchCase="'image'" src="../../../assets/items/video.svg" alt="" />
+                    </div>
+                    <div class="outcomeHeading">
+                      {{ details.title }}
+                    </div>
+                  </div>
+                </div>
+              </ng-template>
+            </p-accordionTab>
+          </div>
+        </p-accordion>
+      </div>
+      <div
+        class="course__description"
+        data-aos="fade-down"
+        data-aos-duration="900"
+      >
+        <h4 class="head__four pb-2 pt-4">Course Description</h4>
+        <p class="learning__text">
+          {{ description }}
+        </p>
+      </div>
+
+      <!-- <div class="review">
+        <h4 class="head__four pb-2 pt-4">Course Review</h4>
+      </div>
+      <div class="reviews">
+        <div *ngFor="let data of [1, 2]">
+          <app-reviews></app-reviews>
+        </div>
+      </div> -->
+    </div>
+  </div>
+</section>

@@ -1,0 +1,22 @@
+<div class="video__items">
+    <div class="course__accordion">
+        <h4 class="pb-2">Course Content</h4>
+        <p-accordion>
+          <div
+            class="main__accordion"
+            *ngFor="let data of [1, 2, 3, 4, 5, 6, 7, 8, 9]"
+          >
+            <p-accordionTab>
+              <ng-template pTemplate="header">
+                <div class="header__content">
+                  <div class="header__left">Children</div>
+                </div>
+              </ng-template>
+              <ng-template pTemplate="content">
+                    Lorem ipsum dolor sit amet.
+              </ng-template>
+            </p-accordionTab>
+          </div>
+        </p-accordion>
+      </div>
+</div>

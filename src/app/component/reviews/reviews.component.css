@@ -1,0 +1,28 @@
+.review__main{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    border: var(--border);
+    padding: 40px;
+}
+
+.review__container{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.review__head{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+
+.review__text, .star{
+    font-size: 0.85rem;
+    line-height: 1.4;
+    color: var(--text);
+}
+

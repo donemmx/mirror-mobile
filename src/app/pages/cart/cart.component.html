@@ -1,0 +1,42 @@
+<div class="main__container">
+  <div class="cart__heading flex items-center gap-4 m-auto mt-2">
+    <div class="cart__headingLeft flex items-center justify-between w-full">
+      <h3>Your Cart</h3>
+      <p class="font-bold">{{(totalprice$| async) | currency: '$'}} </p>
+    </div>
+    <div class="cart__headingRight">
+      <button (click)="clearAll()">
+            <i class="pi pi-trash"></i>
+        </button>
+    </div>
+  </div>
+  <div class="main">
+    <div class="cart__main w-[90%] mx-auto pt-2">
+      <div class="cart__table" *ngIf="category$ | async as category">
+        <div class="cart__mainTabl" *ngFor="let item of category.cart; let i = index">
+          <div class="cart__body shadow-2xl rounded-md bg-white p-2 w-full mt-1">
+            <div class="cart__list">
+              <app-course-image
+                [course]="item"
+              ></app-course-image>
+            </div>
+            <div class="cart__list">
+              <p class="headline">
+                {{ item.title }}
+              </p>
+              <p class="tagline">
+                {{ item.instructor }}
+              </p>
+            </div>
+            <div class="remove cursor-pointer" (click)="deleteItem(i)"> 
+              <i class="pi pi-trash"></i>
+          </div>
+          </div>
+        </div>
+        <app-payment-card [courseIds]="category.cart"></app-payment-card>
+      </div>
+    </div>
+  </div>
+
+</div>
+<app-footer-bottom></app-footer-bottom>

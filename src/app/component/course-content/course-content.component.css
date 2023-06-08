@@ -1,0 +1,109 @@
+.course__content {
+  width: 100%;
+}
+
+.course__container {
+  width: 80%;
+  margin: auto;
+  padding: 20px 0;
+}
+
+.course__body {
+  width: 70%;
+}
+
+.learning__card {
+  background: var(--accent-secondary);
+  box-shadow: var(--shadow-two);
+  padding: 20px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  border-radius: 10px;
+  color: var(--text);
+  border: var(--border);
+}
+
+.learning__text {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--text);
+}
+
+.header__content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 20px;
+  font-weight: normal;
+  font-size: 0.9rem;
+}
+
+::ng-deep .p-accordion-header-text {
+  font-weight: normal !important;
+  font-size: 0.9rem !important;
+  padding: 5px !important;
+}
+
+::ng-deep .p-accordion-header-link {
+  box-shadow: none;
+  background: #ffffff;
+  border: 1.2043px solid #d8e3eb;
+}
+
+.reviews {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-gap: 20px;
+}
+
+.outcome__card {
+  padding: 16px;
+  background: #ffffff;
+  box-shadow: 0px 4px 25px rgba(228, 234, 239, 0.36);
+  border-radius: 10px;
+  display: grid;
+  grid-template-columns: 0.5fr 8fr 1fr;
+  place-items: start;
+  align-items: center;
+  font-size: 0.9rem;
+  gap: 15px;
+}
+
+.outcome__card img {
+  height: 18px;
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.buttons i {
+  cursor: pointer;
+}
+
+.itemsIcon {
+  height: 20px;
+  width: 20px;
+  object-fit: contain;
+}
+
+@media screen and (max-width: 1080px) {
+  .course__body {
+    width: 100%;
+  }
+
+  .course__container {
+    width: 90%;
+  }
+}
+@media screen and (max-width: 560px) {
+  .reviews {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+  }
+}

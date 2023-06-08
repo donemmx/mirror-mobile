@@ -1,0 +1,14 @@
+<section class="hero__three" >
+    <div class="hero__threeBody">
+        <div class="hero__threeTop h-full" [ngStyle]="{'background-image': 'url(' + course.courseCoverUrl + ')'}">
+        </div>
+        <div class="hero__threeBottom">
+            <div class="bottom__container" *ngIf="category$ | async as category">
+                <h3 [class]="'head__three' + ' ' + category.selected">
+                    {{course.title}}
+                </h3>
+                <small>Instructor: {{course.instructor}}</small>
+            </div>
+        </div>
+    </div>
+</section>

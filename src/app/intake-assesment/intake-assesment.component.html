@@ -1,0 +1,36 @@
+<div class="intakeAssesment__main">
+    <div class="intakeAssess__right">
+        <form class="main__question" [formGroup]="form">
+            <div class="heading">
+                Intake Assessment
+            </div>
+            <div class="subtitle">
+                The purpose of this intake questionnaire is for us to understand how you are arriving in the program and for you to begin reflecting on topics we will explore throughout the program. You will have opportunities to provide more detailed information in your mentoring sessions.
+            </div>
+
+            <div class="question__group">
+                <div class="question">
+                    1.  How do you spend most of your free time? *
+                </div>
+                <div class="options">
+                    <p-selectButton
+                    [options]="question1"
+                    formControlName="identityComponent"
+                    optionLabel="label"
+                    optionValue="value"
+                  >
+                    <ng-template let-item>
+                      <div class="grouped__data">
+                        <i [class]="item.icon"></i>
+                        <p>{{ item.label }}</p>
+                      </div>
+                    </ng-template>
+                  </p-selectButton>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="intakeAssess__left">
+        <i class="pi pi-home"> Home</i> 
+    </div>
+</div>

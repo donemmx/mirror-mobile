@@ -1,0 +1,148 @@
+.landing__main {
+  height: 100vh;
+  width: 100vw;
+  background: rgb(255, 255, 255);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  /* background-image: url(../../../assets/profile/profile-bg.png); */
+}
+
+.div {
+  margin-top: 50px;
+}
+.landing__body {
+  font-size: 12rem;
+  font-family: "jakarta";
+  font-variation-settings: "wght" 990;
+  text-transform: capitalize;
+  color: var(--white);
+}
+.logo{
+  width: 200px;
+  height: 200px;
+  object-fit: contain;
+}
+
+.mainText {
+  color: #000;
+  font-size: clamp(1.5rem, 2.5vw, 2.4rem);
+  font-family: "jakarta";
+  font-variation-settings: "wght" 980;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.path{
+  font-size: 1rem;
+  font-family: "jakarta";
+
+}
+
+.path span{
+  font-variation-settings: "wght" 980;
+  
+}
+
+.mirrorText {
+  font-size: 4rem;
+  font-family: "jakarta";
+  font-variation-settings: "wght" 990;
+  text-transform: capitalize;
+  color: var(--primary-color);
+  background: linear-gradient(90deg, #ffffff, rgb(0, 89, 255), #ffffff);
+  background-repeat: no-repeat;
+  background-size: 80%;
+  animation: animate 3s linear;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: rgba(255, 255, 255, 0);
+  z-index: 1000;
+  text-align: center;
+  text-shadow: rgba(255, 255, 255, 1);
+}
+.landing__body .mylogo {
+  height: 450px;
+  width: 450px;
+  object-fit: contain;
+  position: relative;
+}
+
+.text {
+  overflow: hidden;
+  background: linear-gradient(90deg, #000, rgb(255, 255, 255), #000);
+  background-repeat: no-repeat;
+  background-size: 80%;
+  animation: animate 3s linear infinite;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: rgba(255, 255, 255, 0);
+  z-index: 1000;
+  text-align: center;
+}
+
+.mirror {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  height: 350px;
+  width: 350px;
+}
+
+@keyframes animate {
+  0% {
+    background-position: -500%;
+  }
+  100% {
+    background-position: 500%;
+  }
+}
+
+@keyframes shine {
+  0% {
+    background-position: -50rem 0;
+  }
+  25% {
+    background-position: -50rem 0;
+  }
+  100% {
+    background-position: 30rem 0;
+  }
+}
+
+@keyframes flash {
+  0% {
+    opacity: 1;
+  }
+  10% {
+    opacity: 0;
+  }
+  30% {
+    opacity: 0;
+  }
+  40% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  90% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes slideLeft {
+  0% {
+    transform: translateX(-1000px);
+  }
+
+  100% {
+    transform: translateX(0px);
+  }
+}

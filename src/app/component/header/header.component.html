@@ -1,0 +1,143 @@
+<nav #header *ngIf="category$ | async as category" [class]="'header__main' + ' ' + category.selected">
+  <div class="header__container">
+    <div class="header__left">
+      <div class="logo" routerLink="/home">
+        <img src="/assets/logo/logo.png" alt="" draggable="false" />
+      </div>
+    </div>
+    <div class="desktop__menu">
+
+      <div *ngIf="auth.isUserLoggedIn() == false" class="dropdown" (click)="openCategory()">
+        <i class="pi pi-list size"></i>
+        Category
+      </div>
+      <div class="search">
+        <i class="pi pi-search size"></i>
+        <input type="text" placeholder="Search for Course" />
+      </div>
+      
+      <ng-template [ngIf]="auth.isUserLoggedIn() == false">
+        <div class="header__right">
+      
+          <ul>
+            <li routerLink="/courses">Courses</li>
+          </ul>
+          <button pRipple class="secondary__btn" routerLink="/login">
+            Login
+          </button>
+          <button pRipple class="primary__btn" routerLink="/signup">
+            Sign Up
+          </button>
+        </div>
+      </ng-template>
+      <ng-template [ngIf]="auth.isUserLoggedIn() == true">
+        
+        <div class="header__right modified" >
+          <ul>
+            <li routerLink="/courses">Courses</li>
+          </ul>
+          <li routerLink="/my-learning">My Learning</li>
+          <i class="pi pi-shopping-cart header__icon" style="font-size: 1.2rem" pBadge [value]="category.cart?.length" (click)="openCart()"></i>
+          <i class="pi pi-bell header__icon" style="font-size: 1.2rem"  (click)="openNotification()"></i>
+          <p-avatar
+            [label]="label | uppercase "
+            styleClass="mr-2 "
+            size="small"
+            class="cursor"
+            shape="circle"
+            (click)="openMenu()" 
+            *ngIf="category.profilePic == null; else image"
+          ></p-avatar>
+          <ng-template #image>
+            <img class="profile__pic" [src]="category.profilePic" alt=""  (click)="openMenu()" >
+          </ng-template>
+        </div>
+      </ng-template>
+      <form [formGroup]="form">
+        <p-inputSwitch [(ngModel)]="checked" (onChange)="loadTheme($event)">
+             <ng-template pTemplate="body">
+          <div class="flex align-items-center gap-2">
+                <i class="pi pi-moon"></i>
+          </div>
+      </ng-template>
+        </p-inputSwitch>
+       
+      </form>
+    </div>
+   
+    <div class="header__hamburger" (click)="openSidebar()">
+      <i class="pi pi-bars size"></i>
+    </div>
+  </div>
+  <div data-aos="fade" *ngIf="categoryOpen" [class]="'category__main' + ' ' + category.selected">
+    <div class="category__container">
+        <div class="category__title">
+            Select Category
+        </div>
+        <div class="category__sections">
+            <div class="category" (click)="setCategory('children')" >Children</div>
+            <div class="category" (click)="setCategory('young adult')"  > Young Adult </div>
+            <div class="category" (click)="setCategory('adult')" > Adult </div>
+        </div>
+        <div class="images">
+        </div>
+    </div>
+</div>
+</nav>
+
+<div class="mobile__sidebar" *ngIf="visible">
+  <nav  #header *ngIf="category$ | async as category" [class]="'sidebar' + ' ' + category.selected">
+    <div class="grouped__sidebarItems">
+      <div class="logo" routerLink="/home">
+        <img src="/assets/logo/logo.png" alt="" draggable="false" />
+      </div>
+    <div *ngIf="auth.isUserLoggedIn() == false" class="dropdown" (click)="openCategory()">
+      <i class="pi pi-list size"></i>
+      Category
+    </div>
+    <div class="search">
+      <i class="pi pi-search size"></i>
+      <input type="text" placeholder="Search for Course" />
+    </div>
+      <ng-template [ngIf]="auth.isUserLoggedIn() == false">
+        <div class="main__sidebar">
+          <ul>
+            <li routerLink="/courses">Courses</li>
+          </ul>
+          <button pRipple class="secondary__btn" routerLink="/login">
+            Login
+          </button>
+          <button pRipple class="primary__btn" routerLink="/signup">
+            Sign Up
+          </button>
+        </div>
+      </ng-template>
+      <ng-template [ngIf]="auth.isUserLoggedIn() == true">
+        
+        <div class="main__sidebar" >
+          <ul>
+            <li routerLink="/courses">Courses</li>
+          </ul>
+          <li routerLink="/my-learning">My Learning</li>
+          <i class="pi pi-shopping-cart header__icon" style="font-size: 1.2rem" pBadge [value]="category.cart?.length" ></i>
+          <i class="pi pi-bell header__icon" style="font-size: 1.2rem"  ></i>
+          <p-avatar
+            [label]="label | uppercase "
+            styleClass="mr-2 "
+            size="small"
+            class="cursor"
+            shape="circle"
+            *ngIf="category.profilePic == null; else image"
+          ></p-avatar>
+          <ng-template #image>
+            <img class="profile__pic" [src]="category.profilePic" alt=""  >
+          </ng-template>
+        </div>
+      </ng-template>
+    </div>
+  </nav>
+</div>
+
+<app-menu [hide]="menu"></app-menu>
+<app-cart-menu [hide]="cart"></app-cart-menu>
+<app-notification-menu [hide]="notification"></app-notification-menu>

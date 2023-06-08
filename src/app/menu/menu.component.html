@@ -1,0 +1,80 @@
+<div data-aos="fade-in" class="menu__sidebar" *ngIf="hide">
+    <div class="menu__body">
+      <div class="menu__top">
+        <p-avatar
+        [label]="label | uppercase "
+        styleClass="mr-2"
+        size="small"
+        class="cursor"
+        shape="circle"
+      ></p-avatar>
+  
+        <div class="menu__topLeft">
+          <p>{{message.user?.name}}</p>
+          <small>{{message.user?.email}}</small>
+        </div>
+      </div>
+      <hr>
+      <div class="menu__links">
+         <div class="menu__link" routerLink="/my-learning">
+            <li >My Learning </li>
+            <div class="count"></div>
+         </div>
+         <div class="menu__link" routerLink="/cart">
+            <li >My cart </li>
+            <div class="count"></div>
+         </div>
+         <div class="menu__link" routerLink="/portfolio">
+            <li >My Portfolio </li>
+            <div class="count"></div>
+         </div>
+         <div routerLink="/notification" class="menu__link">
+            <li>Notifications </li>
+            <div class="count"></div>
+         </div>
+      </div>
+      <hr>
+  
+      <div class="menu__links">
+         <div class="menu__link" routerLink="/my-account">
+            <li >Account settings </li>
+            <div class="count"></div>
+         </div>
+         <div routerLink="/public-profile" class="menu__link">
+            <li >Public Profile </li>
+            <div class="count"></div>
+         </div>
+         <div routerLink="/profile" class="menu__link">
+            <li>My Profile </li>
+            <div class="count"></div>
+         </div>
+         <div class="menu__link" (click)="leave()" >
+            <li>Logout </li>
+            <div class="count"></div>
+         </div>
+      </div>
+      <hr>
+  
+    </div>
+  </div>
+  <div *ngIf="hide" class="menu__overlay" (click)="hideMenu()">
+
+  </div>
+
+  <p-dialog
+  [(visible)]="open"
+  [modal]="true"
+  [draggable]="false"
+  [resizable]="false"
+  [style]="{ width: '30vw' }"
+>
+  <div class="modal__content">
+    <div class="warning pb-3">
+      Are you sure you want to Logout of the Mirror?
+    </div>
+    <div class="btn__group">
+      <button class="medium__btn" (click)="leave()">No</button>
+      <button class="medium__btn" (click)="logout()">Yes</button>
+    </div>
+  </div>
+</p-dialog>

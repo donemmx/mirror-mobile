@@ -1,0 +1,27 @@
+<div class="payment__card w-full" pRipple *ngIf="!loading" (click)="pay()">
+  <div class="title text-white text-center text-[.8rem]" >Make Payments</div>
+</div>
+<div *ngIf="loading">
+  <lottie-player
+    src="../../assets/json/card-processing-2.json"
+    autoplay
+    loop
+    background="none"
+    animation
+    style="height: 420px"
+  >
+  </lottie-player>
+</div>
+<div *ngIf="!loading && success">
+  <lottie-player
+    src="../../assets/json/payment-successfully-in-green-colore.json"
+    autoplay
+    background="none"
+    animation
+    style="height: 420px"
+  >
+  </lottie-player>
+  <button class="payment whiteBtn full mt-4 mb-3" (click)="proceed()">
+    Proceed
+  </button>
+</div>

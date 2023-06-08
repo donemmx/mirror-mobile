@@ -1,0 +1,27 @@
+.explore{
+    width: 80%;
+    margin: auto;
+}
+
+::ng-deep .p-tabview .p-tabview-nav{
+    width: fit-content;
+    border: none !important;
+
+}
+
+::ng-deep .p-tabview .p-tabview-nav li.p-highlight .p-tabview-nav-link{
+    border: none !important;
+    color: var(--select) !important;
+    box-shadow: none !important;
+}
+
+::ng-deep .p-tabview .p-tabview-nav li:not(.p-highlight):not(.p-disabled):hover .p-tabview-nav-link{
+    border: none !important;
+    color: var(--select) !important;
+    box-shadow: none !important;
+}
+
+::ng-deep .p-tabview-title{
+    font-size: .95rem !important;
+}
+

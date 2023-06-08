@@ -1,0 +1,5 @@
+<div class="course__img" *ngIf="loading">
+    <p-skeleton styleClass="mb-1" height="7rem"></p-skeleton>
+</div>
+<div class="course__img" *ngIf="!loading" [ngStyle]="{'background-image': 'url(' + courseImage + ')'}">
+</div>

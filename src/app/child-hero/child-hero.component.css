@@ -1,0 +1,17 @@
+
+.hero{
+  width: 100%;
+  border-radius: 5px;
+  
+  clip-path: polygon(50% 100%,100% 66%,100% 52%,100% 0,0 0,0 66%)
+}
+
+.left{
+  border-radius: 5px;
+  clip-path: polygon(0 0, 100% 45%, 100% 100%, 0% 100%);
+}
+
+.right{
+  border-radius: 5px;
+  clip-path: polygon(0 45%, 100% 0, 100% 100%, 0% 100%);
+}

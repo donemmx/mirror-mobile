@@ -1,0 +1,17 @@
+import { CapacitorConfig } from '@capacitor/cli';
+
+const config: CapacitorConfig = {
+  appId: 'com.example.app',
+  appName: 'The Mirror',
+  webDir: 'dist/themirror',
+  bundledWebRuntime: false,
+  plugins: {
+    SplashScreen: {
+      launchShowDuration: 0,
+      launchAutoHide: true,
+      backgroundColor: '#ffffffff',
+    },
+  },
+};
+
+export default config;

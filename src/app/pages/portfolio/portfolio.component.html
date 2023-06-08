@@ -1,0 +1,23 @@
+<app-portfolio-hero></app-portfolio-hero>
+<div class="welcome__mobile">
+  <div
+    class="welcome__card" *ngFor="let card of mycard"
+  >
+    <div class="welcome__cardBody">
+      <div class="welcome__cardLeft">
+        <img src={{card.img}} alt="" />
+      </div>
+      <div class="welcome__cardMid">
+        <h2 class="welcome__text">{{card.title}}</h2>
+      </div>
+      <div class="welcome__cardRight">
+        <img
+          src="../../../../assets/sidebar/arrow-icon.svg"
+        />
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<app-footer-bottom></app-footer-bottom>

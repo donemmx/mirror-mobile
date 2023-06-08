@@ -1,0 +1,45 @@
+.hero__three{
+    height: 350px;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+}
+
+.hero__threeBody{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.head__three{
+    color: var(--blue);
+}
+.hero__threeTop{
+    height: 100%%;
+    width: 100%;
+    background: var(--blue);
+    /* background-image: url('../../../assets/images/course-bg.png'); */
+    background-size: cover;
+    background-position: center;
+}
+
+.hero__threeBottom{
+    width: 100%;
+    height: 24%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: var(--white);
+    box-shadow: var(--shadow-one);
+}
+
+.bottom__container{
+    width: 80%;
+    margin: auto;
+
+}
+
+.children{
+    background: none !important;
+    color: var(--child-theme);
+}

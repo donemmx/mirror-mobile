@@ -1,0 +1,28 @@
+.section {
+  background: var(--section-bg);
+
+}
+
+.section__container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  align-items: center;
+  gap: 50px;
+  padding: 20px;
+}
+.section__left {
+  height: 80%;
+}
+
+.section__right {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+@media screen and (max-width: 820px) {
+  .section__container {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+  }
+}

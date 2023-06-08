@@ -1,0 +1,395 @@
+<main class="section">
+  <section class="registration__main">
+    <div class="registration__top">
+      <div class="indicator pt-3">
+        <div [class]="step >= 1 ? 'bar bar__active' : 'bar'"></div>
+        <div [class]="step >= 2 ? 'bar bar__active' : 'bar'"></div>
+        <div [class]="step >= 3 ? 'bar bar__active' : 'bar'"></div>
+        <div [class]="step >= 4 ? 'bar bar__active' : 'bar'"></div>
+        <div [class]="step >= 5 ? 'bar bar__active' : 'bar'"></div>
+        <div [class]="step >= 6 ? 'bar bar__active' : 'bar'"></div>
+        <div [class]="step >= 7 ? 'bar bar__active' : 'bar'"></div>
+      </div>
+      <div class="registration__title">
+        <h2 class="title__head">Mentoring Registration</h2>
+        <div class="small pt-1">
+          For optimal learning outcomes, it is advised that mentors provide
+          precise and comprehensive information about themselves.
+        </div>
+      </div>
+    </div>
+    <div class="registration__bottom">
+      <div class="previous" *ngIf="step != 1" (click)="previous()">
+        <i class="pi pi-angle-left"></i>
+      </div>
+      <div class="registration__content pt-5">
+        <form [formGroup]="question" class="questions">
+          <div class="steps" *ngIf="step == 1">
+            <div class="heading" data-aos="fade-down" data-aos-duration="1350">
+              Tell us your Country
+            </div>
+            <div data-aos="fade-down" data-aos-duration="1000">
+              <div class="form__group mt-3">
+                <label for="">Select a country</label>
+                <p-dropdown
+                  [options]="countries$ | async"
+                  [(ngModel)]="country"
+                  placeholder="Select a country"
+                  [filter]="true"
+                  optionLabel="name"
+                  (onChange)="change($event)"
+                ></p-dropdown>
+              </div>
+              <div>
+                <button
+                  class="primary__btn next mt-3"
+                  [disabled]="country == null"
+                  (click)="next('', true)"
+                >
+                  Proceed
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="steps" *ngIf="step == 2">
+            <div class="heading" data-aos="fade-down" data-aos-duration="1350">
+              Tell us your State of Residence
+            </div>
+            <div data-aos="fade-down" data-aos-duration="1000">
+              <div class="form__group mt-3">
+                <label for="">Select a State of Residence</label>
+                <p-dropdown
+                  [options]="state$ | async"
+                  formControlName="state"
+                  [filter]="true"
+                  optionLabel="name"
+                  optionValue="name"
+                ></p-dropdown>
+              </div>
+              <button class="primary__btn next mt-3" (click)="next('', true)">
+                Proceed
+              </button>
+            </div>
+          </div>
+          <div class="steps" *ngIf="step == 3">
+            <div class="heading" data-aos="fade-down" data-aos-duration="1350">
+              Life Coach Defined
+            </div>
+            <div
+              class="form__group mt-3"
+              data-aos="fade-down"
+              data-aos-duration="1000"
+            >
+              <div class="paragraph text__wrap">
+                Coaching is a partnership (defined as an alliance, not a legal
+                business. It is a partnership) between the Coach and the Client
+                in a thought-provoking and creative process that inspires the
+                client to maximize their personal and professional potential. It
+                is designed to facilitate the creation/development of personal,
+                professional or business goals and to develop and carry out a
+                strategic plan for achieving those goals. The success of the
+                coaching engagement depends upon the Client’s commitment and
+                openness to the process. If the Client believes that coaching is
+                not working as desired, the Client agrees to communicate this to
+                the Coach. The following represents the Contract between The
+                Voice Inc., and the client.
+              </div>
+            </div>
+            <div
+              class="btn__group pb-10"
+            >
+              <button
+                class="primary__btn next mt-3 "
+                (click)="next('coaching', true)"
+              >
+                Agree
+              </button>
+              <button
+                class="outline__btn next mt-3"
+                (click)="next('coaching', false)"
+              >
+                Decline
+              </button>
+            </div>
+          </div>
+          <div class="steps" *ngIf="step == 4">
+            <div class="heading" data-aos="fade-down" data-aos-duration="1350">
+              Disclaimer
+            </div>
+            <div
+              class="form__group mt-3"
+              data-aos="fade-down"
+              data-aos-duration="1000"
+            >
+              <div class="paragraph text__wrap">
+                Client acknowledges that coaching does not involve the diagnosis
+                or treatment of mental disorders as defined by the American
+                Psychiatric Association. Client also understands that coaching
+                is not to be used as a substitute for counseling, psychotherapy,
+                psychoanalysis, mental health care, substance abuse treatment,
+                or other professional advice by legal, medical or other
+                qualified professionals. It is the Client’s exclusive
+                responsibility to seek independent professional guidance as
+                needed. If the Client is currently under the care of a mental
+                health professional, we recommend that the Client promptly
+                inform the mental health care provider of the nature and extent
+                of the coaching relationship agreed upon by the Client and the
+                Coach. In no event shall The Voice Inc. or its staff be liable
+                to the client for any special, punitive, incidental, indirect,
+                or consequential damages of any kind in connection with this
+                agreement.
+              </div>
+            </div>
+            <div
+              class="btn__group pb-10"
+            >
+              <button class="primary__btn next mt-3" (click)="next('', true)">
+                Agree
+              </button>
+              <button class="outline__btn next mt-3" (click)="previous()">
+                Decline
+              </button>
+            </div>
+          </div>
+          <div class="steps" *ngIf="step == 5">
+            <div class="heading" data-aos="fade-down" data-aos-duration="1350">
+              Curriculum & Component
+            </div>
+            <div class="form__group mt-3">
+              <div class="grouped">
+                <div
+                  class="text__wrap"
+                  data-aos="fade-down"
+                  data-aos-duration="1000"
+                >
+                  <p class="paragraph">
+                    The IESSP is an acronym for Identity, Educational, Spiritual
+                    and Social Plan. It is modeled after the special education
+                    IEP (Individualized Educational Plan) and Inspired by the
+                    poem They Are Singing Your Song. These four component will
+                    be covered in the duration of your mentoring and life coach.
+                  </p>
+
+                  <p class="paragraph">
+                    <span class="spotlight"> Identity Component:</span> No one
+                    is the same. We have designed an individualized, integrated
+                    plan to guide each user toward success, taking into account
+                    individual backgrounds and experiences, and then laying out
+                    concrete goals and benchmarks. Throughout the curriculum, a
+                    user will explore topics surrounding their identity—from
+                    before they were born to the present.
+                  </p>
+                  <div class="paragraph">
+                    A user will grapple with questions around stories about
+                    their birth. They will face questions like, “What happened
+                    before, during, and after you were born?” or, “What prophesy
+                    or event took place during your pregnancy?” Connecting
+                    yourself back to the place of belonging will bring about
+                    healing and reconnect you to the original source of life
+                    (God).
+                  </div>
+                </div>
+
+                <div class="options">
+                  <p-selectButton
+                    [options]="identityList"
+                    formControlName="identityComponent"
+                    optionLabel="label"
+                    optionValue="value"
+                  >
+                    <ng-template let-item>
+                      <div class="grouped__data">
+                        <i [class]="item.icon"></i>
+                        <p>{{ item.label }}</p>
+                      </div>
+                    </ng-template>
+                  </p-selectButton>
+                </div>
+              </div>
+            </div>
+            <div class="btn__group">
+              <button
+                class="primary__btn next mt-3"
+                [disabled]="!question.get('identityComponent').valid"
+                (click)="next('curriculum', true)"
+              >
+                Save
+              </button>
+            </div>
+          </div>
+          <div class="steps" *ngIf="step == 6">
+            <div class="heading" data-aos="fade-down" data-aos-duration="1350">
+              Curriculum & Component
+            </div>
+            <div class="form__group mt-3">
+              <div class="grouped">
+                <div
+                  class="text__wrap"
+                  data-aos="fade-down"
+                  data-aos-duration="1000"
+                >
+                  <p class="paragraph">
+                    <span class="spotlight"> The Education Component: </span> No
+                    one learns the same way. Our curriculum will help each user
+                    to overcome academic and individual learning challenges by
+                    building on individual inner knowledge, supporting
+                    strengths, and providing tools for triumph. I am advocating
+                    that Western education should embrace people’s natural
+                    abilities. This curriculum critically examines traditional
+                    education and helps users to explore how to use it to
+                    advance their natural skills (i.e., what can I do beyond the
+                    confines of classroom education).
+                  </p>
+                </div>
+                <div class="options">
+                  <div class="options">
+                    <p-selectButton
+                      [options]="educationList"
+                      formControlName="educationComponent"
+                      optionLabel="label"
+                      optionValue="value"
+                    >
+                      <ng-template let-item>
+                        <div class="grouped__data">
+                          <i [class]="item.icon"></i>
+                          <p>{{ item.label }}</p>
+                        </div>
+                      </ng-template>
+                    </p-selectButton>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="btn__group"
+              data-aos="fade-down"
+              data-aos-duration="850"
+              data-aos-offset="-500"
+            >
+              <button
+                class="primary__btn next mt-3"
+                [disabled]="!question.get('educationComponent').valid"
+                (click)="next('education', true)"
+              >
+                Save
+              </button>
+            </div>
+          </div>
+          <div class="steps" *ngIf="step == 7">
+            <div class="heading" data-aos="fade-down" data-aos-duration="1350">
+              Curriculum & Component
+            </div>
+            <div class="form__group mt-3">
+              <div class="grouped">
+                <div
+                  class="text__wrap"
+                  data-aos="fade-down"
+                  data-aos-duration="1000"
+                >
+                  <p class="paragraph">
+                    <span class="spotlight"> The Spiritual Component: </span> No
+                    one learns the same way. Our curriculum will help each user
+                    to overcome academic and individual learning challenges by
+                    building on individual inner knowledge, supporting
+                    strengths, and providing tools for triumph. I am advocating
+                    that Western education should embrace people’s natural
+                    abilities. This curriculum critically examines traditional
+                    education and helps users to explore how to use it to
+                    advance their natural skills (i.e., what can I do beyond the
+                    confines of classroom education).
+                  </p>
+                </div>
+                <div class="options">
+                  <div class="options">
+                    <p-selectButton
+                      [options]="spiritualList"
+                      formControlName="spiritualComponent"
+                      optionLabel="label"
+                      optionValue="value"
+                    >
+                      <ng-template let-item>
+                        <div class="grouped__data">
+                          <i [class]="item.icon"></i>
+                          <p>{{ item.label }}</p>
+                        </div>
+                      </ng-template>
+                    </p-selectButton>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="btn__group"
+              data-aos="fade-down"
+              data-aos-duration="850"
+              data-aos-offset="-500"
+            >
+              <button
+                class="primary__btn next mt-3"
+                [disabled]="!question.get('spiritualComponent').valid"
+                (click)="next('education', true)"
+              >
+                Save
+              </button>
+            </div>
+          </div>
+          <div class="steps" *ngIf="step == 8">
+            <div class="heading" data-aos="fade-down" data-aos-duration="1350">
+              Do you agree to Our Terms & Conditions
+            </div>
+            <div class="form__group mt-3">
+              <div
+                class="grouped"
+                data-aos="fade-down"
+                data-aos-duration="1000"
+              >
+                <p
+                  data-aos="fade-down"
+                  data-aos-duration="1000"
+                  class="spotlight text__wrap cursor underline"
+                >
+                  Terms & Conditions
+                </p>
+              </div>
+              <p
+                class="paragraph"
+                data-aos="fade-down"
+                data-aos-duration="1000"
+              >
+                Parent or Guardian consent for mentee's Below the age of 18
+              </p>
+              <div class="options" data-aos="fade-down" data-aos-duration="850">
+                <div class="checkbox fit">
+                  <p-checkbox
+                    name="group1"
+                    [binary]="true"
+                    label="I consent"
+                    [(ngModel)]="terms"
+                    (onChange)="changeTerms($event)"
+                    checkboxIcon="pi pi-stop"
+                  ></p-checkbox>
+                </div>
+              </div>
+            </div>
+            <div
+              class="btn__group"
+              data-aos="fade-down"
+              data-aos-duration="850"
+              data-aos-offset="-500"
+            >
+              <button
+                class="primary__btn next mt-3"
+                (click)="acceptTerms()"
+              >
+                Agree
+              </button>
+              <button class="outline__btn next mt-3" (click)="previous()">
+                Decline
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>

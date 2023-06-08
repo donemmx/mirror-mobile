@@ -1,0 +1,13 @@
+<div class="main__course pt-4 pb-2">
+    <h3 class="text-[.95rem] text-black font-bold pb-3">Recomemnded Courses</h3>
+    <p-table
+      #dt
+      [value]="courses$ | async"
+      dataKey="id"
+      [rows]="10"
+    >
+      <ng-template let-item pTemplate="body" class="grid-3">
+        <app-course-card [course]="item"> </app-course-card>
+      </ng-template>
+    </p-table>
+  </div>

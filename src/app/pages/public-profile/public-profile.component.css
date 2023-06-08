@@ -1,0 +1,49 @@
+.header{
+    margin-top: 10vh;
+    height: 40vh;
+    background:var(--blue);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.header__body{
+    width: 80%;
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    margin: auto;
+}
+
+.left{
+    height: 200px;
+    width: 200px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.name{
+    font-size: 2.5rem;
+    color: var(--white);
+    font-variation-settings: 'wght' 900;
+}
+
+.email{
+    font-size: 1.3rem;
+    color: var(--white);
+    font-variation-settings: 'wght' 300;
+}
+
+.profile__body{
+    width: 80%;
+    margin: auto;
+}
+
+.container{
+    height: 40vh;
+}
+.profile__pic{
+    border-radius: 50%;
+}

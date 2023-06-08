@@ -1,0 +1,119 @@
+.video__content {
+  display: grid;
+  grid-template-columns: 8fr 4fr;
+}
+
+:host ::ng-deep .p-tabview-nav-container {
+  height: 10vh;
+  display: flex;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.029);
+  align-items: center;
+}
+
+:host ::ng-deep .p-tabview-nav-content {
+  width: 100%;
+}
+
+:host ::ng-deep .p-tabview-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+}
+
+.reviews {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-gap: 20px;
+}
+
+.tab__body {
+  width: 90%;
+  margin: auto;
+  padding: 20px;
+}
+
+.learning__text {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--text);
+}
+.section {
+  margin: 20px 0;
+}
+.section h4 {
+  color: var(--blue);
+  font-size: 1.125rem;
+}
+
+.learning__card {
+  background: var(--accent-secondary);
+  box-shadow: var(--shadow-two);
+  padding: 20px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  border-radius: 10px;
+  color: var(--text);
+  border: var(--border);
+}
+
+.primary__btn {
+  width: 200px;
+}
+
+::ng-deep pdf-viewer {
+  width: 100% !important;
+  height: 80vh !important;
+}
+.group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.group img{
+  height: 80px;
+  width: 80px;
+  object-fit: cover;
+}
+
+.name{
+  font-variation-settings: 'wght' 700;
+  color: var(--text);
+}
+
+.video__left{
+  position: relative;
+}
+
+
+.grouped__btn{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: absolute;
+  width: 90%;
+  top: 2%;
+  left: 5%;
+  z-index: 1000;
+}
+
+.home{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: none;
+  border: none;
+  color: var(--white);
+  font-size: 0.9rem;
+  padding: 10px;
+  transition: all 250ms ease-out;
+}
+
+.home:hover{
+  background: rgba(255, 255, 255, 0.14);
+  border-radius: 5px;
+}

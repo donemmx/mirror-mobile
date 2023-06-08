@@ -1,0 +1,21 @@
+<div [class]="bg ? 'section bg__course pb-5' : 'section pb-5'">
+  <section class="section__container">
+    <div class="section__header">
+      <h3 class=" font-bold">Recommended Courses</h3>
+      <a routerLink="" class="small" routerLink="/courses">View All</a>
+    </div>
+    <div class="course__section md:grid md:grid-cols-2" @listAnimation>
+      <div class="grouped__loading" *ngIf="loading" >
+        <div class="grouped" *ngFor="let data of [1]">
+          <p-skeleton styleClass="mb-1"></p-skeleton>
+          <p-skeleton width="10rem" styleClass="mb-1"></p-skeleton>
+          <p-skeleton width="5rem" styleClass="mb-1"></p-skeleton>
+          <p-skeleton height="2rem" styleClass="mb-1"></p-skeleton>
+        </div>
+      </div>
+        <div class="course__container" *ngFor="let course of (courses$ | async)">
+          <app-course-card [course]="course" *ngIf="!loading"></app-course-card>
+        </div>
+    </div>
+  </section>
+</div>

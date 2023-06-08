@@ -1,0 +1,41 @@
+
+.portfolio__card{
+    padding: 30px;
+    width: 100%;
+    height: 300px;
+    box-shadow: var(--shadow-five);
+    border-radius: 10px;
+    background: var(--background);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.card__body{
+    display: grid;
+    gap: 10px;
+}
+
+.card__top{
+    height: 100px;
+    width: 100px;
+}
+
+.card__top img{
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+}
+
+.title{
+    font-variation-settings: 'wght' 700;
+    color: var(--text);
+}
+.card__text{
+    font-size: .80rem;
+    line-height: 1.5;
+    font-variation-settings: 'wght' 500;
+    color: var(--text);
+
+}

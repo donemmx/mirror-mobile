@@ -1,0 +1,14 @@
+<div class="carousel">
+    <p-carousel [value]="carousel" [numVisible]="1" [numScroll]="1" [autoplayInterval]="3000">
+        <ng-template let-item pTemplate="item">
+            <div class="main__content">
+                <div class="content__left">
+                    <h3 class="head__three">Why The IESSP Can Benefit You</h3>
+                    <h4 class="head__four">{{item.title}}</h4>
+                    <small class="small"> {{item.text}} </small>
+                </div>
+                <div class="content__right"> <img src={{item.img}} alt=""></div>
+            </div>
+        </ng-template>
+    </p-carousel>
+</div>

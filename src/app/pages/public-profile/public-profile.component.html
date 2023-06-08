@@ -1,0 +1,29 @@
+<app-header></app-header>
+<div class="public__profile">
+  <div class="header">
+    <div class="header__body" *ngIf="category$ | async as category">
+      <div class="left">
+        <p-avatar
+          [label]="label | uppercase"
+          size="xlarge"
+          class="cursor"
+          shape="circle"
+          *ngIf="category.profilePic == null; else image"
+        ></p-avatar>
+        <ng-template #image>
+          <img class="profile__pic" [src]="category.profilePic" alt="" />
+        </ng-template>
+      </div>
+      <div class="right">
+        <div class="name">{{ message.user.name }}</div>
+        <div class="email">{{ message.user.email }}</div>
+      </div>
+    </div>
+  </div>
+  <div class="profile__body">
+    <div class="container">
+
+    </div>
+  </div>
+</div>
+<app-footer-bottom></app-footer-bottom>

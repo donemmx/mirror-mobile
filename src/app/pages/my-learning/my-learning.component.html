@@ -1,0 +1,33 @@
+<div class="mylearning__top">
+  <div class="profile__top">
+    <div class="profile__heading" data-aos="fade-down" data-aos-duration="1500"> Welcome Back!</div>
+    <div class="profile__heading" data-aos="fade-down" data-aos-duration="1500">  {{ message.user.name | titlecase }} </div>
+    <div class="profile__subtitle pt-1" data-aos="fade-down" data-aos-duration="1850">
+      Continue your Learning Path
+    </div>
+  </div>
+</div>
+<div class="myLearning__body">
+
+    <p-tabView>
+      <p-tabPanel header="Home">
+        <h3 class="text-[.95rem] text-black font-bold pb-3 mt-3">My Paid Courses</h3>
+
+        <div class="tab__body mt-2">
+          <div class="courses" *ngFor="let courseId of myCourses$| async">
+            <app-learning-card [courseId]="courseId"></app-learning-card>
+          </div>
+        </div>
+        <app-recommended></app-recommended>
+      </p-tabPanel>
+      <p-tabPanel header="In Progress">
+
+      </p-tabPanel>
+      <p-tabPanel header="Completed">
+        <div class="tab__body">
+          <!-- <app-recommended></app-recommended> -->
+        </div>
+      </p-tabPanel>
+    </p-tabView>
+</div>
+<app-footer></app-footer>

@@ -1,0 +1,42 @@
+<main class="section">
+  <section class="welcome">
+    <div class="welcome__top">
+      <div class="welcome__header">
+        <div class="logo">
+          <img src="../../../assets/logo/logo.png" alt="" />
+        </div>
+        <!-- <div class="home" routerLink="/home">
+          <i class="pi pi-home"></i>
+          Home
+        </div> -->
+      </div>
+    </div>
+
+    <div class="welcome__main pt-5">
+      <div class="welcome__container">
+        <div class="welcome__left">
+            <div class="group">
+                <div class="welcome__heading mb-1"
+                data-aos="fade-down" 
+                data-aos-duration="1450"
+                >Welcome</div>
+                <div class="welcome__subHeading"
+                data-aos="fade-down" data-aos-duration="1400"
+                >
+                   {{message.user.name | titlecase}},
+                </div>
+            </div>
+            <p class="paragraph"
+            data-aos="fade-down" data-aos-duration="1050"
+            >Click below to continue.</p>
+            <img src="../../../assets/arrorr.png" alt="" class="arrow">
+            <button class="welcome__btn fit"
+            data-aos="fade-down" data-aos-duration="1200"
+            routerLink="/home"
+            >Go to Home page</button>
+        </div>
+        <div class="welcome__right" ></div>
+      </div>
+    </div>
+  </section>
+</main>

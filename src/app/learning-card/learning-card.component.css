@@ -1,0 +1,66 @@
+.learning__main{
+    display: grid;
+    grid-template-columns: 3fr 9fr;
+    padding: 20px;
+    gap: 20px;
+    height: 180px;
+    width: 100%;
+    box-shadow: var(--shadow-one);
+    border-radius: 10px;
+    background: var(--white);
+    position: relative;
+
+}
+
+:host ::ng-deep .p-progressbar{
+    height: .5rem;
+}
+
+.progress{
+    display: grid;
+    grid-template-columns: 8fr 3fr;
+    gap: 20px;
+    align-items: center;
+}
+
+.learning__left{
+    height: 100%;
+    width: 100%;
+}
+
+.learning__right{
+}
+
+.primary__btn{
+  width: 150px;
+}
+
+.myTag{
+    position: absolute;
+    top: 10%;
+    right: 2%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+}
+
+.head__four{
+    width: 70%;
+    font-size: clamp(.85rem,2.5vw,.9rem);
+    line-height: 1.2;
+}
+
+.tag{
+    padding: 5px;
+    background: #00ff152e;
+    color: rgb(1, 109, 1);
+    border-radius: 3px;
+    font-size: 0.75rem;
+}
+
+.progress__left{
+    font-size: .85rem;
+    display: grid;
+    gap: 10px;
+}
