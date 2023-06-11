@@ -159,6 +159,7 @@ import { SidebarComponent } from 'src/app/sidebar/sidebar.component';
     TextItemComponent,
     SidebarComponent,
 
+
   ],
   imports: [
     CommonModule,

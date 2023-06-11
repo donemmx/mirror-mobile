@@ -7,6 +7,7 @@ import { OtpComponent } from './pages/otp/otp.component';
 import { LoginComponent } from './pages/login/login.component';
 import { DashboardLayoutModule } from './pages/dashboard-layout/dashboard-layout.module';
 import { LoginGuard } from './services/login.guard';
+import { SignupTwoComponent } from './pages/signup-two/signup-two.component';
 
 const routes: Routes = [
   {
@@ -16,6 +17,10 @@ const routes: Routes = [
   {
     path: 'signup',
     component: SignupComponent,  canActivate: [LoginGuard]
+  },
+  {
+    path: 'signup-2',
+    component: SignupTwoComponent,  canActivate: [LoginGuard]
   },
   {
     path: 'reset-password',

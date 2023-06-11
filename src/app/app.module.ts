@@ -17,6 +17,7 @@ import { OtpComponent } from './pages/otp/otp.component';
 import { PasswordModule } from 'primeng/password';
 import { InputTextModule } from 'primeng/inputtext';
 import { DropdownModule } from 'primeng/dropdown';
+import { SignupTwoComponent } from './pages/signup-two/signup-two.component';
 
 
 export const API_INTERCEPTOR_PROVIDER: Provider = {
@@ -33,6 +34,7 @@ export const API_INTERCEPTOR_PROVIDER: Provider = {
     ForgotPasswordComponent,
     ResetPasswordComponent,
     OtpComponent,
+    SignupTwoComponent,
   ],
   imports: [
     BrowserModule,
