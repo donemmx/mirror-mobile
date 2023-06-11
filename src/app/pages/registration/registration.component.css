@@ -68,7 +68,7 @@
 }
 
 :host ::ng-deep  .p-selectbutton .p-button{
-  font-size: 0.8rem;
+  font-size: 0.75rem;
 }
 .next {
   padding: 10px 40px;

@@ -1,5 +1,4 @@
-
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -15,6 +14,7 @@ import { AuthService } from '../services/auth.service';
 import { PaymentService } from '../api/services';
 import { IPayPalConfig, ICreateOrderRequest } from 'ngx-paypal';
 import { Subject } from 'rxjs/internal/Subject';
+
 declare const PaystackPop: any;
 
 @Component({
@@ -23,25 +23,27 @@ declare const PaystackPop: any;
   styleUrls: ['./payment-card.component.css'],
 })
 export class PaymentCardComponent extends BaseComponent {
-cardForm: FormGroup;
+  payPalConfig?: IPayPalConfig;
   @Input() courses: any;
   loading: boolean = false;
   success: boolean = false;
-  method: any = 'paystack'
-  payPalConfig?: IPayPalConfig;
+  method: any = 'paystack';
   methodList:any = ['paystack', 'paypal']
   getMethod$ = new Subject()
-
   constructor(
     data: DataService,
     router: Router,
+
+    private formBuilder: FormBuilder,
     private api: PaymentService,
+    private auth: AuthService,
+    private notify: NotificationService
   ) {
-    super(data,router)
+    super(data, router);
   }
 
   ngOnInit(): void {
-    super.ngOnInit()
+    super.ngOnInit();
     this.getMethod$.subscribe((res)=> {
       if(res === 'paypal'){
         this.initConfig();
@@ -49,54 +51,53 @@ cardForm: FormGroup;
 
       }
     })
+
   }
 
+  pay() {
+    let mycourseIds: any[] = [];
+    this.courses.forEach((items: any) => {
+      mycourseIds.push(items.courseId);
+    });
+
+    this.api
+      .registerPaystackPayment({
+        paystackId: v4(),
+        body: {
+          courseIds: mycourseIds,
+          method: this.method,
+        },
+      })
+      .subscribe((res) => {
+        console.log(res.key);
+
+        const paystack = new PaystackPop();
+        paystack.newTransaction({
+          key: res.key,
+          email: res.email,
+          amount: res.amount,
+          ref: res.reference,
+          onSuccess: (transaction: any) => {
+            console.log(transaction);
+            this.api
+              .paystackCallback({ paystackId: res.reference })
+              .subscribe(() => {
+                this.loading = false;
+                this.success = true;
+                this.message.cart = [];
+                this.data.changeMessage(this.message);
+              });
+          },
+          onCancel: () => {
+            // user closed popup
+          },
+        });
+      });
+  }
 
   logResult(event: any){
     this.getMethod$.next(event.value)
   }
-
-  pay() {
-
-    let mycourseIds: any[] = []
-    this.courses.forEach((items:any) => {
-      mycourseIds.push(items.courseId)
-    });
-
-
-    this.loading = true;
-    this.api.registerPaystackPayment({
-      paystackId: v4(),
-        body: {
-          courseIds: mycourseIds,
-          method: this.method
-        }
-      })
-      .subscribe(
-        (res) => {
-          const paystack = new PaystackPop();
-          paystack.newTransaction({
-            key: res.key,
-            email: res.email,
-            amount: res.amount,
-            ref: res.reference,
-            onSuccess: (transaction: any) => {
-              console.log(transaction);
-              this.api
-                .paystackCallback({ paystackId: res.reference })
-                .subscribe(() => {
-                 this.loading = false
-                 this.success = true
-                 this.message.cart = []
-                 this.data.changeMessage(this.message)
-                });
-            },
-            onCancel: () => {
-              // user closed popup
-            },
-          })}
-    )}
-
 
   initConfig(): void {
     let mycourseIds: any[] = [];
@@ -176,8 +177,8 @@ cardForm: FormGroup;
       },
     }})
   }
-  proceed() {
 
+  proceed() {
     this.router.navigateByUrl('/my-learning');
   }
 }

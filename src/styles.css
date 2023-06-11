@@ -94,7 +94,7 @@ img {
   border: 1.06px solid var(--blue);
   border-radius: 5.3px;
   color: var(--white);
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -125,7 +125,7 @@ img {
   justify-content: center;
   gap: 10px;
   color: var(--outline-text);
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   cursor: pointer;
 }
 
@@ -140,7 +140,7 @@ img {
   border: 1.06px solid var(--black);
   border-radius: 5.3px;
   color: var(--black);
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   cursor: pointer;
 }
 
@@ -156,7 +156,7 @@ img {
   gap: 10px;
   color: var(--gradient-two);
   box-shadow: var(--shadow-four);
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   cursor: pointer;
 }
 
@@ -297,7 +297,7 @@ label{
   box-shadow: none !important;
 }
 .small {
-  font-size: clamp(0.9rem, 2.5vw, 1.05rem);
+  font-size: clamp(0.8rem, 2.5vw, 1.05rem);
   color: black;
 }
 .p-tabview .p-tabview-panels, .p-tabview .p-tabview-nav, .p-tabview .p-tabview-nav li:not(.p-highlight):not(.p-disabled):hover .p-tabview-nav-link, .p-tabview .p-tabview-nav li .p-tabview-nav-link, .p-paginator{
@@ -315,7 +315,7 @@ label{
 
 .p-float-label input:focus ~ label, .p-float-label input.p-filled ~ label, .p-float-label textarea:focus ~ label, .p-float-label textarea.p-filled ~ label, .p-float-label .p-inputwrapper-focus ~ label, .p-float-label .p-inputwrapper-filled ~ label {
   top: -0.3rem !important;
-  font-size: 12px;
+  font-size: 11px;
   background: white !important;
   padding: 7px !important;
 }
@@ -362,7 +362,7 @@ label{
 }
 
 .join {
-  font-size: 0.9rem;
+  font-size: 0.75rem;
   color: var(--black);
   display: flex;
   align-items: center;
@@ -403,7 +403,7 @@ label{
   }
 
   .size{
-      font-size: 1rem;
+      font-size: .85rem;
   }
 
   .signup__content{

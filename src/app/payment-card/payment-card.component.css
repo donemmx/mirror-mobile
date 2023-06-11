@@ -6,6 +6,10 @@
   box-shadow: var(--shadow-one);
 }
 
+:host ::ng-deep .p-button{
+  font-size: .75rem;
+}
+
 :host ::ng-deep .p-button:focus{
   box-shadow: none;
 }
@@ -22,12 +26,12 @@
 }
 
 .payment__title {
-  font-size: 1.7rem;
+  font-size: 1rem;
   color: var(--white);
   font-variation-settings: "wght" 700;
 }
 .payment__type {
-  font-size: 1rem;
+  font-size: .85rem;
   color: var(--white);
   font-variation-settings: "wght" 300;
 }
@@ -39,7 +43,7 @@
   align-items: center;
   justify-content: center;
   border-radius: 3px;
-  font-size: 0.95rem;
+  font-size: 0.75rem;
   cursor: pointer;
   transition: all 250ms ease-out;
   color: var(--blue);
@@ -125,6 +129,9 @@ label{
     color: var(--white);
 }
 
+:host ::ng-deep .paypal-button-number-1{
+  display: none !important;
+}
 
 @media screen and (max-width: 580px) {
     .payment__card{

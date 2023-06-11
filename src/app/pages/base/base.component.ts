@@ -65,6 +65,7 @@ export class BaseComponent implements OnInit, OnDestroy {
   }
 
   getLearnerProfile(api: any){
+
     api.getLearner({
       learnerId: this.learnerId
     }).pipe().subscribe((res: any)=> {

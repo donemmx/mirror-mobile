@@ -17,7 +17,7 @@
   </div>
   <div class="icons" *ngIf="category$ | async as category">
     <div class="icons__link buy__now">
-      <a routerLink="/cart"  pBadge [value]="category.cart?.length">
+      <a routerLink="/cart" pBadge [value]="category.cart?.length">
         <img src="../../assets/sidebar/buy-now.svg" alt=""  />
         <small>Cart</small>
       </a>

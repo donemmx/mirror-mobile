@@ -1,5 +1,4 @@
 .hero__two{
-    height: 100%;
     padding: 50px 10px;
     background: var(--primary-color);
     background-repeat: no-repeat;
@@ -34,7 +33,7 @@
 }
 
 .subtitle{
-    font-size: 0.9rem;
+    font-size: 0.75rem;
     line-height: 1.5;
 }
 

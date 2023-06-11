@@ -33,7 +33,7 @@
 
 .heading__account{
     color: var(--primary-color);
-    font-size: clamp(1.5rem, 2.5vw, 4rem);
+    font-size: clamp(1rem, 2.5vw, 4rem);
     font-variation-settings: 'wght' 900;
 }
 
@@ -62,7 +62,7 @@
 
 
 .subheading{
-    font-size: clamp(.9rem, 2.5vw, 1.2rem);
+    font-size: clamp(.75rem, 2.5vw, 1.2rem);
     color: var(--primary-color);
     font-variation-settings: 'wght' 600;
 }

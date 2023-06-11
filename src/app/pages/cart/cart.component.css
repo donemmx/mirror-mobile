@@ -24,7 +24,8 @@
 }
 
 .headline {
-  font-size: 16.0046px;
+  font-size: 13px;
+  font-weight: bold;
   line-height: 21px;
   color: #313131;
 }
@@ -55,7 +56,7 @@
 }
 
 .head__three {
-  font-size: 18px;
+  font-size: 12px;
   line-height: 1.2;
   color: #222222;
   margin-bottom: 0;

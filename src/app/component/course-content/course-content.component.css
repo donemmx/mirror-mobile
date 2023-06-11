@@ -26,7 +26,7 @@
 }
 
 .learning__text {
-  font-size: 0.9rem;
+  font-size: 0.75rem;
   line-height: 1.5;
   color: var(--text);
 }
@@ -38,12 +38,12 @@
   width: 100%;
   padding: 0 20px;
   font-weight: normal;
-  font-size: 0.9rem;
+  font-size: 0.75rem;
 }
 
 ::ng-deep .p-accordion-header-text {
   font-weight: normal !important;
-  font-size: 0.9rem !important;
+  font-size: 0.75rem !important;
   padding: 5px !important;
 }
 
@@ -68,7 +68,7 @@
   grid-template-columns: 0.5fr 8fr 1fr;
   place-items: start;
   align-items: center;
-  font-size: 0.9rem;
+  font-size: 0.75rem;
   gap: 15px;
 }
 

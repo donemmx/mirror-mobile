@@ -14,12 +14,13 @@
 
 .profile__heading {
   color: var(--white);
-  font-size: clamp(1.4rem, 2.5vw, 2rem);
+  font-size: clamp(1rem, 2.5vw, 2rem);
   font-variation-settings: "wght" 800;
 }
 
 .profile__subtitle {
   color: var(--white);
+  font-size: 11px;
 }
 
 .group__text {

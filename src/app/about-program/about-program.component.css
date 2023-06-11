@@ -38,7 +38,7 @@
 
 .about__title{
     font-variation-settings: 'wght' 900;
-    font-size: clamp(1rem, 2.5vw, 1.7rem);
+    font-size: clamp(.85rem, 2.5vw, 1.7rem);
     color: var(--black-secondary);
 }
 
@@ -65,5 +65,5 @@
         height: 100%;
         padding: 40px 0;
     }
-    
+
 }
