@@ -19,7 +19,7 @@
     width: 100%;
     background: var(--blue);
     background-size: cover;
-    background-position: 0 -140px;
+    background-position: center;
 }
 
 .hero__threeBottom{

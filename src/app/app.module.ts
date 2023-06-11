@@ -44,7 +44,7 @@ export const API_INTERCEPTOR_PROVIDER: Provider = {
     PasswordModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-  
+
     ToastrModule.forRoot({
       positionClass: 'toast-bottom-center',
       progressAnimation: 'decreasing',
@@ -56,7 +56,7 @@ export const API_INTERCEPTOR_PROVIDER: Provider = {
   providers: [
     JwtInterceptor,
     API_INTERCEPTOR_PROVIDER,
-   
+
   ],
   bootstrap: [AppComponent]
 })

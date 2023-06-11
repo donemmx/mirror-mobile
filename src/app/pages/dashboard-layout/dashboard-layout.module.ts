@@ -89,6 +89,7 @@ import { SkeletonModule } from 'primeng/skeleton';
 import { AccordionModule } from 'primeng/accordion';
 import { AssignmentItemComponent } from 'src/app/assignment-item/assignment-item.component';
 import { TextItemComponent } from 'src/app/text-item/text-item.component';
+import { SidebarComponent } from 'src/app/sidebar/sidebar.component';
 
 
 
@@ -155,7 +156,9 @@ import { TextItemComponent } from 'src/app/text-item/text-item.component';
     LandingComponent,
     AnimationOneComponent,
     AssignmentItemComponent,
-    TextItemComponent
+    TextItemComponent,
+    SidebarComponent,
+
   ],
   imports: [
     CommonModule,

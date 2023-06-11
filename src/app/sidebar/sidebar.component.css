@@ -1,0 +1,29 @@
+.sidebar__main{
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  transform: 0%;
+  transition: all 850ms ease-in-out;
+}
+
+
+.sidebar__container{
+  width: 85%;
+  margin: auto;
+  padding: 10px;
+}
+.sidebar__left a{
+  display: block;
+  font-size: 1rem;
+  font-weight: bold;
+  line-height: 1.7;
+  cursor: pointer;
+}
+
+
+.title{
+  font-size: 18px;
+  font-weight: bold;
+}
+
+

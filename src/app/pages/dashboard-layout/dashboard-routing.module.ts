@@ -15,6 +15,7 @@ import { ProfileComponent } from '../profile/profile.component';
 import { VideoComponent } from '../video/video.component';
 import { RegistrationComponent } from '../registration/registration.component';
 import { WelcomeComponent } from '../welcome/welcome.component';
+import { SidebarComponent } from 'src/app/sidebar/sidebar.component';
 
 const routes: Routes = [
   {
@@ -36,6 +37,10 @@ const routes: Routes = [
       {
         path: 'my-learning',
         component: MyLearningComponent,
+      },
+      {
+        path: 'account',
+        component: SidebarComponent,
       },
       {
         path: 'my-account',
@@ -81,8 +86,8 @@ const routes: Routes = [
       {
         path: '',
         redirectTo: '/home',
-        pathMatch: 'full'
-      }
+        pathMatch: 'full',
+      },
     ],
   },
 ];
