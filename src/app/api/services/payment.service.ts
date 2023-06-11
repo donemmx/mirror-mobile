@@ -198,28 +198,28 @@ export class PaymentService extends BaseService {
   }
 
   /**
-   * Path part for operation paystackCallback_1
+   * Path part for operation paypalCallback
    */
-  static readonly PaystackCallback_1Path = '/paypal/{payId}/callback';
+  static readonly PaypalCallbackPath = '/paypal/{payId}/callback';
 
   /**
-   * Paystack Callback.
+   * Paypal Callback.
    *
-   * Paystack Payment Callback
+   * Paypal Payment Callback
    *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `paystackCallback_1()` instead.
+   * To access only the response body, use `paypalCallback()` instead.
    *
    * This method doesn't expect any request body.
    */
-  paystackCallback_1$Response(params: {
+  paypalCallback$Response(params: {
     payId: string;
   },
   context?: HttpContext
 
 ): Observable<StrictHttpResponse<void>> {
 
-    const rb = new RequestBuilder(this.rootUrl, PaymentService.PaystackCallback_1Path, 'get');
+    const rb = new RequestBuilder(this.rootUrl, PaymentService.PaypalCallbackPath, 'get');
     if (params) {
       rb.path('payId', params.payId, {});
     }
@@ -237,23 +237,23 @@ export class PaymentService extends BaseService {
   }
 
   /**
-   * Paystack Callback.
+   * Paypal Callback.
    *
-   * Paystack Payment Callback
+   * Paypal Payment Callback
    *
    * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `paystackCallback_1$Response()` instead.
+   * To access the full response (for headers, for example), `paypalCallback$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
-  paystackCallback_1(params: {
+  paypalCallback(params: {
     payId: string;
   },
   context?: HttpContext
 
 ): Observable<void> {
 
-    return this.paystackCallback_1$Response(params,context).pipe(
+    return this.paypalCallback$Response(params,context).pipe(
       map((r: StrictHttpResponse<void>) => r.body as void)
     );
   }
