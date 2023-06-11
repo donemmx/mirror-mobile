@@ -34,6 +34,9 @@ export class LoginComponent  extends BaseComponent{
         email: new FormControl('', [Validators.required, Validators.email]),
         password: new FormControl('', [Validators.required]),
       });
+
+      delete this.message.signupForm
+      this.message.changeMessage(this.message)
   }
 
   signIn(){
