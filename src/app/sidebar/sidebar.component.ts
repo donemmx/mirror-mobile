@@ -30,6 +30,7 @@ export class SidebarComponent extends BaseComponent {
         this.message.cart = [];
         this.message.courseSelected = null;
         this.notify.success('user logged out successfully');
+
       },
       (error) => {
         this.notify.error(error.message);

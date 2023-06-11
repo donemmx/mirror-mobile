@@ -42,7 +42,7 @@ export class AuthService {
     if (event.storageArea == localStorage) {
       if (event?.key && event.key == 'logout-event') {
         console.log("🔥 ~ storageEventListener ~ event", event.newValue)
-        this.logout()  
+        this.logout()
       }
       else if (event?.key && event.key == 'login-event') {
         console.log("🔥 ~ storageEventListener ~ event", event.newValue)
@@ -72,10 +72,10 @@ export class AuthService {
     sessionStorage.removeItem('message')
     localStorage.clear();
     this.currentAuthSubject.next({});
-    this.router.navigateByUrl('/home');
+    this.router.navigateByUrl('/login');
   }
 
-   // Handle active listeners when onDestroy 
+   // Handle active listeners when onDestroy
    private stop(): void {
     window.removeEventListener("storage", this.storageEventListener.bind(this));
   }
