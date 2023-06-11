@@ -25,7 +25,7 @@ export class RecommendedComponent extends BaseComponent{
       ageCategory: this.message.selected
     }).pipe(map((res)=> res.data), tap((res)=> {
       this.loading = false
-    }), shareReplay(1))
+    }))
 
   }
 }

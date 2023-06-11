@@ -1,5 +1,30 @@
-<div class="payment__card w-full" pRipple *ngIf="!loading" (click)="pay()">
-  <div class="title text-white text-center text-[.8rem]" >Make Payments</div>
+<div class="payment__card w-full pt-2">
+  <div class="payment__main" *ngIf="!loading && !success" >
+    <div class="text-[1.2rem] md:text-[1.4rem] text-white font-bold pt-2">Check out</div>
+    <div class="payment__type">
+     Select Payment method
+      <div class="payment__mode pt-1">
+          <p-selectButton
+            [options]="methodList"
+            [(ngModel)]="method"
+            (onChange)="logResult($event)"
+          >
+            <ng-template let-item>
+              <div class="grouped__data">
+                <p>{{ item }}</p>
+              </div>
+            </ng-template>
+          </p-selectButton>
+      </div>
+      <button *ngIf="method === 'paystack'" class="payment whiteBtn full mt-4 mb-1" (click)="pay()">
+        Pay With Paystack
+      </button>
+      <div class="pt-4">
+        <ngx-paypal *ngIf="method === 'paypal'" [config]="payPalConfig"></ngx-paypal>
+      </div>
+    </div>
+
+  </div>
 </div>
 <div *ngIf="loading">
   <lottie-player

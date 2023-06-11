@@ -13,7 +13,7 @@
   <div class="main">
     <div class="cart__main w-[90%] mx-auto pt-2">
       <div class="cart__table" *ngIf="category$ | async as category">
-        <div class="cart__mainTabl" *ngFor="let item of category.cart; let i = index">
+        <div class="cart__mainTabl pb-2" *ngFor="let item of category.cart; let i = index">
           <div class="cart__body shadow-2xl rounded-md bg-white p-2 w-full mt-1">
             <div class="cart__list">
               <app-course-image
@@ -28,12 +28,12 @@
                 {{ item.instructor }}
               </p>
             </div>
-            <div class="remove cursor-pointer" (click)="deleteItem(i)"> 
+            <div class="remove cursor-pointer" (click)="deleteItem(i)">
               <i class="pi pi-trash"></i>
           </div>
           </div>
         </div>
-        <app-payment-card [courseIds]="category.cart"></app-payment-card>
+        <app-payment-card [courses]="category.cart"></app-payment-card>
       </div>
     </div>
   </div>

@@ -64,7 +64,7 @@ export class HeaderComponent extends BaseComponent {
 
     this.getDevice();
     this.cartAmount = this.message.cart?.length
-    this.label = this.message.user?.name.split(' ')[0][0] 
+    this.label = this.message.user?.name.split(' ')[0][0]
   }
 
   loadTheme(theme: any) {
@@ -106,8 +106,7 @@ export class HeaderComponent extends BaseComponent {
   }
 
   setCategory(item: string) {
-    this.message.selected = item;
-    this.data.changeMessage(this.message);
+
     this.router.navigateByUrl('/home');
     this.openCategory();
   }

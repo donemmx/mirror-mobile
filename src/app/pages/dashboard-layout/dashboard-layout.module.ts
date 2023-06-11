@@ -90,6 +90,7 @@ import { AccordionModule } from 'primeng/accordion';
 import { AssignmentItemComponent } from 'src/app/assignment-item/assignment-item.component';
 import { TextItemComponent } from 'src/app/text-item/text-item.component';
 import { SidebarComponent } from 'src/app/sidebar/sidebar.component';
+import { NgxPayPalModule } from 'ngx-paypal';
 
 
 
@@ -182,6 +183,7 @@ import { SidebarComponent } from 'src/app/sidebar/sidebar.component';
     MultiSelectModule,
     SelectButtonModule,
     InputMaskModule,
+    NgxPayPalModule,
     MessagesModule,
     AvatarModule,
     PasswordModule,

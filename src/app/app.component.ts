@@ -19,10 +19,6 @@ event: any;
   }
   ngOnInit(){
     this.primengConfig.ripple = true;
-    const selected = sessionStorage.getItem('message')
-    if (selected == null) {
-      sessionStorage.setItem('message', JSON.stringify({selected: 'young adult'})) ;
-    }
   }
 
   ngAfterContentInit(): void {
