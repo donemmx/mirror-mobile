@@ -11,26 +11,26 @@
       ></p-avatar>
       <ng-template #image>
         <img
-          class="profile__pic rounded-full h-[35px]"
+          class="profile__pic rounded-full h-[60px] w-[60px]"
           [src]="message.user.pictureUrl"
           alt=""
         />
       </ng-template>
 
       <div class="">
-        <p>{{message.user?.name}}</p>
+        <p class="font-bold">{{message.user?.name | titlecase}}</p>
         <small>{{message.user?.email}}</small>
       </div>
     </div>
-    <div class="sidebar__left grid gap-2 pt-5 ">
-      <div routerLink="/home" class="cursor-pointer grid grid-cols-2 p-3 bg-slate-50"> Home <i class="pi pi-angle-right ml-auto bg-slate-200 p-2"></i></div>
-      <div routerLink="/courses" class="cursor-pointer grid grid-cols-2 p-3 bg-slate-50">Courses <i class="pi pi-angle-right ml-auto bg-slate-200 p-2"></i></div>
-      <div routerLink="/cart" class="cursor-pointer grid grid-cols-2 p-3 bg-slate-50">Cart <i class="pi pi-angle-right ml-auto bg-slate-200 p-2"></i></div>
-      <div routerLink="/notification" class="cursor-pointer grid grid-cols-2 p-3 bg-slate-50">Notification <i class="pi pi-angle-right ml-auto bg-slate-200 p-2"></i></div>
-      <div routerLink="/my-learning" class="cursor-pointer grid grid-cols-2 p-3 bg-slate-50">My Learning <i class="pi pi-angle-right ml-auto bg-slate-200 p-2"></i></div>
-      <div routerLink="/profile" class="cursor-pointer grid grid-cols-2 p-3 bg-slate-50">Profile <i class="pi pi-angle-right ml-auto bg-slate-200 p-2"></i></div>
-      <div routerLink="/my-account" class="cursor-pointer grid grid-cols-2 p-3 bg-slate-50">Account Settings <i class="pi pi-angle-right ml-auto bg-slate-200 p-2"></i></div>
-      <div (click)="logout()" class="flex cursor-pointer items-center gap-2 p-3 bg-slate-50"><i class="pi pi-sign-out"></i> Logout </div>
+    <div class="sidebar__left grid gap-2 pt-3 ">
+      <div routerLink="/home" class="cursor-pointer grid grid-cols-2 p-1 bg-slate-50"> Home <i class="pi pi-angle-right ml-auto bg-slate-200 p-2"></i></div>
+      <div routerLink="/courses" class="cursor-pointer grid grid-cols-2 p-1 bg-slate-50">Courses <i class="pi pi-angle-right ml-auto bg-slate-200 p-2"></i></div>
+      <div routerLink="/cart" class="cursor-pointer grid grid-cols-2 p-1 bg-slate-50">Cart <i class="pi pi-angle-right ml-auto bg-slate-200 p-2"></i></div>
+      <div routerLink="/notification" class="cursor-pointer grid grid-cols-2 p-1 bg-slate-50">Notification <i class="pi pi-angle-right ml-auto bg-slate-200 p-2"></i></div>
+      <div routerLink="/my-learning" class="cursor-pointer grid grid-cols-2 p-1 bg-slate-50">My Learning <i class="pi pi-angle-right ml-auto bg-slate-200 p-2"></i></div>
+      <div routerLink="/profile" class="cursor-pointer grid grid-cols-2 p-1 bg-slate-50">Profile <i class="pi pi-angle-right ml-auto bg-slate-200 p-2"></i></div>
+      <div routerLink="/my-account" class="cursor-pointer grid grid-cols-2 p-1 bg-slate-50">Account Settings <i class="pi pi-angle-right ml-auto bg-slate-200 p-2"></i></div>
+      <div (click)="logout()" class="flex cursor-pointer items-center gap-2 p-1 bg-slate-50"><i class="pi pi-sign-out"></i> Logout </div>
     </div>
   </div>
 </div>

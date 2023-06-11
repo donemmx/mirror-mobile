@@ -2,8 +2,8 @@
 .hero{
   width: 100%;
   border-radius: 5px;
-  
-  clip-path: polygon(50% 100%,100% 66%,100% 52%,100% 0,0 0,0 66%)
+  clip-path: polygon(50% 100%,100% 66%,100% 52%,100% 0,0 0,0 66%);
+  overflow: hidden;
 }
 
 .left{
