@@ -23,13 +23,20 @@
       </div>
     </div>
     <div class="sidebar__left grid gap-2 pt-3 ">
-      <div routerLink="/home" class="cursor-pointer grid grid-cols-2 p-1 bg-slate-50"> Home <i class="pi pi-angle-right ml-auto bg-slate-200 p-2"></i></div>
-      <div routerLink="/courses" class="cursor-pointer grid grid-cols-2 p-1 bg-slate-50">Courses <i class="pi pi-angle-right ml-auto bg-slate-200 p-2"></i></div>
-      <div routerLink="/cart" class="cursor-pointer grid grid-cols-2 p-1 bg-slate-50">Cart <i class="pi pi-angle-right ml-auto bg-slate-200 p-2"></i></div>
-      <div routerLink="/notification" class="cursor-pointer grid grid-cols-2 p-1 bg-slate-50">Notification <i class="pi pi-angle-right ml-auto bg-slate-200 p-2"></i></div>
-      <div routerLink="/my-learning" class="cursor-pointer grid grid-cols-2 p-1 bg-slate-50">My Learning <i class="pi pi-angle-right ml-auto bg-slate-200 p-2"></i></div>
-      <div routerLink="/profile" class="cursor-pointer grid grid-cols-2 p-1 bg-slate-50">Profile <i class="pi pi-angle-right ml-auto bg-slate-200 p-2"></i></div>
-      <div routerLink="/my-account" class="cursor-pointer grid grid-cols-2 p-1 bg-slate-50">Account Settings <i class="pi pi-angle-right ml-auto bg-slate-200 p-2"></i></div>
+      <div routerLink="/home" class="cursor-pointer grid grid-cols-2 p-1 bg-slate-50"> Home <i class="pi pi-angle-right ml-auto bg-slate-200 p-1"></i></div>
+      <hr>
+      <div routerLink="/courses" class="cursor-pointer grid grid-cols-2 p-1 bg-slate-50">Courses <i class="pi pi-angle-right ml-auto bg-slate-200 p-1"></i></div>
+      <hr>
+      <div *ngIf="category$ | async as category" routerLink="/cart" class="cursor-pointer grid grid-cols-2 p-1 bg-slate-50" > <p class=" pr-4 w-fit" pBadge [value]="category.cart?.length">Cart </p>  <i class="pi pi-angle-right ml-auto bg-slate-200 p-1"></i></div>
+      <hr>
+      <div routerLink="/notification" class="cursor-pointer grid grid-cols-2 p-1 bg-slate-50">Notification <i class="pi pi-angle-right ml-auto bg-slate-200 p-1"></i></div>
+      <hr>
+      <div routerLink="/my-learning" class="cursor-pointer grid grid-cols-2 p-1 bg-slate-50">My Learning <i class="pi pi-angle-right ml-auto bg-slate-200 p-1"></i></div>
+      <hr>
+      <div routerLink="/profile" class="cursor-pointer grid grid-cols-2 p-1 bg-slate-50">Profile <i class="pi pi-angle-right ml-auto bg-slate-200 p-1"></i></div>
+      <hr>
+      <div routerLink="/my-account" class="cursor-pointer grid grid-cols-2 p-1 bg-slate-50">Account Settings <i class="pi pi-angle-right ml-auto bg-slate-200 p-1"></i></div>
+      <hr>
       <div (click)="logout()" class="flex cursor-pointer items-center gap-2 p-1 bg-slate-50"><i class="pi pi-sign-out"></i> Logout </div>
     </div>
   </div>
