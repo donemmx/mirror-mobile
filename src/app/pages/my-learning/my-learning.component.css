@@ -6,14 +6,10 @@
 }
 
 .profile__top {
-  height: 100%;
+  width: 90%;
+  margin: auto;
   background: var(--blue);
   display: flex;
-  flex-direction: column;
-  padding: 30px;
-  justify-content: center;
-  background-repeat: no-repeat;
-  background-position: right;
 }
 
 .profile__heading {

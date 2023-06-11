@@ -15,10 +15,10 @@
         <i class="pi pi-search size"></i>
         <input type="text" placeholder="Search for Course" />
       </div>
-      
+
       <ng-template [ngIf]="auth.isUserLoggedIn() == false">
         <div class="header__right">
-      
+
           <ul>
             <li routerLink="/courses">Courses</li>
           </ul>
@@ -31,7 +31,7 @@
         </div>
       </ng-template>
       <ng-template [ngIf]="auth.isUserLoggedIn() == true">
-        
+
         <div class="header__right modified" >
           <ul>
             <li routerLink="/courses">Courses</li>
@@ -45,7 +45,7 @@
             size="small"
             class="cursor"
             shape="circle"
-            (click)="openMenu()" 
+            (click)="openMenu()"
             *ngIf="category.profilePic == null; else image"
           ></p-avatar>
           <ng-template #image>
@@ -61,10 +61,10 @@
           </div>
       </ng-template>
         </p-inputSwitch>
-       
+
       </form>
     </div>
-   
+
     <div class="header__hamburger" (click)="openSidebar()">
       <i class="pi pi-bars size"></i>
     </div>
@@ -113,7 +113,7 @@
         </div>
       </ng-template>
       <ng-template [ngIf]="auth.isUserLoggedIn() == true">
-        
+
         <div class="main__sidebar" >
           <ul>
             <li routerLink="/courses">Courses</li>
@@ -127,10 +127,10 @@
             size="small"
             class="cursor"
             shape="circle"
-            *ngIf="category.profilePic == null; else image"
+            *ngIf="category.user.pictureUrl == null; else image"
           ></p-avatar>
           <ng-template #image>
-            <img class="profile__pic" [src]="category.profilePic" alt=""  >
+            <img class="profile__pic" [src]="category.user.pictureUrl" alt=""  >
           </ng-template>
         </div>
       </ng-template>

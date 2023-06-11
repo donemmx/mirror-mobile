@@ -22,6 +22,10 @@
   src: url(./assets/font/PlusJakartaSans-VariableFont_wght.ttf);
 }
 
+body{
+  overflow-x: hidden;
+}
+
 .bg__course {
   background:  url('./assets/children/courses-kid-bg.png') !important;
   background-size: cover !important;

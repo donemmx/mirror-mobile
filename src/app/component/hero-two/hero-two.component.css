@@ -1,17 +1,15 @@
 .hero__two{
     height: 100%;
-    padding: 50px 20px;
+    padding: 50px 10px;
     background: var(--primary-color);
     background-repeat: no-repeat;
-    background-blend-mode: multiply;
-    background-position: top right;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
 .heroTwo__body{
-    width: 80%;
+    width: 90%;
     margin: auto;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -31,7 +29,7 @@
 }
 .heroTwo__content{
     width: 100%;
-   
+
 }
 
 .subtitle{

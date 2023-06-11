@@ -1,33 +1,77 @@
 <div class="mylearning__top">
-  <div class="profile__top">
-    <div class="profile__heading" data-aos="fade-down" data-aos-duration="1500"> Welcome Back!</div>
-    <div class="profile__heading" data-aos="fade-down" data-aos-duration="1500">  {{ message.user.name | titlecase }} </div>
-    <div class="profile__subtitle pt-1" data-aos="fade-down" data-aos-duration="1850">
-      Continue your Learning Path
+  <div class="profile__top  flex gap-2 pt-5">
+    <div class="image">
+      <p-avatar
+        [label]="label | uppercase"
+        styleClass="mr-2 "
+        size="large"
+        class="cursor pt-3"
+        shape="circle"
+        *ngIf="message.user.pictureUrl.length == 0; else image"
+      ></p-avatar>
+      <ng-template #image>
+        <img
+          class="profile__pic rounded-full h-[35px]"
+          [src]="message.user.pictureUrl"
+          alt=""
+        />
+      </ng-template>
+    </div>
+    <div class="group">
+      <div
+        class="profile__heading"
+        data-aos="fade-down"
+        data-aos-duration="1500"
+      >
+        Welcome Back!
+      </div>
+      <div
+        class="profile__heading"
+        data-aos="fade-down"
+        data-aos-duration="1500"
+      >
+        {{ message.user.name | titlecase }}
+      </div>
+      <div
+        class="profile__subtitle pt-1"
+        data-aos="fade-down"
+        data-aos-duration="1850"
+      >
+        Continue your Learning Path
+      </div>
     </div>
   </div>
 </div>
 <div class="myLearning__body pb-5">
+  <p-tabView>
+    <p-tabPanel header="Home">
+      <h3 class="text-[.95rem] text-black font-bold pb-3 mt-3">
+        My Paid Courses
+      </h3>
 
-    <p-tabView>
-      <p-tabPanel header="Home">
-        <h3 class="text-[.95rem] text-black font-bold pb-3 mt-3">My Paid Courses</h3>
-
-        <div class="tab__body mt-1">
-          <div class="courses" *ngFor="let course of myCourses$| async">
-            <app-learning-card [course]="course"></app-learning-card>
-          </div>
+      <div class="tab__body mt-1">
+        <div class="courses" *ngFor="let course of myCourses$ | async">
+          <app-learning-card [course]="course"></app-learning-card>
         </div>
-        <app-recommended></app-recommended>
-      </p-tabPanel>
-      <p-tabPanel header="In Progress">
-
-      </p-tabPanel>
-      <p-tabPanel header="Completed">
-        <div class="tab__body">
-          <!-- <app-recommended></app-recommended> -->
-        </div>
-      </p-tabPanel>
-    </p-tabView>
+      </div>
+      <app-recommended></app-recommended>
+    </p-tabPanel>
+    <p-tabPanel header="In Progress"> </p-tabPanel>
+    <p-tabPanel header="Completed">
+      <div class="tab__body flex pb-5 flex-col gap-2 bg-white">
+        <p class="pt-5 text-center font-bold">No Compeleted Course yet</p>
+        <lottie-player
+          src="../../../assets/json/completed.json"
+          autoplay
+          loop
+          background="none"
+          animation
+          style="height: 220px"
+          class="scale-x-[-1] pb-3"
+        >
+        </lottie-player>
+      </div>
+    </p-tabPanel>
+  </p-tabView>
 </div>
 <app-footer></app-footer>

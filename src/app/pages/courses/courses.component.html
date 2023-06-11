@@ -1,15 +1,15 @@
 <section class="courses" *ngIf="category$ | async as category">
   <ng-template [ngIf]="category.selected == 'young adult'">
     <app-hero-two></app-hero-two>
-    <div class="main__course pt-5 pb-5">
+    <div class="main__course pt-2 pb-5">
       <p-table
         #dt
         [value]="courses$ | async"
         dataKey="id"
         [loading]="loading"
-        [paginator]="true"
-        [rowsPerPageOptions]="[10, 25, 50]"
-        [rows]="10"
+        [scrollable]="true"
+        scrollHeight="450px"
+        [virtualScroll]="true"
       >
         <ng-template let-item pTemplate="body" class="grid-3"   >
           <app-course-card [course]="item"></app-course-card>
@@ -20,16 +20,16 @@
   </ng-template>
 
   <ng-template [ngIf]="category.selected == 'children'">
-    <app-course-hero></app-course-hero>
-    <div class="main__course pt-5 pb-5">
+    <app-hero-two></app-hero-two>
+    <div class="main__course pt-2 pb-5">
       <p-table
         #dt
         [value]="courses$ | async"
         dataKey="id"
         [loading]="loading"
-        [paginator]="true"
-        [rowsPerPageOptions]="[10, 25, 50]"
-        [rows]="10"
+        [scrollable]="true"
+        scrollHeight="450px"
+        [virtualScroll]="true"
       >
         <ng-template let-item pTemplate="body" class="grid-3"  >
           <app-course-card [course]="item"></app-course-card>
@@ -41,15 +41,16 @@
 
   <ng-template [ngIf]="category.selected == 'adult'">
     <app-hero-two></app-hero-two>
-    <div class="main__course pt-5 pb-5">
+    <div class="main__course pt-2 pb-5">
       <p-table
         #dt
         [value]="courses$ | async"
         dataKey="id"
         [loading]="loading"
-        [paginator]="true"
-        [rowsPerPageOptions]="[10, 25, 50]"
-        [rows]="10"
+        [scrollable]="true"
+        scrollHeight="450px"
+        [virtualScroll]="true"
+        [virtualScrollItemSize]="46"
       >
         <ng-template let-item pTemplate="body" class="grid-3"  >
           <app-course-card [course]="item"></app-course-card>

@@ -8,10 +8,10 @@
           size="xlarge"
           class="cursor"
           shape="circle"
-          *ngIf="category.profilePic == null; else image"
+          *ngIf="category.user.pictureUrl == null; else image"
         ></p-avatar>
         <ng-template #image>
-          <img class="profile__pic" [src]="category.profilePic" alt="" />
+          <img class="profile__pic" [src]="category.user.pictureUrl" alt="" />
         </ng-template>
       </div>
       <div class="right">

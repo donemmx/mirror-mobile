@@ -8,17 +8,20 @@ import { Observable, of } from 'rxjs';
 @Component({
   selector: 'app-my-learning',
   templateUrl: './my-learning.component.html',
-  styleUrls: ['./my-learning.component.css']
+  styleUrls: ['./my-learning.component.css'],
 })
 export class MyLearningComponent extends BaseComponent {
+  label: any;
 
-  myCourses$: Observable<any>
+  myCourses$: Observable<any>;
 
-  constructor(data: DataService, router: Router, private api:LearnersService){
-    super(data, router)
+  constructor(data: DataService, router: Router, private api: LearnersService) {
+    super(data, router);
   }
   ngOnInit(): void {
-      super.ngOnInit()
-      this.myCourses$ = this.api.getLearnerPaidCourses()
+    super.ngOnInit();
+    this.label = this.message.user?.name?.split(' ')[0][0];
+
+    this.myCourses$ = this.api.getLearnerPaidCourses();
   }
 }
