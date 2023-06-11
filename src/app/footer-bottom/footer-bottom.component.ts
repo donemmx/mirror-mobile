@@ -17,8 +17,5 @@ export class FooterBottomComponent extends BaseComponent {
 
   ngOnInit(): void {
       super.ngOnInit()
-
-
-  
   }
 }
