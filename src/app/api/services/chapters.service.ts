@@ -1049,7 +1049,8 @@ export class ChaptersService extends BaseService {
 'instructions': string;
 'order'?: number;
 'minimumPassScore': number;
-'isAlwaysAvailable': boolean;
+'assignmentDurationInDays': number;
+'isAlwaysAvailable'?: boolean;
 'availableDateAndTime'?: Array<any>;
 'tags'?: Array<any>;
 }
@@ -1093,7 +1094,8 @@ export class ChaptersService extends BaseService {
 'instructions': string;
 'order'?: number;
 'minimumPassScore': number;
-'isAlwaysAvailable': boolean;
+'assignmentDurationInDays': number;
+'isAlwaysAvailable'?: boolean;
 'availableDateAndTime'?: Array<any>;
 'tags'?: Array<any>;
 }

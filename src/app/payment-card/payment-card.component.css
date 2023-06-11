@@ -1,7 +1,5 @@
 .payment__card {
   padding: 10px 20px;
-  margin: auto;
-  background: var(--blue);
   border-radius: 10px;
   box-shadow: var(--shadow-one);
 }
@@ -32,7 +30,6 @@
 }
 .payment__type {
   font-size: .85rem;
-  color: var(--white);
   font-variation-settings: "wght" 300;
 }
 
@@ -46,7 +43,7 @@
   font-size: 0.75rem;
   cursor: pointer;
   transition: all 250ms ease-out;
-  color: var(--blue);
+  color: black;
 }
 
 .payment:hover{
@@ -64,8 +61,8 @@
 
 .whiteBtn{
     background: var(--white);
-    color: var(--blue);
-    border: 1px solid var(--white);
+    color: var(--black);
+    border: 1px solid var(--black);
 
 }
 
