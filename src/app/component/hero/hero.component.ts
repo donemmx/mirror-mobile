@@ -14,7 +14,7 @@ export class HeroComponent extends BaseComponent {
   videoModal: boolean = false
   id$ = new BehaviorSubject<any>('http://youtube.com/watch/v=ujcEft1JJUQ')
   label: any
-   
+
   afterViewInit: boolean = false;
   course: any
   constructor(data: DataService, router: Router, private api: CoursesService) {
@@ -22,11 +22,17 @@ export class HeroComponent extends BaseComponent {
   }
   ngOnInit(): void {
     super.ngOnInit();
-    this.label = this.message.user?.name.split(' ')[0][0] 
+    this.label = this.message.user?.name.split(' ')[0][0]
     this.api.getAllCourses({
       ageCategory: this.message.selected
     }).subscribe((res)=> {
-      this.course = res.data.splice(0,1)})
+      this.course = res.data[0]
+      console.log(res.data);
+
+    })
+
+      console.log(this.course);
+
   }
 
   selectCourse() {
@@ -35,7 +41,7 @@ export class HeroComponent extends BaseComponent {
     this.router.navigateByUrl(`/course-detail:/${this.course.courseId}`)
   }
 
-  
+
   openVideo(){
     this.videoModal = !this.videoModal
   }

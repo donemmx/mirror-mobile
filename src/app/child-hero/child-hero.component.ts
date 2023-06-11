@@ -17,17 +17,19 @@ export class ChildHeroComponent extends BaseComponent {
   }
   ngOnInit(): void {
     super.ngOnInit();
-    this.label = this.message.user?.name.split(' ')[0][0] 
+    this.label = this.message.user?.name.split(' ')[0][0]
     this.api.getAllCourses({
       ageCategory: this.message.selected
-    }).subscribe((res)=> {
-      this.course = res.data.splice(0,1)})
+    })
+    .subscribe((res) => {
+      this.course = res.data[0];
+    });
   }
 
   selectCourse() {
     this.message.courseSelected = this.course;
     this.data.changeMessage(this.message);
-    this.router.navigateByUrl(`/course-detail:/${this.course.courseId}`)
+    this.router.navigateByUrl(`/course-detail/${this.course.courseId}`)
   }
 
 }

@@ -38,7 +38,7 @@ export class BaseComponent implements OnInit, OnDestroy {
           }
     })
 
-  
+
   }
 
   ngOnDestroy(): void {
@@ -67,7 +67,7 @@ export class BaseComponent implements OnInit, OnDestroy {
   getLearnerProfile(api: any){
     api.getLearner({
       learnerId: this.learnerId
-    }).pipe( shareReplay(1)).subscribe((res: any)=> {
+    }).pipe().subscribe((res: any)=> {
       this.message.user = res
       this.data.changeMessage(this.message)
     }
@@ -83,6 +83,6 @@ export class BaseComponent implements OnInit, OnDestroy {
   })
 }
 
-  
+
 
 }

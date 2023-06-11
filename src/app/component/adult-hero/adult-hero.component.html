@@ -18,7 +18,7 @@
       </div>
 
       <lottie-player
-        src="../../../assets/json/young.json"
+        src="../../../assets/json/old.json"
         autoplay
         loop
         background="none"
@@ -34,7 +34,7 @@
           Recommended Course</small
         >
         <div class="title text-gray-200 font-bold text-[1.15rem]">
-          {{course.title}}
+          {{ course?.title }}
         </div>
         <div class="">
           <button
@@ -46,25 +46,27 @@
         </div>
       </div>
       <div class="right h-[235px] bg-[#3c3cc8] p-4">
-        <div *ngIf="category$ | async as category">
-          <p-avatar
+        <div *ngIf="category$ | async as category" routerLink="/profile">
+          <div class=" pt-5">
+            <p-avatar
             [label]="label | uppercase"
             styleClass="mr-2 "
-            size="small"
-            class="cursor"
+            size="large"
+            class="cursor pt-3"
             shape="circle"
-            *ngIf="category.profilePic == null; else image"
+            *ngIf="category.user.pictureUrl.length == 0; else image"
           ></p-avatar>
           <ng-template #image>
             <img
               class="profile__pic rounded-full h-[20px]"
-              [src]="category.profilePic"
+              [src]="category.user.pictureUrl"
               alt=""
             />
           </ng-template>
+          </div>
+
         </div>
       </div>
     </div>
   </div>
 </div>
-
