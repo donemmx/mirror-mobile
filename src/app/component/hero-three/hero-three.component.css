@@ -1,5 +1,5 @@
 .hero__three{
-    height: 350px;
+    height: 250px;
     width: 100vw;
     display: flex;
     align-items: center;
@@ -14,13 +14,12 @@
 .head__three{
     color: var(--blue);
 }
-.hero__threeTop{
-    height: 100%%;
+.hero__threeTop {
+    height: 100%;
     width: 100%;
     background: var(--blue);
-    /* background-image: url('../../../assets/images/course-bg.png'); */
     background-size: cover;
-    background-position: center;
+    background-position: 0 -140px;
 }
 
 .hero__threeBottom{
@@ -31,12 +30,6 @@
     justify-content: center;
     background: var(--white);
     box-shadow: var(--shadow-one);
-}
-
-.bottom__container{
-    width: 80%;
-    margin: auto;
-
 }
 
 .children{

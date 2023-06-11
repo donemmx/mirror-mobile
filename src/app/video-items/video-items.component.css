@@ -1,31 +1,51 @@
 
 ::ng-deep .p-accordion-header-text{
-    font-weight: normal !important;
-    font-size: .9rem !important;
-    padding: 5px !important;
+  font-weight: normal !important;
+  font-size: .9rem !important;
+  padding: 5px !important;
 
 }
 
 ::ng-deep .p-accordion-header-link{
-    background: var(--white) !important;
-    box-shadow: var(--shadow-three) !important;
-    border-color: #D8E3EB !important;
+  background: var(--white) !important;
+  box-shadow: var(--shadow-three) !important;
+  border-color: #D8E3EB !important;
 }
 
 :host ::ng-deep .p-accordion .p-accordion-header .p-accordion-header-link{
-    padding: 1rem;
-    border-radius: 0;
+  padding: 1rem;
+  border-radius: 0;
 }
 
 :host ::ng-deep .p-accordion p-accordiontab .p-accordion-tab{
-    margin-bottom: 0;
+  margin-bottom: 0;
 }
 
 .course__accordion{
-    padding: 20px;
+  padding: 20px;
 }
 
 .header__left{
-    font-size: .9rem;
-    font-variation-settings: 'wght' 480;
+  font-size: .9rem;
+  font-variation-settings: 'wght' 480;
+}
+
+.itemsIcon {
+height: 15px;
+width: 15px;
+display: flex;
+align-items: center;
+justify-content: center;
+object-fit: contain;
+}
+
+
+.outcome__card{
+padding: 15px 10px;
+display: flex;
+align-items: center;
+gap: 20px;
+box-shadow: var(--shadow-three) !important;
+background:var(--white);
+cursor: pointer;
 }

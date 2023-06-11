@@ -7,15 +7,15 @@
     </div>
   </div>
 </div>
-<div class="myLearning__body">
+<div class="myLearning__body pb-5">
 
     <p-tabView>
       <p-tabPanel header="Home">
         <h3 class="text-[.95rem] text-black font-bold pb-3 mt-3">My Paid Courses</h3>
 
-        <div class="tab__body mt-2">
-          <div class="courses" *ngFor="let courseId of myCourses$| async">
-            <app-learning-card [courseId]="courseId"></app-learning-card>
+        <div class="tab__body mt-1">
+          <div class="courses" *ngFor="let course of myCourses$| async">
+            <app-learning-card [course]="course"></app-learning-card>
           </div>
         </div>
         <app-recommended></app-recommended>

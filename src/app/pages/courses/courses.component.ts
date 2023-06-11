@@ -3,7 +3,7 @@ import { BaseComponent } from '../base/base.component';
 import { DataService } from 'src/app/services/data.service';
 import { Router } from '@angular/router';
 import { Observable, map, of, shareReplay, tap } from 'rxjs';
-import { ApiService, CoursesService, LearnersService } from 'src/app/api/services';
+import { CoursesService, LearnersService } from 'src/app/api/services';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({

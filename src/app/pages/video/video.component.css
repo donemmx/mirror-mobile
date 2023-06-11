@@ -1,6 +1,13 @@
 .video__content {
   display: grid;
-  grid-template-columns: 8fr 4fr;
+
+}
+
+.video__main{
+display: grid;
+grid-template-columns: repeat(1, 1fr);
+height: 70vh;
+overflow: hidden;
 }
 
 :host ::ng-deep .p-tabview-nav-container {
@@ -15,11 +22,15 @@
   width: 100%;
 }
 
+:host ::ng-deep .p-tabview .p-tabview-nav li .p-tabview-nav-link:not(.p-disabled):focus{
+  box-shadow: none;
+}
+
 :host ::ng-deep .p-tabview-nav {
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 30px;
+  flex-wrap: wrap;
+  gap: 0px;
 }
 
 .reviews {
@@ -28,10 +39,15 @@
   grid-gap: 20px;
 }
 
+.right{
+  overflow-y: scroll;
+
+}
+
+
 .tab__body {
-  width: 90%;
-  margin: auto;
-  padding: 20px;
+  width: 100%;
+  padding: 0px;
 }
 
 .learning__text {
@@ -50,7 +66,7 @@
 .learning__card {
   background: var(--accent-secondary);
   box-shadow: var(--shadow-two);
-  padding: 20px;
+  padding: 40px;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -88,17 +104,21 @@
 .video__left{
   position: relative;
 }
+:host ::ng-deep .p-tabview .p-tabview-nav li .p-tabview-nav-link{
+  padding: 1rem;
+}
+
+:host ::ng-deep .p-accordion .p-accordion-header .p-accordion-header-link{
+  width: 100%;
+}
 
 
 .grouped__btn{
   display: flex;
   align-items: center;
   justify-content: space-between;
-  position: absolute;
-  width: 90%;
-  top: 2%;
-  left: 5%;
   z-index: 1000;
+  width: 100%;
 }
 
 .home{
@@ -116,4 +136,9 @@
 .home:hover{
   background: rgba(255, 255, 255, 0.14);
   border-radius: 5px;
+}
+
+
+:host ::ng-deep .p-tabview-title{
+  font-size: 0.88rem;
 }

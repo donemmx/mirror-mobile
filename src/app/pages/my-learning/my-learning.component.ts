@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { BaseComponent } from '../base/base.component';
 import { DataService } from 'src/app/services/data.service';
 import { Router } from '@angular/router';
-import { CoursesService } from 'src/app/api/services';
+import { LearnersService } from 'src/app/api/services';
 import { Observable, of } from 'rxjs';
 
 @Component({
@@ -14,14 +14,11 @@ export class MyLearningComponent extends BaseComponent {
 
   myCourses$: Observable<any>
 
-  constructor(data: DataService, router: Router, private api:CoursesService){
+  constructor(data: DataService, router: Router, private api:LearnersService){
     super(data, router)
   }
   ngOnInit(): void {
       super.ngOnInit()
-
-     this.data.currentMessage.subscribe((res: any)=> {
-        this.myCourses$ = of(res.user.courses)
-     })
+      this.myCourses$ = this.api.getLearnerPaidCourses()
   }
 }

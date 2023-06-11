@@ -5,6 +5,7 @@ export interface Question {
   explanation: string;
   incorrectOptions?: Array<any>;
   mark: number;
+  questionId: string;
   questionNumber: number;
   questionText: string;
   questionType: 'single correct option' | 'multiple correct options' | 'fill in the blank' | 'subjective';

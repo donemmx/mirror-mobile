@@ -1,10 +1,15 @@
 <div class="profile__main">
   <div class="profile__body">
     <div class="profile__card" data-aos="fade-in" data-aos-duration="1400">
-      <div class="profile__top">
-        <div class="profile__heading" data-aos="fade-down" data-aos-duration="1500">My Profile</div>
-        <div class="profile__subtitle pt-1" data-aos="fade-down" data-aos-duration="1850">
-          This information will be displayed publicly
+      <div class="profile__top flex items-center gap-5">
+        <div class="icon py-3" routerLink="/home">
+          <i class="pi pi-angle-left text-white text-[1.6rem]" ></i>
+        </div>
+        <div class="group">
+          <div class="profile__heading text-[1.4rem]" data-aos="fade-down" data-aos-duration="1500">My Profile</div>
+          <div class="profile__subtitle text-[12px] pt-1" data-aos="fade-down" data-aos-duration="1850">
+            This information will be displayed publicly
+          </div>
         </div>
       </div>
       <div class="profile__cardBody">
@@ -19,7 +24,7 @@
           </div>
         </div>
         <div class="photo pt-3">
-    
+
           <h4 data-aos="fade-down" data-aos-duration="2100">Profile Photo</h4>
           <div class="photo__group" data-aos="fade-down" data-aos-duration="2400">
             <div class="div"  *ngIf="imgResult.length ==0">

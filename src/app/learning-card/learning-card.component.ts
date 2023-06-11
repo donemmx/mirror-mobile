@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { CoursesService } from '../api/services';
 
@@ -9,12 +10,14 @@ import { CoursesService } from '../api/services';
 })
 export class LearningCardComponent implements OnInit {
   @Input() courseId: any;
-  course$: Observable<any>
-  constructor(private api: CoursesService){}
+  @Input() course: any
+  constructor(private api: CoursesService, private router: Router){}
 
   ngOnInit(): void {
-    this.course$ = this.api.getCourse({
-      courseId: this.courseId
-    })
+
+  }
+
+  proceedtToCourse(){
+    this.router.navigateByUrl(`/video/${this.course.courseId}`)
   }
 }

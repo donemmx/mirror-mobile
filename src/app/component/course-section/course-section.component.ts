@@ -1,6 +1,6 @@
 import { listAnimation } from 'src/app/app.animation';
 import { Component, Input, OnInit } from '@angular/core';
-import { ApiService, CoursesService } from 'src/app/api/services';
+import { CoursesService } from 'src/app/api/services';
 import { Observable, map, shareReplay, tap } from 'rxjs';
 import { BaseComponent } from 'src/app/pages/base/base.component';
 import { DataService } from 'src/app/services/data.service';

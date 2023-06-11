@@ -11,15 +11,11 @@
             </h2>
             <small>236 Students already enrolled</small>
             <div class="btn__group">
-
-                <!-- <button pRipple class="secondary__btn full" >
-                    Go to cart
-                  </button> -->
                   <button *ngIf="exists" pRipple [class]="'primary__btn' + ' ' + category.selected" (click)="proceed() ">
                     Proceed to Course
                   </button>
-                  <button *ngIf="!exists"  pRipple [class]="'primary__btn' + ' ' + category.selected" (click)="auth.isUserLoggedIn() ? addToCart() : login() "> <i class="pi pi-spin pi-spinner" *ngIf="loading"></i>
-                    {{auth.isUserLoggedIn() ? 'Add to cart': 'Enroll Now'}}
+                  <button *ngIf="!exists"  pRipple [class]="'primary__btn' + ' ' + category.selected" (click)="auth.isUserLoggedIn() ? process() : login() "> <i class="pi pi-spin pi-spinner" *ngIf="loading"></i>
+                    {{auth.isUserLoggedIn() ?  'Enroll Now': 'Login to Enroll'}}
                   </button>
             </div>
         </div>

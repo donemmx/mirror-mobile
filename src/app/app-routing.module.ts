@@ -31,12 +31,6 @@ const routes: Routes = [
   },
 
   {
-    path: '**',
-    pathMatch: 'full',
-    redirectTo: '/login'
-  },
-
-  {
     path: '',
     loadChildren: () =>
       import('./pages/dashboard-layout/dashboard-layout.module').then(

@@ -9,7 +9,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class ApiConfiguration {
-  rootUrl: string = 'https://iessp.themirrorllc.com';
+  rootUrl: string = 'https://api.themirrorllc.com';
 }
 
 /**

@@ -1,45 +1,51 @@
 <app-header-two></app-header-two>
-<div class="video__page">
+<div class="video__page mb-5">
   <div class="video__content">
-    <div class="video__left">
-        <div class="grouped__btn">
-            <button class="home" routerLink="/my-learning">
-                <i class="pi pi-home"></i>
-                Go to Dashboard
-            </button>
-            <button class="home" (click)="next()">
-                Next
-                <i class="pi pi-angle-right"></i>
-            </button>
+    <div class="video__main">
+      <div class="left">
+        <!-- <div class="grouped__btn">
+          <button class="home" routerLink="/my-learning">
+            <i class="pi pi-home"></i>
+            Go to Dashboard
+          </button>
+          <button class="home" (click)="next()">
+            Next
+            <i class="pi pi-angle-right"></i>
+          </button>
+        </div> -->
+        <div class="video" *ngIf="chapterItem as item">
+          <app-video-frame
+            *ngIf="item.chapterItemName === 'link'"
+            [videoId$]="of(item.link)"
+          ></app-video-frame>
+          <app-text-item *ngIf="item.chapterItemName === 'text'" [item]="item"></app-text-item>
+          <app-assignment-item *ngIf="item.chapterItemName === 'assignment'" [item]="item"></app-assignment-item>
         </div>
-      <app-video-frame [videoId$]="link$"></app-video-frame>
-      <!-- <pdf-viewer [src]="pdfSrc"
-      [render-text]="true"
-      [original-size]="false"
-      [stick-to-page]="true"
-      style="width: 400px; height: 500px"
-></pdf-viewer> -->
+      </div>
+    </div>
+    <div class="video__left pb-3">
+      <div class="right">
+        <div class="video__right">
+          <app-video-items
+            [chapters$]="chapters$"
+            [activeIndex]="0"
+            [courseId]="courseId"
+            (chapterItem)="getChapterItem($event)"
+          >
+          </app-video-items>
+        </div>
+      </div>
       <p-tabView>
         <p-tabPanel header="Overview">
-          <div class="tab__body">
+          <div class="tab__body" *ngIf="course$ | async as course">
             <div class="section">
-           <app-info [type]="'warn'"></app-info>
+              <!-- <app-info [type]="'warn'"></app-info> -->
               <h4 class="head__four pb-2">About this Course</h4>
               <p class="learning__text">
-                Think about an Item that makes you feel happy and close to God.
-                It could be something you see, hear, smell, taste, or touch.
-                This thing should be special to you and help you feel close to
-                God. For example, some people might feel connected to God when
-                they see a beautiful sunset, while others might feel close to
-                God when they hug a loved one. Whatever your special thing is,
-                it should remind you of who God created you to be and help you
-                focus on your true identity. This can be a helpful way to feel
-                more connected to God and remember how much He loves you. In
-                this part, you will select an item that best shows your
-                personality.
+                {{ course.description }}
               </p>
             </div>
-            <div class="section">
+            <div class="section" *ngIf="course.isCertificate">
               <h4 class="head__four pb-2">Certificate</h4>
               <p class="learning__text">
                 Get you certificate by completing this course
@@ -51,50 +57,13 @@
             <div class="section">
               <h4 class="head__four pb-2 pt-4">Learning Outcomes</h4>
               <div class="learning__card">
-                <div
-                  class="learning__cardBody"
-                  data-aos="fade-down"
-                  data-aos-duration="800"
-                >
-                  <div class="learning__text">
-                    <span class="primary bold">
-                      Discover your special object:
-                    </span>
-                    Find the special things that make you special: Everyone is
-                    special in their own way. The things that make you special
-                    are just for you and show people how you are different. Some
-                    things go well with your personality. Your goal is to find
-                    those things that show who you are.
-                  </div>
-                </div>
-                <div
-                  class="learning__cardBody"
-                  data-aos="fade-down"
-                  data-aos-duration="500"
-                >
-                  <div class="learning__text">
-                    <span class="primary bold"> Make yourself better:</span>
-                    Learn how using symbols can help you understand who you are.
-                    The things you choose can show people your personality and
-                    give them a better understanding of you. You can also learn
-                    more about yourself and how others see you by picking the
-                    right things. This can help you be a better person and help
-                    others see you better.
-                  </div>
-                </div>
-                <div
-                  class="learning__cardBody"
-                  data-aos="fade-down"
-                  data-aos-duration="1000"
-                >
-                  <div class="learning__text">
-                    <span class="primary bold">
-                      Feel connected to your special object:
-                    </span>
-                    Think about your feelings when you are with your special
-                    thing. It should make you feel happy and close to God. Your
-                    special thing helps you tell the story of your life. You can
-                    also use it to imagine what you want your future to be like.
+                <div class="learning__cardBody">
+                  <div
+                    class="learning__text"
+                    *ngFor="let outcome of course.learningOutcomes"
+                  >
+                    <span class="primary bold"> {{ outcome.heading }}: </span>
+                    {{ outcome.details }}
                   </div>
                 </div>
               </div>
@@ -104,53 +73,51 @@
         <p-tabPanel header="Announcements">
           <div class="tab__body">
             <div class="section">
-                    <div class="group pb-2">
-                        <img src="../../../assets/moses.png" alt="">
-                        <div class="name">Moses Sowale</div>
-                    </div>
-                <h4 class="head__four pb-2">
-                    Welcome to This course
-                </h4>
-                <div class="learning__text">
-                    Think about an Item that makes you feel happy and close to God. It could be something you see, hear, smell, taste, or touch. This thing should be special to you and help you feel close to God. For example, some people might feel connected to God when they see a beautiful sunset, while others might feel close to God when they hug a loved one.
-
-Whatever your special thing is, it should remind you of who God created you to be and help you focus on your true identity. This can be a helpful way to feel more connected to God and remember how much He loves you. In this part, you will select an item that best shows your personality.
-Posted - 2 Months ago
-                </div>
+              <div class="group pb-2">
+                <img src="../../../assets/moses.png" alt="" />
+                <div class="name">Moses Sowale</div>
+              </div>
+              <h4 class="head__four pb-2">Welcome to This course</h4>
+              <div class="learning__text">
+                Think about an Item that makes you feel happy and close to God.
+                It could be something you see, hear, smell, taste, or touch.
+                This thing should be special to you and help you feel close to
+                God. For example, some people might feel connected to God when
+                they see a beautiful sunset, while others might feel close to
+                God when they hug a loved one. Whatever your special thing is,
+                it should remind you of who God created you to be and help you
+                focus on your true identity. This can be a helpful way to feel
+                more connected to God and remember how much He loves you. In
+                this part, you will select an item that best shows your
+                personality. Posted - 2 Months ago
+              </div>
             </div>
           </div>
         </p-tabPanel>
         <p-tabPanel header="Reviews">
           <div class="tab__body">
             <div class="reviews">
-              <div *ngFor="let data of [1, 2, 3, 4]">
+              <!-- <div *ngFor="let data of [1, 2, 3, 4]">
                 <app-reviews></app-reviews>
-              </div>
+              </div> -->
             </div>
           </div>
         </p-tabPanel>
         <p-tabPanel header="Learning Tools">
           <div class="tab__body">
             <div class="section">
-                <h4 class="head__four">
-                    My learning tool
-                </h4>
+              <h4 class="head__four">My learning tool</h4>
             </div>
           </div>
         </p-tabPanel>
         <p-tabPanel header="Assessment">
           <div class="tab__body">
             <div class="section">
-                <h4 class="head__four">
-                    My Assesments
-                </h4>
+              <h4 class="head__four">My Assesments</h4>
             </div>
           </div>
         </p-tabPanel>
       </p-tabView>
-    </div>
-    <div class="video__right">
-      <app-video-items></app-video-items>
     </div>
   </div>
 </div>

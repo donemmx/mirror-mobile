@@ -12,20 +12,17 @@ h4{
 }
 
 .profile__top {
-  height: 25vh;
+  height: 18vh;
   background: var(--blue);
   display: flex;
-  flex-direction: column;
-  padding: 50px;
-  justify-content: center;
-  background-image: url(../../../assets/profile/profile-bg.png);
+  padding: 30px;
+  /* background-image: url(../../../assets/profile/profile-bg.png); */
   background-repeat: no-repeat;
   background-position: right;
 }
 
 .profile__heading {
   color: var(--white);
-  font-size: clamp(1rem, 2.5vw, 2rem);
   font-variation-settings: "wght" 800;
 }
 
@@ -80,7 +77,7 @@ h4{
   height: 80px;
   width: 80px;
   object-fit: cover;
-  border-radius: 50%;  
+  border-radius: 50%;
   display: grid;
 }
 .remove {

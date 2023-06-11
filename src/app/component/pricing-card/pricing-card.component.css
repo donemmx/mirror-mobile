@@ -1,6 +1,6 @@
 .pricing__card{
     background: var(--white);
-    width: 100%; 
+    width: 100%;
     height: 18vh;
     z-index: 900;
     border-radius: 10px;
@@ -25,7 +25,6 @@
 
 .btn__group{
     display: flex;
-    flex-direction: column;
 }
 
 .primary__btn{
@@ -50,11 +49,11 @@
     height: 70vh !important;
     object-fit: cover !important;
   }
-  
+
   :host ::ng-deep .p-dialog .p-dialog-header,:host ::ng-deep .p-dialog .p-dialog-content{
     background: transparent ;
   }
-  
+
   :host ::ng-deep .p-dialog {
     box-shadow: none;
   }

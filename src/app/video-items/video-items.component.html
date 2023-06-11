@@ -1,22 +1,38 @@
 <div class="video__items">
-    <div class="course__accordion">
-        <h4 class="pb-2">Course Content</h4>
-        <p-accordion>
-          <div
-            class="main__accordion"
-            *ngFor="let data of [1, 2, 3, 4, 5, 6, 7, 8, 9]"
-          >
-            <p-accordionTab>
-              <ng-template pTemplate="header">
-                <div class="header__content">
-                  <div class="header__left">Children</div>
+  <div class="course__accordion">
+      <h4 class="pb-2 font-black">Course Content</h4>
+      <p-accordion>
+        <div
+          class="main__accordion"
+          *ngFor="let data of chapters$ | async"
+        >
+          <p-accordionTab  [activeIndex]="activeIndex">
+            <ng-template pTemplate="header">
+              <div class="header__content flex items-center w-full justify-between">
+                <div class="header__left">{{data.title}}</div>
+                <div class="header__right">{{data.chapterItems.length > 1 ? (data.chapterItems.length + ' ' + 'items') : (data.chapterItems.length + ' ' + 'item')}} </div>
+
+              </div>
+            </ng-template>
+            <!-- <ng-template pTemplate="content" *ngIf="progress$ | async as progress"> -->
+            <ng-template pTemplate="content">
+              <div class="chapter__items" *ngFor="let details of data.chapterItems">
+
+                <div class="outcome__card mt-1" (click)="getChapterItem(details)">
+                  <div [ngSwitch]="details.chapterItemName">
+                    <img class="itemsIcon " *ngSwitchCase="'text'" src="../../assets/items/content.svg" alt="" />
+                    <img class="itemsIcon" *ngSwitchCase="'link'" src="../../assets/items/link-icon.svg" alt="" />
+                    <img class="itemsIcon" *ngSwitchCase="'pdf'" src="../../assets/items/document-icon.svg" alt="" />
+                    <img class="itemsIcon" *ngSwitchCase="'image'" src="../../assets/items/video.svg" alt="" />
+                  </div>
+                  <div class="outcomeHeading" >
+                    {{ details.title }}
+                  </div>
                 </div>
-              </ng-template>
-              <ng-template pTemplate="content">
-                    Lorem ipsum dolor sit amet.
-              </ng-template>
-            </p-accordionTab>
-          </div>
-        </p-accordion>
-      </div>
+              </div>
+            </ng-template>
+          </p-accordionTab>
+        </div>
+      </p-accordion>
+    </div>
 </div>

@@ -8,5 +8,6 @@ export { ChapterItem } from './models/chapter-item';
 export { Question } from './models/question';
 export { QuizScores } from './models/quiz-scores';
 export { PricePlan } from './models/price-plan';
+export { Currency } from './models/currency';
 export { ProblemDetail } from './models/problem-detail';
 export { Upload } from './models/upload';

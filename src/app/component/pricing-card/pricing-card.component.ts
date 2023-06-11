@@ -1,11 +1,12 @@
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
-import { CoursesService } from 'src/app/api/services';
+import { CoursesService, LearnersService, PaymentService } from 'src/app/api/services';
 import { BaseComponent } from 'src/app/pages/base/base.component';
 import { AuthService } from 'src/app/services/auth.service';
 import { DataService } from 'src/app/services/data.service';
 import { NotificationService } from 'src/app/services/notification.service';
+import { v4 } from 'uuid';
 
 @Component({
   selector: 'app-pricing-card',
@@ -19,7 +20,7 @@ export class PricingCardComponent extends BaseComponent {
   courseImage: any;
   @Input() price: any;
   @Input() image: any;
-  @Input() courseId: any;
+  @Input() course: any;
   @Input() videoId$: Observable<any>;
   exists: any;
   constructor(
@@ -27,24 +28,39 @@ export class PricingCardComponent extends BaseComponent {
     router: Router,
     public auth: AuthService,
     public api: CoursesService,
+    private apiLearner:LearnersService,
+    private paymenetApi: PaymentService,
     private notify: NotificationService
   ) {
     super(data, router);
   }
   ngOnInit(): void {
     super.ngOnInit();
-    this.getCourseImage();
 
-    this.exists = this.alreadyPaid(this.courseId);
+    this.apiLearner.getLearnerPaidCourses().subscribe((res: any) =>
+    {
+    this.exists = res.find(({courseId}:any)  => courseId === this.course.courseId)
+    }
+    )
+
+
   }
 
   openVideo() {
     this.videoModal = !this.videoModal;
   }
 
+  process(){
+    if(this.course.pricePlan?.price == 0){
+      this.enrollCourse()
+    }
+    else{
+      this.addToCart()
+    }
+  }
   addToCart() {
     this.loading = true;
-    const data = this.isInCart(this.courseId);
+    const data = this.isInCart(this.course.courseId);
     if (data) {
       this.notify.warning('course already exists in cart');
       this.loading = false;
@@ -56,6 +72,20 @@ export class PricingCardComponent extends BaseComponent {
     }
   }
 
+  enrollCourse(){
+    this.paymenetApi.registerPaystackPayment({
+      paystackId: v4(),
+        body: {
+          courseIds: [this.course.courseId],
+          method: 'free'
+        }
+      })
+      .subscribe(
+        (res) => {
+          this.router.navigateByUrl('/my-learning');
+        })
+  }
+
   login() {
     this.router.navigateByUrl('/login');
   }
@@ -64,30 +94,15 @@ export class PricingCardComponent extends BaseComponent {
     return this.message.cart?.find(({ courseId }: any) => courseId === selectedId);
   }
 
-  getCourseImage() {
-    this.imageLoading = true;
-    const reader = new FileReader();
-    this.api
-      .getCourseCover({
-        courseId: this.courseId,
-      })
-      .subscribe(
-        (res: any) => {
-          reader.onloadend = () => {
-            const imageUrl = reader.result as string;
-            this.courseImage = imageUrl;
-            this.imageLoading = false;
-          };
-          reader.readAsDataURL(res);
-        },
-        (err) => {
-          this.imageLoading = false;
-        }
-      );
-  }
-
   alreadyPaid(id: any) {
-    return this.message.user?.courses.includes(id);
+    let paid: any[] = []
+
+     this.apiLearner.getLearnerPaidCourses().subscribe((res: any) => paid.push(...res)
+     )
+
+    return paid.find(({courseId}:any)  => courseId === id)
+
+
   }
 
   proceed() {

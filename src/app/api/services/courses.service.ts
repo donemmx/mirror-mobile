@@ -1,7 +1,7 @@
 /* tslint:disable */
 /* eslint-disable */
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpResponse, HttpContext } from '@angular/common/http';
 import { BaseService } from '../base-service';
 import { ApiConfiguration } from '../api-configuration';
 import { StrictHttpResponse } from '../strict-http-response';
@@ -10,12 +10,10 @@ import { Observable } from 'rxjs';
 import { map, filter } from 'rxjs/operators';
 
 import { Chapter } from '../models/chapter';
-import { ChapterItem } from '../models/chapter-item';
 import { Course } from '../models/course';
 import { CoursePackage } from '../models/course-package';
 import { Learner } from '../models/learner';
 import { PricePlan } from '../models/price-plan';
-import { Question } from '../models/question';
 import { QuizScores } from '../models/quiz-scores';
 import { Upload } from '../models/upload';
 
@@ -51,7 +49,10 @@ export class CoursesService extends BaseService {
    */
   getAllLearnersEnrolledInCourse$Response(params: {
     courseId: string;
-  }): Observable<StrictHttpResponse<Learner>> {
+  },
+  context?: HttpContext
+
+): Observable<StrictHttpResponse<Learner>> {
 
     const rb = new RequestBuilder(this.rootUrl, CoursesService.GetAllLearnersEnrolledInCoursePath, 'get');
     if (params) {
@@ -60,7 +61,8 @@ export class CoursesService extends BaseService {
 
     return this.http.request(rb.build({
       responseType: 'json',
-      accept: 'application/json'
+      accept: 'application/json',
+      context: context
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -74,16 +76,19 @@ export class CoursesService extends BaseService {
    *
    * Get All Learners Enrolled In Course
    *
-   * This method provides access to only to the response body.
+   * This method provides access only to the response body.
    * To access the full response (for headers, for example), `getAllLearnersEnrolledInCourse$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
   getAllLearnersEnrolledInCourse(params: {
     courseId: string;
-  }): Observable<Learner> {
+  },
+  context?: HttpContext
 
-    return this.getAllLearnersEnrolledInCourse$Response(params).pipe(
+): Observable<Learner> {
+
+    return this.getAllLearnersEnrolledInCourse$Response(params,context).pipe(
       map((r: StrictHttpResponse<Learner>) => r.body as Learner)
     );
   }
@@ -105,7 +110,10 @@ export class CoursesService extends BaseService {
    */
   getCourse$Response(params: {
     courseId: string;
-  }): Observable<StrictHttpResponse<Course>> {
+  },
+  context?: HttpContext
+
+): Observable<StrictHttpResponse<Course>> {
 
     const rb = new RequestBuilder(this.rootUrl, CoursesService.GetCoursePath, 'get');
     if (params) {
@@ -114,7 +122,8 @@ export class CoursesService extends BaseService {
 
     return this.http.request(rb.build({
       responseType: 'json',
-      accept: 'application/json'
+      accept: 'application/json',
+      context: context
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -128,16 +137,19 @@ export class CoursesService extends BaseService {
    *
    * Get a Course
    *
-   * This method provides access to only to the response body.
+   * This method provides access only to the response body.
    * To access the full response (for headers, for example), `getCourse$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
   getCourse(params: {
     courseId: string;
-  }): Observable<Course> {
+  },
+  context?: HttpContext
 
-    return this.getCourse$Response(params).pipe(
+): Observable<Course> {
+
+    return this.getCourse$Response(params,context).pipe(
       map((r: StrictHttpResponse<Course>) => r.body as Course)
     );
   }
@@ -160,7 +172,10 @@ export class CoursesService extends BaseService {
   createCourse$Response(params: {
     courseId: string;
     body?: Course
-  }): Observable<StrictHttpResponse<void>> {
+  },
+  context?: HttpContext
+
+): Observable<StrictHttpResponse<void>> {
 
     const rb = new RequestBuilder(this.rootUrl, CoursesService.CreateCoursePath, 'post');
     if (params) {
@@ -170,7 +185,8 @@ export class CoursesService extends BaseService {
 
     return this.http.request(rb.build({
       responseType: 'text',
-      accept: '*/*'
+      accept: '*/*',
+      context: context
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -184,7 +200,7 @@ export class CoursesService extends BaseService {
    *
    * create a Course
    *
-   * This method provides access to only to the response body.
+   * This method provides access only to the response body.
    * To access the full response (for headers, for example), `createCourse$Response()` instead.
    *
    * This method sends `application/json` and handles request body of type `application/json`.
@@ -192,9 +208,12 @@ export class CoursesService extends BaseService {
   createCourse(params: {
     courseId: string;
     body?: Course
-  }): Observable<void> {
+  },
+  context?: HttpContext
 
-    return this.createCourse$Response(params).pipe(
+): Observable<void> {
+
+    return this.createCourse$Response(params,context).pipe(
       map((r: StrictHttpResponse<void>) => r.body as void)
     );
   }
@@ -216,7 +235,10 @@ export class CoursesService extends BaseService {
    */
   getCoursePackage$Response(params: {
     courseId: string;
-  }): Observable<StrictHttpResponse<CoursePackage>> {
+  },
+  context?: HttpContext
+
+): Observable<StrictHttpResponse<CoursePackage>> {
 
     const rb = new RequestBuilder(this.rootUrl, CoursesService.GetCoursePackagePath, 'get');
     if (params) {
@@ -225,7 +247,8 @@ export class CoursesService extends BaseService {
 
     return this.http.request(rb.build({
       responseType: 'json',
-      accept: 'application/json'
+      accept: 'application/json',
+      context: context
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -239,16 +262,19 @@ export class CoursesService extends BaseService {
    *
    * Get a Course Package
    *
-   * This method provides access to only to the response body.
+   * This method provides access only to the response body.
    * To access the full response (for headers, for example), `getCoursePackage$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
   getCoursePackage(params: {
     courseId: string;
-  }): Observable<CoursePackage> {
+  },
+  context?: HttpContext
 
-    return this.getCoursePackage$Response(params).pipe(
+): Observable<CoursePackage> {
+
+    return this.getCoursePackage$Response(params,context).pipe(
       map((r: StrictHttpResponse<CoursePackage>) => r.body as CoursePackage)
     );
   }
@@ -271,7 +297,10 @@ export class CoursesService extends BaseService {
   createCoursePackage$Response(params: {
     courseId: string;
     body?: CoursePackage
-  }): Observable<StrictHttpResponse<void>> {
+  },
+  context?: HttpContext
+
+): Observable<StrictHttpResponse<void>> {
 
     const rb = new RequestBuilder(this.rootUrl, CoursesService.CreateCoursePackagePath, 'post');
     if (params) {
@@ -281,7 +310,8 @@ export class CoursesService extends BaseService {
 
     return this.http.request(rb.build({
       responseType: 'text',
-      accept: '*/*'
+      accept: '*/*',
+      context: context
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -295,7 +325,7 @@ export class CoursesService extends BaseService {
    *
    * create a Course Package
    *
-   * This method provides access to only to the response body.
+   * This method provides access only to the response body.
    * To access the full response (for headers, for example), `createCoursePackage$Response()` instead.
    *
    * This method sends `application/json` and handles request body of type `application/json`.
@@ -303,9 +333,12 @@ export class CoursesService extends BaseService {
   createCoursePackage(params: {
     courseId: string;
     body?: CoursePackage
-  }): Observable<void> {
+  },
+  context?: HttpContext
 
-    return this.createCoursePackage$Response(params).pipe(
+): Observable<void> {
+
+    return this.createCoursePackage$Response(params,context).pipe(
       map((r: StrictHttpResponse<void>) => r.body as void)
     );
   }
@@ -332,7 +365,10 @@ export class CoursesService extends BaseService {
     courseCategory?: 'identity' | 'education' | 'spiritual';
     ageCategory?: 'children' | 'young adult' | 'adult';
     title?: string;
-  }): Observable<StrictHttpResponse<{
+  },
+  context?: HttpContext
+
+): Observable<StrictHttpResponse<{
 'totalRecords'?: number;
 'data'?: Array<Chapter>;
 }>> {
@@ -349,7 +385,8 @@ export class CoursesService extends BaseService {
 
     return this.http.request(rb.build({
       responseType: 'json',
-      accept: 'application/json'
+      accept: 'application/json',
+      context: context
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -366,7 +403,7 @@ export class CoursesService extends BaseService {
    *
    * Get All Courses
    *
-   * This method provides access to only to the response body.
+   * This method provides access only to the response body.
    * To access the full response (for headers, for example), `getAllCourses$Response()` instead.
    *
    * This method doesn't expect any request body.
@@ -378,12 +415,15 @@ export class CoursesService extends BaseService {
     courseCategory?: 'identity' | 'education' | 'spiritual';
     ageCategory?: 'children' | 'young adult' | 'adult';
     title?: string;
-  }): Observable<{
+  },
+  context?: HttpContext
+
+): Observable<{
 'totalRecords'?: number;
 'data'?: Array<Chapter>;
 }> {
 
-    return this.getAllCourses$Response(params).pipe(
+    return this.getAllCourses$Response(params,context).pipe(
       map((r: StrictHttpResponse<{
 'totalRecords'?: number;
 'data'?: Array<Chapter>;
@@ -411,7 +451,10 @@ export class CoursesService extends BaseService {
    */
   getChaptersByCourseId$Response(params: {
     courseId: string;
-  }): Observable<StrictHttpResponse<Array<Chapter>>> {
+  },
+  context?: HttpContext
+
+): Observable<StrictHttpResponse<Array<Chapter>>> {
 
     const rb = new RequestBuilder(this.rootUrl, CoursesService.GetChaptersByCourseIdPath, 'get');
     if (params) {
@@ -420,7 +463,8 @@ export class CoursesService extends BaseService {
 
     return this.http.request(rb.build({
       responseType: 'json',
-      accept: 'application/json'
+      accept: 'application/json',
+      context: context
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -434,16 +478,19 @@ export class CoursesService extends BaseService {
    *
    * Get Chapters By Course ID
    *
-   * This method provides access to only to the response body.
+   * This method provides access only to the response body.
    * To access the full response (for headers, for example), `getChaptersByCourseId$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
   getChaptersByCourseId(params: {
     courseId: string;
-  }): Observable<Array<Chapter>> {
+  },
+  context?: HttpContext
 
-    return this.getChaptersByCourseId$Response(params).pipe(
+): Observable<Array<Chapter>> {
+
+    return this.getChaptersByCourseId$Response(params,context).pipe(
       map((r: StrictHttpResponse<Array<Chapter>>) => r.body as Array<Chapter>)
     );
   }
@@ -465,7 +512,10 @@ export class CoursesService extends BaseService {
    */
   getChaptersByCourseIdForLearners$Response(params: {
     courseId: string;
-  }): Observable<StrictHttpResponse<Array<Chapter>>> {
+  },
+  context?: HttpContext
+
+): Observable<StrictHttpResponse<Array<Chapter>>> {
 
     const rb = new RequestBuilder(this.rootUrl, CoursesService.GetChaptersByCourseIdForLearnersPath, 'get');
     if (params) {
@@ -474,7 +524,8 @@ export class CoursesService extends BaseService {
 
     return this.http.request(rb.build({
       responseType: 'json',
-      accept: 'application/json'
+      accept: 'application/json',
+      context: context
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -488,16 +539,19 @@ export class CoursesService extends BaseService {
    *
    * Get Chapters By Course ID
    *
-   * This method provides access to only to the response body.
+   * This method provides access only to the response body.
    * To access the full response (for headers, for example), `getChaptersByCourseIdForLearners$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
   getChaptersByCourseIdForLearners(params: {
     courseId: string;
-  }): Observable<Array<Chapter>> {
+  },
+  context?: HttpContext
 
-    return this.getChaptersByCourseIdForLearners$Response(params).pipe(
+): Observable<Array<Chapter>> {
+
+    return this.getChaptersByCourseIdForLearners$Response(params,context).pipe(
       map((r: StrictHttpResponse<Array<Chapter>>) => r.body as Array<Chapter>)
     );
   }
@@ -519,7 +573,10 @@ export class CoursesService extends BaseService {
    */
   getChaptersForLoggedInLearners$Response(params: {
     courseId: string;
-  }): Observable<StrictHttpResponse<Array<Chapter>>> {
+  },
+  context?: HttpContext
+
+): Observable<StrictHttpResponse<Array<Chapter>>> {
 
     const rb = new RequestBuilder(this.rootUrl, CoursesService.GetChaptersForLoggedInLearnersPath, 'get');
     if (params) {
@@ -528,7 +585,8 @@ export class CoursesService extends BaseService {
 
     return this.http.request(rb.build({
       responseType: 'json',
-      accept: 'application/json'
+      accept: 'application/json',
+      context: context
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -542,182 +600,20 @@ export class CoursesService extends BaseService {
    *
    * Get Chapters By Course ID For Logged In Learners
    *
-   * This method provides access to only to the response body.
+   * This method provides access only to the response body.
    * To access the full response (for headers, for example), `getChaptersForLoggedInLearners$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
   getChaptersForLoggedInLearners(params: {
     courseId: string;
-  }): Observable<Array<Chapter>> {
+  },
+  context?: HttpContext
 
-    return this.getChaptersForLoggedInLearners$Response(params).pipe(
+): Observable<Array<Chapter>> {
+
+    return this.getChaptersForLoggedInLearners$Response(params,context).pipe(
       map((r: StrictHttpResponse<Array<Chapter>>) => r.body as Array<Chapter>)
-    );
-  }
-
-  /**
-   * Path part for operation getChapterItemByChapterItemId
-   */
-  static readonly GetChapterItemByChapterItemIdPath = '/chapter/{chapterItemId}/{chapterItem}';
-
-  /**
-   * Get Chapter Item by ID.
-   *
-   * Get Chapter Item By Chapter Item ID
-   *
-   * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `getChapterItemByChapterItemId()` instead.
-   *
-   * This method doesn't expect any request body.
-   */
-  getChapterItemByChapterItemId$Response(params: {
-    chapterItemId: string;
-    chapterItem: string;
-  }): Observable<StrictHttpResponse<ChapterItem>> {
-
-    const rb = new RequestBuilder(this.rootUrl, CoursesService.GetChapterItemByChapterItemIdPath, 'get');
-    if (params) {
-      rb.path('chapterItemId', params.chapterItemId, {});
-      rb.path('chapterItem', params.chapterItem, {});
-    }
-
-    return this.http.request(rb.build({
-      responseType: 'json',
-      accept: 'application/json'
-    })).pipe(
-      filter((r: any) => r instanceof HttpResponse),
-      map((r: HttpResponse<any>) => {
-        return r as StrictHttpResponse<ChapterItem>;
-      })
-    );
-  }
-
-  /**
-   * Get Chapter Item by ID.
-   *
-   * Get Chapter Item By Chapter Item ID
-   *
-   * This method provides access to only to the response body.
-   * To access the full response (for headers, for example), `getChapterItemByChapterItemId$Response()` instead.
-   *
-   * This method doesn't expect any request body.
-   */
-  getChapterItemByChapterItemId(params: {
-    chapterItemId: string;
-    chapterItem: string;
-  }): Observable<ChapterItem> {
-
-    return this.getChapterItemByChapterItemId$Response(params).pipe(
-      map((r: StrictHttpResponse<ChapterItem>) => r.body as ChapterItem)
-    );
-  }
-
-  /**
-   * Path part for operation getAllChapterItemsByChapterId
-   */
-  static readonly GetAllChapterItemsByChapterIdPath = '/chapter/{chapterId}';
-
-  /**
-   * Get All Chapter Items.
-   *
-   * Get All Chapter Items By Chapter ID
-   *
-   * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `getAllChapterItemsByChapterId()` instead.
-   *
-   * This method doesn't expect any request body.
-   */
-  getAllChapterItemsByChapterId$Response(params: {
-    chapterId: string;
-  }): Observable<StrictHttpResponse<Array<ChapterItem>>> {
-
-    const rb = new RequestBuilder(this.rootUrl, CoursesService.GetAllChapterItemsByChapterIdPath, 'get');
-    if (params) {
-      rb.path('chapterId', params.chapterId, {});
-    }
-
-    return this.http.request(rb.build({
-      responseType: 'json',
-      accept: 'application/json'
-    })).pipe(
-      filter((r: any) => r instanceof HttpResponse),
-      map((r: HttpResponse<any>) => {
-        return r as StrictHttpResponse<Array<ChapterItem>>;
-      })
-    );
-  }
-
-  /**
-   * Get All Chapter Items.
-   *
-   * Get All Chapter Items By Chapter ID
-   *
-   * This method provides access to only to the response body.
-   * To access the full response (for headers, for example), `getAllChapterItemsByChapterId$Response()` instead.
-   *
-   * This method doesn't expect any request body.
-   */
-  getAllChapterItemsByChapterId(params: {
-    chapterId: string;
-  }): Observable<Array<ChapterItem>> {
-
-    return this.getAllChapterItemsByChapterId$Response(params).pipe(
-      map((r: StrictHttpResponse<Array<ChapterItem>>) => r.body as Array<ChapterItem>)
-    );
-  }
-
-  /**
-   * Path part for operation getAllQuestionsByQuizId
-   */
-  static readonly GetAllQuestionsByQuizIdPath = '/quiz/{quizId}/questions';
-
-  /**
-   * Get All Quiz Questions.
-   *
-   * Get All Questions by Quiz ID
-   *
-   * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `getAllQuestionsByQuizId()` instead.
-   *
-   * This method doesn't expect any request body.
-   */
-  getAllQuestionsByQuizId$Response(params: {
-    quizId: string;
-  }): Observable<StrictHttpResponse<Array<Question>>> {
-
-    const rb = new RequestBuilder(this.rootUrl, CoursesService.GetAllQuestionsByQuizIdPath, 'get');
-    if (params) {
-      rb.path('quizId', params.quizId, {});
-    }
-
-    return this.http.request(rb.build({
-      responseType: 'json',
-      accept: 'application/json'
-    })).pipe(
-      filter((r: any) => r instanceof HttpResponse),
-      map((r: HttpResponse<any>) => {
-        return r as StrictHttpResponse<Array<Question>>;
-      })
-    );
-  }
-
-  /**
-   * Get All Quiz Questions.
-   *
-   * Get All Questions by Quiz ID
-   *
-   * This method provides access to only to the response body.
-   * To access the full response (for headers, for example), `getAllQuestionsByQuizId$Response()` instead.
-   *
-   * This method doesn't expect any request body.
-   */
-  getAllQuestionsByQuizId(params: {
-    quizId: string;
-  }): Observable<Array<Question>> {
-
-    return this.getAllQuestionsByQuizId$Response(params).pipe(
-      map((r: StrictHttpResponse<Array<Question>>) => r.body as Array<Question>)
     );
   }
 
@@ -741,7 +637,10 @@ export class CoursesService extends BaseService {
     body?: {
 'status': true | false;
 }
-  }): Observable<StrictHttpResponse<void>> {
+  },
+  context?: HttpContext
+
+): Observable<StrictHttpResponse<void>> {
 
     const rb = new RequestBuilder(this.rootUrl, CoursesService.UpdateSequentialLearningStatusPath, 'patch');
     if (params) {
@@ -751,7 +650,8 @@ export class CoursesService extends BaseService {
 
     return this.http.request(rb.build({
       responseType: 'text',
-      accept: '*/*'
+      accept: '*/*',
+      context: context
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -765,7 +665,7 @@ export class CoursesService extends BaseService {
    *
    * Enable or Disable Sequential Course Learning
    *
-   * This method provides access to only to the response body.
+   * This method provides access only to the response body.
    * To access the full response (for headers, for example), `updateSequentialLearningStatus$Response()` instead.
    *
    * This method sends `application/json` and handles request body of type `application/json`.
@@ -775,9 +675,12 @@ export class CoursesService extends BaseService {
     body?: {
 'status': true | false;
 }
-  }): Observable<void> {
+  },
+  context?: HttpContext
 
-    return this.updateSequentialLearningStatus$Response(params).pipe(
+): Observable<void> {
+
+    return this.updateSequentialLearningStatus$Response(params,context).pipe(
       map((r: StrictHttpResponse<void>) => r.body as void)
     );
   }
@@ -799,7 +702,10 @@ export class CoursesService extends BaseService {
    */
   getPricePlanByCourseId$Response(params: {
     courseId: string;
-  }): Observable<StrictHttpResponse<PricePlan>> {
+  },
+  context?: HttpContext
+
+): Observable<StrictHttpResponse<PricePlan>> {
 
     const rb = new RequestBuilder(this.rootUrl, CoursesService.GetPricePlanByCourseIdPath, 'get');
     if (params) {
@@ -808,7 +714,8 @@ export class CoursesService extends BaseService {
 
     return this.http.request(rb.build({
       responseType: 'json',
-      accept: 'application/json'
+      accept: 'application/json',
+      context: context
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -822,16 +729,19 @@ export class CoursesService extends BaseService {
    *
    * Get Course Price Plan
    *
-   * This method provides access to only to the response body.
+   * This method provides access only to the response body.
    * To access the full response (for headers, for example), `getPricePlanByCourseId$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
   getPricePlanByCourseId(params: {
     courseId: string;
-  }): Observable<PricePlan> {
+  },
+  context?: HttpContext
 
-    return this.getPricePlanByCourseId$Response(params).pipe(
+): Observable<PricePlan> {
+
+    return this.getPricePlanByCourseId$Response(params,context).pipe(
       map((r: StrictHttpResponse<PricePlan>) => r.body as PricePlan)
     );
   }
@@ -854,7 +764,10 @@ export class CoursesService extends BaseService {
   createPricePlan$Response(params: {
     courseId: string;
     body?: PricePlan
-  }): Observable<StrictHttpResponse<void>> {
+  },
+  context?: HttpContext
+
+): Observable<StrictHttpResponse<void>> {
 
     const rb = new RequestBuilder(this.rootUrl, CoursesService.CreatePricePlanPath, 'post');
     if (params) {
@@ -864,7 +777,8 @@ export class CoursesService extends BaseService {
 
     return this.http.request(rb.build({
       responseType: 'text',
-      accept: '*/*'
+      accept: '*/*',
+      context: context
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -878,7 +792,7 @@ export class CoursesService extends BaseService {
    *
    * Create Course Pricing Plan
    *
-   * This method provides access to only to the response body.
+   * This method provides access only to the response body.
    * To access the full response (for headers, for example), `createPricePlan$Response()` instead.
    *
    * This method sends `application/json` and handles request body of type `application/json`.
@@ -886,9 +800,12 @@ export class CoursesService extends BaseService {
   createPricePlan(params: {
     courseId: string;
     body?: PricePlan
-  }): Observable<void> {
+  },
+  context?: HttpContext
 
-    return this.createPricePlan$Response(params).pipe(
+): Observable<void> {
+
+    return this.createPricePlan$Response(params,context).pipe(
       map((r: StrictHttpResponse<void>) => r.body as void)
     );
   }
@@ -910,7 +827,10 @@ export class CoursesService extends BaseService {
    */
   setDefaultPricePlan$Response(params: {
     pricePlanId: string;
-  }): Observable<StrictHttpResponse<void>> {
+  },
+  context?: HttpContext
+
+): Observable<StrictHttpResponse<void>> {
 
     const rb = new RequestBuilder(this.rootUrl, CoursesService.SetDefaultPricePlanPath, 'patch');
     if (params) {
@@ -919,7 +839,8 @@ export class CoursesService extends BaseService {
 
     return this.http.request(rb.build({
       responseType: 'text',
-      accept: '*/*'
+      accept: '*/*',
+      context: context
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -933,16 +854,19 @@ export class CoursesService extends BaseService {
    *
    * Set Course Default Pricing Plan
    *
-   * This method provides access to only to the response body.
+   * This method provides access only to the response body.
    * To access the full response (for headers, for example), `setDefaultPricePlan$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
   setDefaultPricePlan(params: {
     pricePlanId: string;
-  }): Observable<void> {
+  },
+  context?: HttpContext
 
-    return this.setDefaultPricePlan$Response(params).pipe(
+): Observable<void> {
+
+    return this.setDefaultPricePlan$Response(params,context).pipe(
       map((r: StrictHttpResponse<void>) => r.body as void)
     );
   }
@@ -964,7 +888,10 @@ export class CoursesService extends BaseService {
    */
   getPricePlan$Response(params: {
     pricePlanId: string;
-  }): Observable<StrictHttpResponse<PricePlan>> {
+  },
+  context?: HttpContext
+
+): Observable<StrictHttpResponse<PricePlan>> {
 
     const rb = new RequestBuilder(this.rootUrl, CoursesService.GetPricePlanPath, 'get');
     if (params) {
@@ -973,7 +900,8 @@ export class CoursesService extends BaseService {
 
     return this.http.request(rb.build({
       responseType: 'json',
-      accept: 'application/json'
+      accept: 'application/json',
+      context: context
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -987,16 +915,19 @@ export class CoursesService extends BaseService {
    *
    * Get Course Price Plan
    *
-   * This method provides access to only to the response body.
+   * This method provides access only to the response body.
    * To access the full response (for headers, for example), `getPricePlan$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
   getPricePlan(params: {
     pricePlanId: string;
-  }): Observable<PricePlan> {
+  },
+  context?: HttpContext
 
-    return this.getPricePlan$Response(params).pipe(
+): Observable<PricePlan> {
+
+    return this.getPricePlan$Response(params,context).pipe(
       map((r: StrictHttpResponse<PricePlan>) => r.body as PricePlan)
     );
   }
@@ -1020,7 +951,10 @@ export class CoursesService extends BaseService {
     body?: Upload & {
 'courseId': string;
 }
-  }): Observable<StrictHttpResponse<void>> {
+  },
+  context?: HttpContext
+
+): Observable<StrictHttpResponse<void>> {
 
     const rb = new RequestBuilder(this.rootUrl, CoursesService.UploadCourseCoverPath, 'patch');
     if (params) {
@@ -1029,7 +963,8 @@ export class CoursesService extends BaseService {
 
     return this.http.request(rb.build({
       responseType: 'text',
-      accept: '*/*'
+      accept: '*/*',
+      context: context
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -1043,7 +978,7 @@ export class CoursesService extends BaseService {
    *
    * Upload Course Cover Picture
    *
-   * This method provides access to only to the response body.
+   * This method provides access only to the response body.
    * To access the full response (for headers, for example), `uploadCourseCover$Response()` instead.
    *
    * This method sends `application/json` and handles request body of type `application/json`.
@@ -1052,9 +987,12 @@ export class CoursesService extends BaseService {
     body?: Upload & {
 'courseId': string;
 }
-  }): Observable<void> {
+  },
+  context?: HttpContext
 
-    return this.uploadCourseCover$Response(params).pipe(
+): Observable<void> {
+
+    return this.uploadCourseCover$Response(params,context).pipe(
       map((r: StrictHttpResponse<void>) => r.body as void)
     );
   }
@@ -1076,7 +1014,10 @@ export class CoursesService extends BaseService {
    */
   getCourseCover$Response(params: {
     courseId: string;
-  }): Observable<StrictHttpResponse<Blob>> {
+  },
+  context?: HttpContext
+
+): Observable<StrictHttpResponse<Blob>> {
 
     const rb = new RequestBuilder(this.rootUrl, CoursesService.GetCourseCoverPath, 'get');
     if (params) {
@@ -1085,7 +1026,8 @@ export class CoursesService extends BaseService {
 
     return this.http.request(rb.build({
       responseType: 'blob',
-      accept: 'application/octet-stream'
+      accept: 'application/octet-stream',
+      context: context
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -1099,16 +1041,19 @@ export class CoursesService extends BaseService {
    *
    * Get Course Cover Picture
    *
-   * This method provides access to only to the response body.
+   * This method provides access only to the response body.
    * To access the full response (for headers, for example), `getCourseCover$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
   getCourseCover(params: {
     courseId: string;
-  }): Observable<Blob> {
+  },
+  context?: HttpContext
 
-    return this.getCourseCover$Response(params).pipe(
+): Observable<Blob> {
+
+    return this.getCourseCover$Response(params,context).pipe(
       map((r: StrictHttpResponse<Blob>) => r.body as Blob)
     );
   }
@@ -1130,7 +1075,10 @@ export class CoursesService extends BaseService {
    */
   publishCourseContent$Response(params: {
     courseId: string;
-  }): Observable<StrictHttpResponse<void>> {
+  },
+  context?: HttpContext
+
+): Observable<StrictHttpResponse<void>> {
 
     const rb = new RequestBuilder(this.rootUrl, CoursesService.PublishCourseContentPath, 'patch');
     if (params) {
@@ -1139,7 +1087,8 @@ export class CoursesService extends BaseService {
 
     return this.http.request(rb.build({
       responseType: 'text',
-      accept: '*/*'
+      accept: '*/*',
+      context: context
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -1153,16 +1102,19 @@ export class CoursesService extends BaseService {
    *
    * Publish Course content
    *
-   * This method provides access to only to the response body.
+   * This method provides access only to the response body.
    * To access the full response (for headers, for example), `publishCourseContent$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
   publishCourseContent(params: {
     courseId: string;
-  }): Observable<void> {
+  },
+  context?: HttpContext
 
-    return this.publishCourseContent$Response(params).pipe(
+): Observable<void> {
+
+    return this.publishCourseContent$Response(params,context).pipe(
       map((r: StrictHttpResponse<void>) => r.body as void)
     );
   }
@@ -1184,7 +1136,10 @@ export class CoursesService extends BaseService {
    */
   removeCourseContent$Response(params: {
     courseId: string;
-  }): Observable<StrictHttpResponse<void>> {
+  },
+  context?: HttpContext
+
+): Observable<StrictHttpResponse<void>> {
 
     const rb = new RequestBuilder(this.rootUrl, CoursesService.RemoveCourseContentPath, 'delete');
     if (params) {
@@ -1193,7 +1148,8 @@ export class CoursesService extends BaseService {
 
     return this.http.request(rb.build({
       responseType: 'text',
-      accept: '*/*'
+      accept: '*/*',
+      context: context
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -1207,141 +1163,20 @@ export class CoursesService extends BaseService {
    *
    * Remove Course content
    *
-   * This method provides access to only to the response body.
+   * This method provides access only to the response body.
    * To access the full response (for headers, for example), `removeCourseContent$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
   removeCourseContent(params: {
     courseId: string;
-  }): Observable<void> {
+  },
+  context?: HttpContext
 
-    return this.removeCourseContent$Response(params).pipe(
+): Observable<void> {
+
+    return this.removeCourseContent$Response(params,context).pipe(
       map((r: StrictHttpResponse<void>) => r.body as void)
-    );
-  }
-
-  /**
-   * Path part for operation createQuery
-   */
-  static readonly CreateQueryPath = '/query/{queryDomainId}/{queryDomain}';
-
-  /**
-   * Create Query.
-   *
-   * Create Query
-   *
-   * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `createQuery()` instead.
-   *
-   * This method sends `application/json` and handles request body of type `application/json`.
-   */
-  createQuery$Response(params: {
-    queryDomainId: string;
-    queryDomain: 'assignment';
-    body?: {
-'query': string;
-'querySubject': string;
-'queryId': string;
-'learnerId': string;
-}
-  }): Observable<StrictHttpResponse<void>> {
-
-    const rb = new RequestBuilder(this.rootUrl, CoursesService.CreateQueryPath, 'post');
-    if (params) {
-      rb.path('queryDomainId', params.queryDomainId, {});
-      rb.path('queryDomain', params.queryDomain, {});
-      rb.body(params.body, 'application/json');
-    }
-
-    return this.http.request(rb.build({
-      responseType: 'text',
-      accept: '*/*'
-    })).pipe(
-      filter((r: any) => r instanceof HttpResponse),
-      map((r: HttpResponse<any>) => {
-        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
-      })
-    );
-  }
-
-  /**
-   * Create Query.
-   *
-   * Create Query
-   *
-   * This method provides access to only to the response body.
-   * To access the full response (for headers, for example), `createQuery$Response()` instead.
-   *
-   * This method sends `application/json` and handles request body of type `application/json`.
-   */
-  createQuery(params: {
-    queryDomainId: string;
-    queryDomain: 'assignment';
-    body?: {
-'query': string;
-'querySubject': string;
-'queryId': string;
-'learnerId': string;
-}
-  }): Observable<void> {
-
-    return this.createQuery$Response(params).pipe(
-      map((r: StrictHttpResponse<void>) => r.body as void)
-    );
-  }
-
-  /**
-   * Path part for operation retrieveUpload
-   */
-  static readonly RetrieveUploadPath = '/upload/{uploadId}';
-
-  /**
-   * Retrieve Uploads.
-   *
-   * Retrieve Chapter Items Upload
-   *
-   * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `retrieveUpload()` instead.
-   *
-   * This method doesn't expect any request body.
-   */
-  retrieveUpload$Response(params: {
-    uploadId: string;
-  }): Observable<StrictHttpResponse<Blob>> {
-
-    const rb = new RequestBuilder(this.rootUrl, CoursesService.RetrieveUploadPath, 'get');
-    if (params) {
-      rb.path('uploadId', params.uploadId, {});
-    }
-
-    return this.http.request(rb.build({
-      responseType: 'blob',
-      accept: 'application/octet-stream'
-    })).pipe(
-      filter((r: any) => r instanceof HttpResponse),
-      map((r: HttpResponse<any>) => {
-        return r as StrictHttpResponse<Blob>;
-      })
-    );
-  }
-
-  /**
-   * Retrieve Uploads.
-   *
-   * Retrieve Chapter Items Upload
-   *
-   * This method provides access to only to the response body.
-   * To access the full response (for headers, for example), `retrieveUpload$Response()` instead.
-   *
-   * This method doesn't expect any request body.
-   */
-  retrieveUpload(params: {
-    uploadId: string;
-  }): Observable<Blob> {
-
-    return this.retrieveUpload$Response(params).pipe(
-      map((r: StrictHttpResponse<Blob>) => r.body as Blob)
     );
   }
 
@@ -1365,7 +1200,10 @@ export class CoursesService extends BaseService {
     skip?: number;
     limit?: number;
     status?: 'pending' | 'approved' | 'rejected' | 'scored';
-  }): Observable<StrictHttpResponse<{
+  },
+  context?: HttpContext
+
+): Observable<StrictHttpResponse<{
 'totalRecords'?: number;
 'data'?: Array<{
 'assignmentId'?: string;
@@ -1387,7 +1225,8 @@ export class CoursesService extends BaseService {
 
     return this.http.request(rb.build({
       responseType: 'json',
-      accept: 'application/json'
+      accept: 'application/json',
+      context: context
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -1411,7 +1250,7 @@ export class CoursesService extends BaseService {
    *
    * Get Assignment Scores By AssignmentId
    *
-   * This method provides access to only to the response body.
+   * This method provides access only to the response body.
    * To access the full response (for headers, for example), `getAssignmentScoresByAssignmentId$Response()` instead.
    *
    * This method doesn't expect any request body.
@@ -1421,7 +1260,10 @@ export class CoursesService extends BaseService {
     skip?: number;
     limit?: number;
     status?: 'pending' | 'approved' | 'rejected' | 'scored';
-  }): Observable<{
+  },
+  context?: HttpContext
+
+): Observable<{
 'totalRecords'?: number;
 'data'?: Array<{
 'assignmentId'?: string;
@@ -1433,7 +1275,7 @@ export class CoursesService extends BaseService {
 }>;
 }> {
 
-    return this.getAssignmentScoresByAssignmentId$Response(params).pipe(
+    return this.getAssignmentScoresByAssignmentId$Response(params,context).pipe(
       map((r: StrictHttpResponse<{
 'totalRecords'?: number;
 'data'?: Array<{
@@ -1482,7 +1324,10 @@ export class CoursesService extends BaseService {
 'score': number;
 'reason'?: string;
 }
-  }): Observable<StrictHttpResponse<void>> {
+  },
+  context?: HttpContext
+
+): Observable<StrictHttpResponse<void>> {
 
     const rb = new RequestBuilder(this.rootUrl, CoursesService.AddAssignmentScoresPath, 'post');
     if (params) {
@@ -1495,7 +1340,8 @@ export class CoursesService extends BaseService {
 
     return this.http.request(rb.build({
       responseType: 'text',
-      accept: '*/*'
+      accept: '*/*',
+      context: context
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -1509,7 +1355,7 @@ export class CoursesService extends BaseService {
    *
    * Add Assignment Scores
    *
-   * This method provides access to only to the response body.
+   * This method provides access only to the response body.
    * To access the full response (for headers, for example), `addAssignmentScores$Response()` instead.
    *
    * This method sends `application/json` and handles request body of type `application/json`.
@@ -1523,9 +1369,12 @@ export class CoursesService extends BaseService {
 'score': number;
 'reason'?: string;
 }
-  }): Observable<void> {
+  },
+  context?: HttpContext
 
-    return this.addAssignmentScores$Response(params).pipe(
+): Observable<void> {
+
+    return this.addAssignmentScores$Response(params,context).pipe(
       map((r: StrictHttpResponse<void>) => r.body as void)
     );
   }
@@ -1550,7 +1399,10 @@ export class CoursesService extends BaseService {
     skip?: number;
     limit?: number;
     status?: 'pending' | 'approved' | 'rejected' | 'scored';
-  }): Observable<StrictHttpResponse<Array<QuizScores>>> {
+  },
+  context?: HttpContext
+
+): Observable<StrictHttpResponse<Array<QuizScores>>> {
 
     const rb = new RequestBuilder(this.rootUrl, CoursesService.GetAssignmentScoresPath, 'get');
     if (params) {
@@ -1562,7 +1414,8 @@ export class CoursesService extends BaseService {
 
     return this.http.request(rb.build({
       responseType: 'json',
-      accept: 'application/json'
+      accept: 'application/json',
+      context: context
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -1576,7 +1429,7 @@ export class CoursesService extends BaseService {
    *
    * Get Assignment Scores Per Learner
    *
-   * This method provides access to only to the response body.
+   * This method provides access only to the response body.
    * To access the full response (for headers, for example), `getAssignmentScores$Response()` instead.
    *
    * This method doesn't expect any request body.
@@ -1586,9 +1439,12 @@ export class CoursesService extends BaseService {
     skip?: number;
     limit?: number;
     status?: 'pending' | 'approved' | 'rejected' | 'scored';
-  }): Observable<Array<QuizScores>> {
+  },
+  context?: HttpContext
 
-    return this.getAssignmentScores$Response(params).pipe(
+): Observable<Array<QuizScores>> {
+
+    return this.getAssignmentScores$Response(params,context).pipe(
       map((r: StrictHttpResponse<Array<QuizScores>>) => r.body as Array<QuizScores>)
     );
   }

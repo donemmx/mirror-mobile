@@ -1,6 +1,5 @@
 .mylearning__top {
-  height: 300px;
-  /* background-image: url(../../../assets/header/learning-bg.png); */
+  height: 230px;
   background-size: cover;
   background: var(--primary-color);
   position: relative;
@@ -11,9 +10,8 @@
   background: var(--blue);
   display: flex;
   flex-direction: column;
-  padding: 50px;
+  padding: 30px;
   justify-content: center;
-  background-image: url(../../../assets/profile/profile-bg.png);
   background-repeat: no-repeat;
   background-position: right;
 }
@@ -72,7 +70,7 @@
 
 .tab__body {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 20px;
 }
 

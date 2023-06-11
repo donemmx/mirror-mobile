@@ -1,24 +1,21 @@
-<div class="learning__main" *ngIf="course$| async as course">
-    <div class="learning__left">
-       <app-course-bg [courseId]="courseId"></app-course-bg>
-    </div>
-    <div class="learning__right mt-2">
-        <div class="myTag"  >
-            <div class="tag" *ngFor="let tag of course.tags">
-                {{tag}}
-            </div>
-        </div>
-            <h4 class="head__four mt-1">
-                {{course.title}}
-            </h4>
-            <div class="progress mt-2">
-                <div class="progress__left">
-                    progress:
-                    <p-progressBar [value]="0" [showValue]="false"></p-progressBar>
-                </div>
-                <div class="progress__right">
-                    <button pRipple class="primary__btn">Resume Course</button>
-                </div>
-            </div>
-    </div>
+<div class="learning__main" (click)="proceedtToCourse()">
+  <div class="learning__left">
+     <app-course-bg [course]="course"></app-course-bg>
+  </div>
+  <div class="learning__right">
+      <div class="myTag"  >
+          <div class="tag" *ngFor="let tag of course.tags">
+              {{tag}}
+          </div>
+      </div>
+          <h4 class="head__four mt-1">
+              {{course.title}}
+          </h4>
+          <div class="progress flex flex-col gap-3 mt-2">
+              <div class="progress__left">
+                  progress:
+                  <p-progressBar [value]="0" [showValue]="false"></p-progressBar>
+              </div>
+          </div>
+  </div>
 </div>

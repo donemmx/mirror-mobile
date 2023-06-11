@@ -9,7 +9,7 @@
   -khtml-user-select: none;
   -moz-user-select: none;
   -o-user-select: none;
-  
+
 }
 
 @tailwind base;
@@ -311,7 +311,7 @@ label{
 
 .p-float-label input:focus ~ label, .p-float-label input.p-filled ~ label, .p-float-label textarea:focus ~ label, .p-float-label textarea.p-filled ~ label, .p-float-label .p-inputwrapper-focus ~ label, .p-float-label .p-inputwrapper-filled ~ label {
   top: -0.3rem !important;
-  font-size: 12px; 
+  font-size: 12px;
   background: white !important;
   padding: 7px !important;
 }
@@ -393,9 +393,7 @@ label{
       justify-content: space-between;
   }
 
-  .header__right{
-      display: none;
-  }
+
   .header__hamburger{
       display: block;
   }

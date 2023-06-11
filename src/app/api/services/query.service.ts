@@ -1,7 +1,7 @@
 /* tslint:disable */
 /* eslint-disable */
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpResponse, HttpContext } from '@angular/common/http';
 import { BaseService } from '../base-service';
 import { ApiConfiguration } from '../api-configuration';
 import { StrictHttpResponse } from '../strict-http-response';
@@ -9,12 +9,11 @@ import { RequestBuilder } from '../request-builder';
 import { Observable } from 'rxjs';
 import { map, filter } from 'rxjs/operators';
 
-import { Admin } from '../models/admin';
 
 @Injectable({
   providedIn: 'root',
 })
-export class ApiService extends BaseService {
+export class QueryService extends BaseService {
   constructor(
     config: ApiConfiguration,
     http: HttpClient
@@ -23,88 +22,13 @@ export class ApiService extends BaseService {
   }
 
   /**
-   * Path part for operation getAllAdmins
-   */
-  static readonly GetAllAdminsPath = '/admins';
-
-  /**
-   * Get All Admins
-   *
-   * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `getAllAdmins()` instead.
-   *
-   * This method doesn't expect any request body.
-   */
-  getAllAdmins$Response(params?: {
-    skip?: number;
-    limit?: number;
-    name?: string;
-    email?: string;
-    role?: 'super admin' | 'editor' | 'mentor' | 'instructor';
-  }): Observable<StrictHttpResponse<{
-'totalRecords'?: number;
-'data'?: Array<Admin>;
-}>> {
-
-    const rb = new RequestBuilder(this.rootUrl, ApiService.GetAllAdminsPath, 'get');
-    if (params) {
-      rb.query('skip', params.skip, {});
-      rb.query('limit', params.limit, {});
-      rb.query('name', params.name, {});
-      rb.query('email', params.email, {});
-      rb.query('role', params.role, {});
-    }
-
-    return this.http.request(rb.build({
-      responseType: 'json',
-      accept: 'application/json'
-    })).pipe(
-      filter((r: any) => r instanceof HttpResponse),
-      map((r: HttpResponse<any>) => {
-        return r as StrictHttpResponse<{
-        'totalRecords'?: number;
-        'data'?: Array<Admin>;
-        }>;
-      })
-    );
-  }
-
-  /**
-   * Get All Admins
-   *
-   * This method provides access to only to the response body.
-   * To access the full response (for headers, for example), `getAllAdmins$Response()` instead.
-   *
-   * This method doesn't expect any request body.
-   */
-  getAllAdmins(params?: {
-    skip?: number;
-    limit?: number;
-    name?: string;
-    email?: string;
-    role?: 'super admin' | 'editor' | 'mentor' | 'instructor';
-  }): Observable<{
-'totalRecords'?: number;
-'data'?: Array<Admin>;
-}> {
-
-    return this.getAllAdmins$Response(params).pipe(
-      map((r: StrictHttpResponse<{
-'totalRecords'?: number;
-'data'?: Array<Admin>;
-}>) => r.body as {
-'totalRecords'?: number;
-'data'?: Array<Admin>;
-})
-    );
-  }
-
-  /**
    * Path part for operation getQueries
    */
   static readonly GetQueriesPath = '/query/{queryDomainId}/{queryDomain}';
 
   /**
+   * Get Queries.
+   *
    * Get Queries
    *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
@@ -116,7 +40,10 @@ export class ApiService extends BaseService {
     queryDomainId: string;
     queryDomain: 'assignment';
     isResponded?: true | false;
-  }): Observable<StrictHttpResponse<Array<{
+  },
+  context?: HttpContext
+
+): Observable<StrictHttpResponse<Array<{
 'adminName'?: string;
 'queryDate'?: string;
 'query'?: string;
@@ -126,7 +53,7 @@ export class ApiService extends BaseService {
 'queryId'?: string;
 }>>> {
 
-    const rb = new RequestBuilder(this.rootUrl, ApiService.GetQueriesPath, 'get');
+    const rb = new RequestBuilder(this.rootUrl, QueryService.GetQueriesPath, 'get');
     if (params) {
       rb.path('queryDomainId', params.queryDomainId, {});
       rb.path('queryDomain', params.queryDomain, {});
@@ -135,7 +62,8 @@ export class ApiService extends BaseService {
 
     return this.http.request(rb.build({
       responseType: 'json',
-      accept: 'application/json'
+      accept: 'application/json',
+      context: context
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -153,9 +81,11 @@ export class ApiService extends BaseService {
   }
 
   /**
+   * Get Queries.
+   *
    * Get Queries
    *
-   * This method provides access to only to the response body.
+   * This method provides access only to the response body.
    * To access the full response (for headers, for example), `getQueries$Response()` instead.
    *
    * This method doesn't expect any request body.
@@ -164,7 +94,10 @@ export class ApiService extends BaseService {
     queryDomainId: string;
     queryDomain: 'assignment';
     isResponded?: true | false;
-  }): Observable<Array<{
+  },
+  context?: HttpContext
+
+): Observable<Array<{
 'adminName'?: string;
 'queryDate'?: string;
 'query'?: string;
@@ -174,7 +107,7 @@ export class ApiService extends BaseService {
 'queryId'?: string;
 }>> {
 
-    return this.getQueries$Response(params).pipe(
+    return this.getQueries$Response(params,context).pipe(
       map((r: StrictHttpResponse<Array<{
 'adminName'?: string;
 'queryDate'?: string;
@@ -196,11 +129,90 @@ export class ApiService extends BaseService {
   }
 
   /**
+   * Path part for operation createQuery
+   */
+  static readonly CreateQueryPath = '/query/{queryDomainId}/{queryDomain}';
+
+  /**
+   * Create Query.
+   *
+   * Create Query
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `createQuery()` instead.
+   *
+   * This method sends `application/json` and handles request body of type `application/json`.
+   */
+  createQuery$Response(params: {
+    queryDomainId: string;
+    queryDomain: 'assignment';
+    body?: {
+'query': string;
+'querySubject': string;
+'queryId': string;
+'learnerId': string;
+}
+  },
+  context?: HttpContext
+
+): Observable<StrictHttpResponse<void>> {
+
+    const rb = new RequestBuilder(this.rootUrl, QueryService.CreateQueryPath, 'post');
+    if (params) {
+      rb.path('queryDomainId', params.queryDomainId, {});
+      rb.path('queryDomain', params.queryDomain, {});
+      rb.body(params.body, 'application/json');
+    }
+
+    return this.http.request(rb.build({
+      responseType: 'text',
+      accept: '*/*',
+      context: context
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+      })
+    );
+  }
+
+  /**
+   * Create Query.
+   *
+   * Create Query
+   *
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `createQuery$Response()` instead.
+   *
+   * This method sends `application/json` and handles request body of type `application/json`.
+   */
+  createQuery(params: {
+    queryDomainId: string;
+    queryDomain: 'assignment';
+    body?: {
+'query': string;
+'querySubject': string;
+'queryId': string;
+'learnerId': string;
+}
+  },
+  context?: HttpContext
+
+): Observable<void> {
+
+    return this.createQuery$Response(params,context).pipe(
+      map((r: StrictHttpResponse<void>) => r.body as void)
+    );
+  }
+
+  /**
    * Path part for operation respondToQuery
    */
   static readonly RespondToQueryPath = '/query/{queryDomainId}/{queryDomain}';
 
   /**
+   * Respond to Query.
+   *
    * Respond to a Query
    *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
@@ -215,9 +227,12 @@ export class ApiService extends BaseService {
 'response': string;
 'queryId': string;
 }
-  }): Observable<StrictHttpResponse<void>> {
+  },
+  context?: HttpContext
 
-    const rb = new RequestBuilder(this.rootUrl, ApiService.RespondToQueryPath, 'patch');
+): Observable<StrictHttpResponse<void>> {
+
+    const rb = new RequestBuilder(this.rootUrl, QueryService.RespondToQueryPath, 'patch');
     if (params) {
       rb.path('queryDomainId', params.queryDomainId, {});
       rb.path('queryDomain', params.queryDomain, {});
@@ -226,7 +241,8 @@ export class ApiService extends BaseService {
 
     return this.http.request(rb.build({
       responseType: 'text',
-      accept: '*/*'
+      accept: '*/*',
+      context: context
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -236,9 +252,11 @@ export class ApiService extends BaseService {
   }
 
   /**
+   * Respond to Query.
+   *
    * Respond to a Query
    *
-   * This method provides access to only to the response body.
+   * This method provides access only to the response body.
    * To access the full response (for headers, for example), `respondToQuery$Response()` instead.
    *
    * This method sends `application/json` and handles request body of type `application/json`.
@@ -250,9 +268,12 @@ export class ApiService extends BaseService {
 'response': string;
 'queryId': string;
 }
-  }): Observable<void> {
+  },
+  context?: HttpContext
 
-    return this.respondToQuery$Response(params).pipe(
+): Observable<void> {
+
+    return this.respondToQuery$Response(params,context).pipe(
       map((r: StrictHttpResponse<void>) => r.body as void)
     );
   }

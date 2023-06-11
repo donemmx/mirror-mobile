@@ -1,7 +1,19 @@
-<div class="profile__top">
+<!-- <div class="profile__top">
+
   <div class="profile__heading" data-aos="fade-down" data-aos-duration="1500">Account settings</div>
   <div class="profile__subtitle pt-1" data-aos="fade-down" data-aos-duration="1850">
       Find all your activities and achievements here
+  </div>
+</div> -->
+<div class="profile__top flex items-center gap-5">
+  <div class="icon py-3" routerLink="/home">
+    <i class="pi pi-angle-left text-white text-[1.6rem]" ></i>
+  </div>
+  <div class="group">
+    <div class="profile__heading text-[1.4rem]" data-aos="fade-down" data-aos-duration="1500">Account settings</div>
+    <div class="profile__subtitle text-[12px] pt-1" data-aos="fade-down" data-aos-duration="1850">
+      Find all your activities and achievements here
+    </div>
   </div>
 </div>
 <div class="account__main">
@@ -70,7 +82,7 @@
           </div>
         </p-tabPanel> -->
         <p-tabPanel header="Close account">
-          <div class="tab__body flex">
+          <div class="tab__body flex flex-col gap-4">
             <div class="subheading">
               Are you sure you want to close your account?
             </div>

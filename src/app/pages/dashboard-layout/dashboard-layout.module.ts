@@ -87,6 +87,8 @@ import { ChipModule } from 'primeng/chip';
 import { TagModule } from 'primeng/tag';
 import { SkeletonModule } from 'primeng/skeleton';
 import { AccordionModule } from 'primeng/accordion';
+import { AssignmentItemComponent } from 'src/app/assignment-item/assignment-item.component';
+import { TextItemComponent } from 'src/app/text-item/text-item.component';
 
 
 
@@ -152,6 +154,8 @@ import { AccordionModule } from 'primeng/accordion';
     ParallaxDirective,
     LandingComponent,
     AnimationOneComponent,
+    AssignmentItemComponent,
+    TextItemComponent
   ],
   imports: [
     CommonModule,
