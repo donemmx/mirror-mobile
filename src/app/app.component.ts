@@ -25,7 +25,4 @@ event: any;
     AOS.init();
   }
 
-
-
-
 }
