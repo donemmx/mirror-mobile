@@ -69,8 +69,6 @@ export class PaymentCardComponent extends BaseComponent {
         },
       })
       .subscribe((res) => {
-        console.log(res.key);
-
         const paystack = new PaystackPop();
         paystack.newTransaction({
           key: res.key,
