@@ -1,3 +1,20 @@
-<p>notification works!</p>
-
+<div class="hero__two">
+  <div class="heroTwo__body">
+    <div class="heroTwo__content">
+      <h2
+        data-aos="fade-down"
+        data-aos-duration="800"
+        class="head__two font-bold text-white text-[1rem]"
+      >
+        My Notifications
+      </h2>
+    </div>
+  </div>
+</div>
+<div class="notication__body" *ngFor="let notification of (notifications$ | async)">
+  <div class="notification__card">
+    <div class="title"></div>
+    <div class="description"></div>
+  </div>
+</div>
 <app-footer-bottom></app-footer-bottom>

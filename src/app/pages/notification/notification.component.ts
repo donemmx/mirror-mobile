@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { NotificationService } from 'src/app/api/services';
 import { DataService } from 'src/app/services/data.service';
 import { BaseComponent } from '../base/base.component';
+import * as moment from 'moment'
 
 @Component({
   selector: 'app-notification',
@@ -12,6 +13,8 @@ import { BaseComponent } from '../base/base.component';
 })
 export class NotificationComponent extends BaseComponent {
   notifications$: Observable<any>
+  moment = moment
+
     constructor(data: DataService, router:Router, private api: NotificationService){
     super(data,router)
   }
