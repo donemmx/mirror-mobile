@@ -100,7 +100,7 @@ export class RegistrationComponent extends BaseComponent {
       case 'coaching':
         this.coaching = value;
         break;
-        default: 
+        default:
         break
     }
   }
@@ -132,7 +132,7 @@ export class RegistrationComponent extends BaseComponent {
       }).subscribe(()=> {
         this.userApi.getLearner({learnerId: this.learner.jti}).subscribe((res)=> {
           this.message.user = res
-          this.message.selected = res.ageGroup.split(' ')[0]
+          this.message.selected = res.ageGroup
           this.data.changeMessage(this.message)
           this.router.navigateByUrl('/welcome')
         })

@@ -51,7 +51,7 @@ export class LoginComponent  extends BaseComponent{
           this.notify.success('login successful')
           this.message.user = res
           this.message.cart = []
-          this.message.selected = res.ageGroup.split(' ')[0]
+          this.message.selected = res.ageGroup
           this.data.changeMessage(this.message)
           this.router.navigateByUrl('/home')
         })

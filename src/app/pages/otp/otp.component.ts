@@ -47,27 +47,18 @@ export class OtpComponent extends BaseComponent {
     this.api
       .validateOtp({
         body: {
-          email: this.message.signupForm.email,
+          email: this.message.signupForm.email ?? this.message.email,
           ...this.otpForm.value,
         },
       })
       .subscribe(
         (res) => {
           this.loading = false;
+          this.saveUser(res);
           if (this.message.path == 'forgotPassword') {
-            this.message.auth = res
-            this.data.changeMessage(this.message)
-            this.router.navigateByUrl('/reset-password');
-
+            this.router.navigateByUrl('/home');
           } else {
-            this.auth.saveAuthentication(res);
-            const id: any = this.auth.getUserId();
-            this.api.getLearner({ learnerId: id.jti }).subscribe((res) => {
-              this.message.user = res;
-              this.message.cart = [];
-              this.data.changeMessage(this.message);
-              this.router.navigateByUrl('/registration');
-            });
+            this.router.navigateByUrl('/registration');
             this.notify.success('otp verification successful');
           }
         },
@@ -76,6 +67,16 @@ export class OtpComponent extends BaseComponent {
           this.notify.error(error.details);
         }
       );
+  }
+
+  saveUser(res: any) {
+    this.auth.saveAuthentication(res);
+    const id: any = this.auth.getUserId();
+    this.api.getLearner({ learnerId: id.jti }).subscribe((res) => {
+      this.message.user = res;
+      this.message.cart = [];
+      this.data.changeMessage(this.message);
+    });
   }
 
   timer(remaining: number) {
@@ -102,19 +103,21 @@ export class OtpComponent extends BaseComponent {
     this.timerOn = false;
   }
 
-  resendOTP(){
-    this.sendOtp(this.message.signupForm.email)
-    this.timerOn = true
+  resendOTP() {
+    this.sendOtp(this.message.signupForm.email ?? this.message.email);
+    this.timerOn = true;
     this.timer(90);
   }
 
-  sendOtp(email: any){
-    this.api.resetOtp({
-      body: {
-        email: email
-      }
-    }).subscribe((res)=> {
-      this.notify.success('otp reset sent')
-    })
+  sendOtp(email: any) {
+    this.api
+      .resetOtp({
+        body: {
+          email: email,
+        },
+      })
+      .subscribe((res) => {
+        this.notify.success('otp reset sent');
+      });
   }
 }

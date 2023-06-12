@@ -1,9 +1,9 @@
-<div class="payment__card w-full mb-5 bg-[#ffff]">
+<div class="payment__card mt-2 w-full md:w-[90%] md:m-auto mb-5 bg-[#ffff]">
   <div class="payment__main" *ngIf="!loading && !success" >
-    <div class="text-[1.2rem] md:text-[1.4rem] text-black font-bold pt-2">Check out</div>
+    <div class="text-[1.2rem] md:text-[1.4rem]  text-black font-bold pt-2">Check out</div>
     <div class="payment__type text-black">
      Select Payment method
-      <div class="payment__mode pt-1">
+      <div class="payment__mode pt-1 md:pt-5">
           <p-selectButton
             [options]="methodList"
             [(ngModel)]="method"

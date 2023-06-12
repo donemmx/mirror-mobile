@@ -77,6 +77,11 @@
     gap: 10px;
 }
 
+:host ::ng-deep .p-selectbutton{
+  display: flex;
+  flex-direction: row;
+}
+
 .payment__group input{
     width: 100%;
     padding: 10px;
