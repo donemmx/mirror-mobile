@@ -29,4 +29,9 @@ export class CoursesComponent extends BaseComponent{
     }))
 
   }
+
+  selectCourse(item: any) {
+    this.message.courseSelected = item;
+    this.data.changeMessage(this.message);
+  }
 }

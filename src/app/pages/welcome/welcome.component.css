@@ -53,6 +53,7 @@
     background: var(--secondary-color);
     color: var(--input);
     border-radius: 8px;
+    width: 250px;
     cursor: pointer;
     transition: all 250ms ease-out;
 }

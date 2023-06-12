@@ -22,7 +22,7 @@ export class OtpComponent extends BaseComponent {
   otpForm: FormGroup;
   timerOn: boolean = true;
   timeLeft: any;
-  
+
   constructor(
     data: DataService,
     router: Router,
@@ -38,7 +38,7 @@ export class OtpComponent extends BaseComponent {
     super.ngOnInit();
     this.timer(90);
     this.otpForm = this.formBuilder.group({
-      otp: new FormControl(' ', [Validators.required]),
+      otp: new FormControl('', [Validators.required]),
     });
   }
 
@@ -47,7 +47,7 @@ export class OtpComponent extends BaseComponent {
     this.api
       .validateOtp({
         body: {
-          email: this.message.email,
+          email: this.message.signupForm.email,
           ...this.otpForm.value,
         },
       })
@@ -58,7 +58,7 @@ export class OtpComponent extends BaseComponent {
             this.message.auth = res
             this.data.changeMessage(this.message)
             this.router.navigateByUrl('/reset-password');
-            
+
           } else {
             this.auth.saveAuthentication(res);
             const id: any = this.auth.getUserId();
@@ -103,14 +103,16 @@ export class OtpComponent extends BaseComponent {
   }
 
   resendOTP(){
-    this.sendOtp(this.message.email)
+    this.sendOtp(this.message.signupForm.email)
     this.timerOn = true
     this.timer(90);
   }
 
   sendOtp(email: any){
     this.api.resetOtp({
-      body: this.message.email
+      body: {
+        email: email
+      }
     }).subscribe((res)=> {
       this.notify.success('otp reset sent')
     })

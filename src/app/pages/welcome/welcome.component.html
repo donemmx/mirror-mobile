@@ -17,7 +17,7 @@
         <div class="welcome__left">
             <div class="group">
                 <div class="welcome__heading mb-1"
-                data-aos="fade-down" 
+                data-aos="fade-down"
                 data-aos-duration="1450"
                 >Welcome</div>
                 <div class="welcome__subHeading"
@@ -26,11 +26,21 @@
                    {{message.user.name | titlecase}},
                 </div>
             </div>
+            <lottie-player
+            src="../../../assets/json/welcome.json"
+            autoplay
+            loop
+            background="none"
+            animation
+            style="height: 220px"
+            class="scale-x-[-1]"
+          >
+          </lottie-player>
             <p class="paragraph"
             data-aos="fade-down" data-aos-duration="1050"
             >Click below to continue.</p>
             <img src="../../../assets/arrorr.png" alt="" class="arrow">
-            <button class="welcome__btn fit"
+            <button class="welcome__btn"
             data-aos="fade-down" data-aos-duration="1200"
             routerLink="/home"
             >Go to Home page</button>

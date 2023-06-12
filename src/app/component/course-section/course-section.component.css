@@ -13,6 +13,10 @@
     align-items: center;
     justify-content: space-between;
 }
+.course__container{
+  width: 90%;
+  margin: auto;
+}
 
 .course__section{
     display: grid;
