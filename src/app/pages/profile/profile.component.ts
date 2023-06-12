@@ -86,7 +86,7 @@ export class ProfileComponent extends BaseComponent {
         },
         (err) => {
           this.loading = false;
-          this.notify.success(err.message);
+          this.notify.error(err.message);
         }
       );
   }

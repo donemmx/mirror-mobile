@@ -772,7 +772,7 @@ export class ChaptersService extends BaseService {
   /**
    * Path part for operation addQuiz
    */
-  static readonly AddQuizPath = '/chapter-item/{chapterId}/quiz';
+  static readonly AddQuizPath = '/chapter-item/{chapterId}/quiz/{quizId}';
 
   /**
    * Add Quiz.
@@ -786,6 +786,7 @@ export class ChaptersService extends BaseService {
    */
   addQuiz$Response(params: {
     chapterId: string;
+    quizId: string;
     body?: {
 'title': string;
 'tags'?: Array<any>;
@@ -796,7 +797,7 @@ export class ChaptersService extends BaseService {
  * time in minutes
  */
 'timeLimit': number;
-'showSolutionsToLearner'?: true | false;
+'showSolutionsToLearner': true | false;
 'order'?: number;
 'showSolutions'?: 'per attempt' | 'per question';
 'performanceMessage'?: string;
@@ -812,6 +813,7 @@ export class ChaptersService extends BaseService {
     const rb = new RequestBuilder(this.rootUrl, ChaptersService.AddQuizPath, 'post');
     if (params) {
       rb.path('chapterId', params.chapterId, {});
+      rb.path('quizId', params.quizId, {});
       rb.body(params.body, 'application/json');
     }
 
@@ -839,6 +841,7 @@ export class ChaptersService extends BaseService {
    */
   addQuiz(params: {
     chapterId: string;
+    quizId: string;
     body?: {
 'title': string;
 'tags'?: Array<any>;
@@ -849,7 +852,7 @@ export class ChaptersService extends BaseService {
  * time in minutes
  */
 'timeLimit': number;
-'showSolutionsToLearner'?: true | false;
+'showSolutionsToLearner': true | false;
 'order'?: number;
 'showSolutions'?: 'per attempt' | 'per question';
 'performanceMessage'?: string;
@@ -1030,7 +1033,7 @@ export class ChaptersService extends BaseService {
   /**
    * Path part for operation addAssignment
    */
-  static readonly AddAssignmentPath = '/chapter-item/{chapterId}/assignment';
+  static readonly AddAssignmentPath = '/chapter-item/{chapterId}/assignment/{assignmentId}';
 
   /**
    * Add Assignment.
@@ -1044,6 +1047,7 @@ export class ChaptersService extends BaseService {
    */
   addAssignment$Response(params: {
     chapterId: string;
+    assignmentId: string;
     body?: {
 'title': string;
 'instructions': string;
@@ -1062,6 +1066,7 @@ export class ChaptersService extends BaseService {
     const rb = new RequestBuilder(this.rootUrl, ChaptersService.AddAssignmentPath, 'post');
     if (params) {
       rb.path('chapterId', params.chapterId, {});
+      rb.path('assignmentId', params.assignmentId, {});
       rb.body(params.body, 'application/json');
     }
 
@@ -1089,6 +1094,7 @@ export class ChaptersService extends BaseService {
    */
   addAssignment(params: {
     chapterId: string;
+    assignmentId: string;
     body?: {
 'title': string;
 'instructions': string;
@@ -1193,7 +1199,6 @@ export class ChaptersService extends BaseService {
     body?: Upload & {
 'assignmentId': string;
 'learnerId': string;
-'status': 'approved' | 'rejected';
 'comments'?: string;
 }
   },
@@ -1232,7 +1237,6 @@ export class ChaptersService extends BaseService {
     body?: Upload & {
 'assignmentId': string;
 'learnerId': string;
-'status': 'approved' | 'rejected';
 'comments'?: string;
 }
   },

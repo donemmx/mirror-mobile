@@ -9,6 +9,7 @@ import { RequestBuilder } from '../request-builder';
 import { Observable } from 'rxjs';
 import { map, filter } from 'rxjs/operators';
 
+import { Course } from '../models/course';
 
 
 /**
@@ -217,6 +218,67 @@ export class CourseProgressService extends BaseService {
 'statusHistory'?: Array<any>;
 'status'?: 'enrolled' | 'in progress' | 'completed' | 'certificated';
 })
+    );
+  }
+
+  /**
+   * Path part for operation getCoursesByCourseProgress
+   */
+  static readonly GetCoursesByCourseProgressPath = '/courses/{progressStatus}';
+
+  /**
+   * Get Courses By Course Progress.
+   *
+   * Get Courses By Course Progress
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `getCoursesByCourseProgress()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  getCoursesByCourseProgress$Response(params?: {
+    progressStatus?: 'enrolled' | 'in progress' | 'completed' | 'certificated';
+  },
+  context?: HttpContext
+
+): Observable<StrictHttpResponse<Array<Course>>> {
+
+    const rb = new RequestBuilder(this.rootUrl, CourseProgressService.GetCoursesByCourseProgressPath, 'get');
+    if (params) {
+      rb.query('progressStatus', params.progressStatus, {});
+    }
+
+    return this.http.request(rb.build({
+      responseType: 'json',
+      accept: 'application/json',
+      context: context
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<Array<Course>>;
+      })
+    );
+  }
+
+  /**
+   * Get Courses By Course Progress.
+   *
+   * Get Courses By Course Progress
+   *
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `getCoursesByCourseProgress$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  getCoursesByCourseProgress(params?: {
+    progressStatus?: 'enrolled' | 'in progress' | 'completed' | 'certificated';
+  },
+  context?: HttpContext
+
+): Observable<Array<Course>> {
+
+    return this.getCoursesByCourseProgress$Response(params,context).pipe(
+      map((r: StrictHttpResponse<Array<Course>>) => r.body as Array<Course>)
     );
   }
 

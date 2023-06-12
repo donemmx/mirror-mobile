@@ -1035,7 +1035,7 @@ export class LearnersService extends BaseService {
 
 ): Observable<StrictHttpResponse<{
 'totalRecords'?: number;
-'data'?: Array<any>;
+'data'?: Array<Learner>;
 }>> {
 
     const rb = new RequestBuilder(this.rootUrl, LearnersService.GetAllLearnersPath, 'get');
@@ -1055,7 +1055,7 @@ export class LearnersService extends BaseService {
       map((r: HttpResponse<any>) => {
         return r as StrictHttpResponse<{
         'totalRecords'?: number;
-        'data'?: Array<any>;
+        'data'?: Array<Learner>;
         }>;
       })
     );
@@ -1081,16 +1081,16 @@ export class LearnersService extends BaseService {
 
 ): Observable<{
 'totalRecords'?: number;
-'data'?: Array<any>;
+'data'?: Array<Learner>;
 }> {
 
     return this.getAllLearners$Response(params,context).pipe(
       map((r: StrictHttpResponse<{
 'totalRecords'?: number;
-'data'?: Array<any>;
+'data'?: Array<Learner>;
 }>) => r.body as {
 'totalRecords'?: number;
-'data'?: Array<any>;
+'data'?: Array<Learner>;
 })
     );
   }

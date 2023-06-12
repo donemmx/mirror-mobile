@@ -16,6 +16,7 @@ import { VideoComponent } from '../video/video.component';
 import { RegistrationComponent } from '../registration/registration.component';
 import { WelcomeComponent } from '../welcome/welcome.component';
 import { SidebarComponent } from 'src/app/sidebar/sidebar.component';
+import { NotificationComponent } from '../notification/notification.component';
 
 const routes: Routes = [
   {
@@ -81,6 +82,10 @@ const routes: Routes = [
       {
         path: 'welcome',
         component: WelcomeComponent,
+      },
+      {
+        path: 'notification',
+        component: NotificationComponent,
       },
       {
         path: '',

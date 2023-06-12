@@ -91,8 +91,7 @@ import { AssignmentItemComponent } from 'src/app/assignment-item/assignment-item
 import { TextItemComponent } from 'src/app/text-item/text-item.component';
 import { SidebarComponent } from 'src/app/sidebar/sidebar.component';
 import { NgxPayPalModule } from 'ngx-paypal';
-
-
+import { NotificationComponent } from '../notification/notification.component';
 
 @NgModule({
   declarations: [
@@ -159,8 +158,7 @@ import { NgxPayPalModule } from 'ngx-paypal';
     AssignmentItemComponent,
     TextItemComponent,
     SidebarComponent,
-
-
+    NotificationComponent,
   ],
   imports: [
     CommonModule,
@@ -197,4 +195,4 @@ import { NgxPayPalModule } from 'ngx-paypal';
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-export class DashboardLayoutModule { }
+export class DashboardLayoutModule {}

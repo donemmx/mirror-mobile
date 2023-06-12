@@ -8,3 +8,4 @@ export { PaymentService } from './services/payment.service';
 export { CourseProgressService } from './services/course-progress.service';
 export { CountryService } from './services/country.service';
 export { ForumService } from './services/forum.service';
+export { NotificationService } from './services/notification.service';

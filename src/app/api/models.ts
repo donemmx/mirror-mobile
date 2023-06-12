@@ -6,7 +6,7 @@ export { CoursePackage } from './models/course-package';
 export { Chapter } from './models/chapter';
 export { ChapterItem } from './models/chapter-item';
 export { Question } from './models/question';
-export { QuizScores } from './models/quiz-scores';
+export { SubmittedAssignment } from './models/submitted-assignment';
 export { PricePlan } from './models/price-plan';
 export { Currency } from './models/currency';
 export { ProblemDetail } from './models/problem-detail';

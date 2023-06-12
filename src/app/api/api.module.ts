@@ -14,6 +14,7 @@ import { PaymentService } from './services/payment.service';
 import { CourseProgressService } from './services/course-progress.service';
 import { CountryService } from './services/country.service';
 import { ForumService } from './services/forum.service';
+import { NotificationService } from './services/notification.service';
 
 /**
  * Module that provides all services and configuration.
@@ -33,6 +34,7 @@ import { ForumService } from './services/forum.service';
     CourseProgressService,
     CountryService,
     ForumService,
+    NotificationService,
     ApiConfiguration
   ],
 })

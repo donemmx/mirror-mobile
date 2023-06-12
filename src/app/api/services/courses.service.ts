@@ -14,7 +14,7 @@ import { Course } from '../models/course';
 import { CoursePackage } from '../models/course-package';
 import { Learner } from '../models/learner';
 import { PricePlan } from '../models/price-plan';
-import { QuizScores } from '../models/quiz-scores';
+import { SubmittedAssignment } from '../models/submitted-assignment';
 import { Upload } from '../models/upload';
 
 
@@ -359,8 +359,6 @@ export class CoursesService extends BaseService {
    * This method doesn't expect any request body.
    */
   getAllCourses$Response(params?: {
-    skip?: number;
-    limit?: number;
     isPublished?: true | false;
     courseCategory?: 'identity' | 'education' | 'spiritual';
     ageCategory?: 'children' | 'young adult' | 'adult';
@@ -370,13 +368,11 @@ export class CoursesService extends BaseService {
 
 ): Observable<StrictHttpResponse<{
 'totalRecords'?: number;
-'data'?: Array<Chapter>;
+'data'?: Array<Course>;
 }>> {
 
     const rb = new RequestBuilder(this.rootUrl, CoursesService.GetAllCoursesPath, 'get');
     if (params) {
-      rb.query('skip', params.skip, {});
-      rb.query('limit', params.limit, {});
       rb.query('isPublished', params.isPublished, {});
       rb.query('courseCategory', params.courseCategory, {});
       rb.query('ageCategory', params.ageCategory, {});
@@ -392,7 +388,7 @@ export class CoursesService extends BaseService {
       map((r: HttpResponse<any>) => {
         return r as StrictHttpResponse<{
         'totalRecords'?: number;
-        'data'?: Array<Chapter>;
+        'data'?: Array<Course>;
         }>;
       })
     );
@@ -409,8 +405,6 @@ export class CoursesService extends BaseService {
    * This method doesn't expect any request body.
    */
   getAllCourses(params?: {
-    skip?: number;
-    limit?: number;
     isPublished?: true | false;
     courseCategory?: 'identity' | 'education' | 'spiritual';
     ageCategory?: 'children' | 'young adult' | 'adult';
@@ -420,16 +414,16 @@ export class CoursesService extends BaseService {
 
 ): Observable<{
 'totalRecords'?: number;
-'data'?: Array<Chapter>;
+'data'?: Array<Course>;
 }> {
 
     return this.getAllCourses$Response(params,context).pipe(
       map((r: StrictHttpResponse<{
 'totalRecords'?: number;
-'data'?: Array<Chapter>;
+'data'?: Array<Course>;
 }>) => r.body as {
 'totalRecords'?: number;
-'data'?: Array<Chapter>;
+'data'?: Array<Course>;
 })
     );
   }
@@ -1402,7 +1396,7 @@ export class CoursesService extends BaseService {
   },
   context?: HttpContext
 
-): Observable<StrictHttpResponse<Array<QuizScores>>> {
+): Observable<StrictHttpResponse<Array<SubmittedAssignment>>> {
 
     const rb = new RequestBuilder(this.rootUrl, CoursesService.GetAssignmentScoresPath, 'get');
     if (params) {
@@ -1419,7 +1413,7 @@ export class CoursesService extends BaseService {
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return r as StrictHttpResponse<Array<QuizScores>>;
+        return r as StrictHttpResponse<Array<SubmittedAssignment>>;
       })
     );
   }
@@ -1442,10 +1436,68 @@ export class CoursesService extends BaseService {
   },
   context?: HttpContext
 
-): Observable<Array<QuizScores>> {
+): Observable<Array<SubmittedAssignment>> {
 
     return this.getAssignmentScores$Response(params,context).pipe(
-      map((r: StrictHttpResponse<Array<QuizScores>>) => r.body as Array<QuizScores>)
+      map((r: StrictHttpResponse<Array<SubmittedAssignment>>) => r.body as Array<SubmittedAssignment>)
+    );
+  }
+
+  /**
+   * Path part for operation getAssessments
+   */
+  static readonly GetAssessmentsPath = '/assessments';
+
+  /**
+   * Get Assessments.
+   *
+   * Get Assessments Per Learner
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `getAssessments()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  getAssessments$Response(params?: {
+  },
+  context?: HttpContext
+
+): Observable<StrictHttpResponse<Array<SubmittedAssignment>>> {
+
+    const rb = new RequestBuilder(this.rootUrl, CoursesService.GetAssessmentsPath, 'get');
+    if (params) {
+    }
+
+    return this.http.request(rb.build({
+      responseType: 'json',
+      accept: 'application/json',
+      context: context
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<Array<SubmittedAssignment>>;
+      })
+    );
+  }
+
+  /**
+   * Get Assessments.
+   *
+   * Get Assessments Per Learner
+   *
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `getAssessments$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  getAssessments(params?: {
+  },
+  context?: HttpContext
+
+): Observable<Array<SubmittedAssignment>> {
+
+    return this.getAssessments$Response(params,context).pipe(
+      map((r: StrictHttpResponse<Array<SubmittedAssignment>>) => r.body as Array<SubmittedAssignment>)
     );
   }
 

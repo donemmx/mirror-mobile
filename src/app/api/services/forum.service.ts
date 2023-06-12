@@ -433,8 +433,13 @@ export class ForumService extends BaseService {
    */
   createPost$Response(params?: {
     body?: {
-'forumId'?: string;
-'postMessage'?: string;
+'notificationId'?: string;
+'userId'?: string;
+'title'?: string;
+'description'?: string;
+'descriptionSummary'?: string;
+'isSeen'?: boolean;
+'date'?: string;
 }
   },
   context?: HttpContext
@@ -470,8 +475,13 @@ export class ForumService extends BaseService {
    */
   createPost(params?: {
     body?: {
-'forumId'?: string;
-'postMessage'?: string;
+'notificationId'?: string;
+'userId'?: string;
+'title'?: string;
+'description'?: string;
+'descriptionSummary'?: string;
+'isSeen'?: boolean;
+'date'?: string;
 }
   },
   context?: HttpContext
