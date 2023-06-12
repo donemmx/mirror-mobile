@@ -1,14 +1,47 @@
 <section class="courses" *ngIf="category$ | async as category">
+  <div class="hero__two">
+    <div class="heroTwo__body">
+      <div class="heroTwo__content">
+        <h2
+          data-aos="fade-down"
+          data-aos-duration="800"
+          class="head__two font-bold text-white text-[1rem]"
+        >
+          Discover Our Wide Range of Courses
+        </h2>
+        <p
+          data-aos="fade-in"
+          data-aos-duration="800"
+          class="subtitle text-[10px] pt-2 text-white"
+        >
+          Courses for personal development, life purpose, social connections,
+          and spiritual well-being.
+        </p>
+      </div>
+    </div>
+  </div>
   <ng-template [ngIf]="category.selected == 'young adult'">
-    <app-hero-two></app-hero-two>
     <div class="main__course pt-2 pb-5">
+      <div class="flex items-center justify-center pb-3">
+        <p-selectButton
+          [options]="courseCategories"
+          [(ngModel)]="selectedCategory"
+          (onChange)="changeCategory($event)"
+        >
+          <ng-template let-item>
+            <div class="grouped__data">
+              <p>{{ item }}</p>
+            </div>
+          </ng-template>
+        </p-selectButton>
+      </div>
       <p-table
         #dt
         [value]="courses$ | async"
         dataKey="id"
         [loading]="loading"
         [scrollable]="true"
-        scrollHeight="67vh"
+        scrollHeight="55vh"
         [virtualScroll]="true"
       >
         <ng-template let-item pTemplate="body" class="grid-3">
@@ -63,7 +96,6 @@
   </ng-template>
 
   <ng-template [ngIf]="category.selected == 'children'">
-    <app-hero-two></app-hero-two>
     <div class="main__course pt-2 pb-5">
       <p-table
         #dt
@@ -71,7 +103,7 @@
         dataKey="id"
         [loading]="loading"
         [scrollable]="true"
-        scrollHeight="67vh"
+        scrollHeight="55vh"
         [virtualScroll]="true"
       >
         <ng-template let-item pTemplate="body" class="grid-3">
@@ -126,7 +158,6 @@
   </ng-template>
 
   <ng-template [ngIf]="category.selected == 'adult'">
-    <app-hero-two></app-hero-two>
     <div class="main__course pt-2 pb-5">
       <p-table
         #dt
@@ -134,7 +165,7 @@
         dataKey="id"
         [loading]="loading"
         [scrollable]="true"
-        scrollHeight="67vh"
+        scrollHeight="55vh"
         [virtualScroll]="true"
         [virtualScrollItemSize]="46"
       >

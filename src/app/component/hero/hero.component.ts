@@ -22,16 +22,13 @@ export class HeroComponent extends BaseComponent {
   }
   ngOnInit(): void {
     super.ngOnInit();
-    this.label = this.message.user?.name.split(' ')[0][0]
+    this.label = this.message.user?.name?.split(' ')[0][0]
     this.api.getAllCourses({
       ageCategory: this.message.selected
     }).subscribe((res)=> {
       this.course = res.data[0]
-      console.log(res.data);
-
     })
 
-      console.log(this.course);
 
   }
 

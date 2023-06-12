@@ -18,4 +18,84 @@
         </div>
     </div>
   </section>
+  <div *ngFor="let category of message.user.learnerCourseCategories">
+    <section class="section__container pt-4" *ngIf="category === 'spiritual'">
+      <div class="section__header">
+        <h3 class=" font-bold"> Spiritual </h3>
+        <a routerLink="" class="small" routerLink="/courses">View All</a>
+      </div>
+      <div class="course__section md:grid md:grid-cols-2" @listAnimation>
+        <div class="grouped__loading" *ngIf="loading" >
+          <div class="grouped" *ngFor="let data of [1]">
+            <p-skeleton styleClass="mb-1"></p-skeleton>
+            <p-skeleton width="10rem" styleClass="mb-1"></p-skeleton>
+            <p-skeleton width="5rem" styleClass="mb-1"></p-skeleton>
+            <p-skeleton height="2rem" styleClass="mb-1"></p-skeleton>
+          </div>
+        </div>
+          <div class="course__container" *ngFor="let course of (spiritual$ | async)">
+            <app-course-card [course]="course" *ngIf="!loading"></app-course-card>
+          </div>
+      </div>
+    </section>
+    <section class="section__container pt-4"  *ngIf="category === 'education'" >
+      <div class="section__header">
+        <h3 class=" font-bold"> Education </h3>
+        <a routerLink="" class="small" routerLink="/courses">View All</a>
+      </div>
+      <div class="course__section md:grid md:grid-cols-2" @listAnimation>
+        <div class="grouped__loading" *ngIf="loading" >
+          <div class="grouped" *ngFor="let data of [1]">
+            <p-skeleton styleClass="mb-1"></p-skeleton>
+            <p-skeleton width="10rem" styleClass="mb-1"></p-skeleton>
+            <p-skeleton width="5rem" styleClass="mb-1"></p-skeleton>
+            <p-skeleton height="2rem" styleClass="mb-1"></p-skeleton>
+          </div>
+        </div>
+          <div class="course__container" *ngFor="let course of (education$ | async)">
+            <app-course-card [course]="course" *ngIf="!loading"></app-course-card>
+          </div>
+      </div>
+    </section>
+    <section class="section__container pt-4"  *ngIf="category === 'identity'">
+      <div class="section__header">
+        <h3 class=" font-bold"> Identity </h3>
+        <a routerLink="" class="small" routerLink="/courses">View All</a>
+      </div>
+      <div class="course__section md:grid md:grid-cols-2" @listAnimation>
+        <div class="grouped__loading" *ngIf="loading" >
+          <div class="grouped" *ngFor="let data of [1]">
+            <p-skeleton styleClass="mb-1"></p-skeleton>
+            <p-skeleton width="10rem" styleClass="mb-1"></p-skeleton>
+            <p-skeleton width="5rem" styleClass="mb-1"></p-skeleton>
+            <p-skeleton height="2rem" styleClass="mb-1"></p-skeleton>
+          </div>
+        </div>
+          <div class="course__container" *ngFor="let course of (identity$ | async)">
+            <app-course-card [course]="course" *ngIf="!loading"></app-course-card>
+          </div>
+      </div>
+    </section>
+  </div>
+  <div *ngIf="message.user.learnerCourseCategories.length ===0">
+    <section class="section__container pt-4" >
+      <div class="section__header">
+        <h3 class=" font-bold"> All Courses </h3>
+        <a routerLink="" class="small" routerLink="/courses">View All</a>
+      </div>
+      <div class="course__section md:grid md:grid-cols-2" @listAnimation>
+        <div class="grouped__loading" *ngIf="loading" >
+          <div class="grouped" *ngFor="let data of [1]">
+            <p-skeleton styleClass="mb-1"></p-skeleton>
+            <p-skeleton width="10rem" styleClass="mb-1"></p-skeleton>
+            <p-skeleton width="5rem" styleClass="mb-1"></p-skeleton>
+            <p-skeleton height="2rem" styleClass="mb-1"></p-skeleton>
+          </div>
+        </div>
+          <div class="course__container" *ngFor="let course of (allcourses$ | async)">
+            <app-course-card [course]="course" *ngIf="!loading"></app-course-card>
+          </div>
+      </div>
+    </section>
+  </div>
 </div>
