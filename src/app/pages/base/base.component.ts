@@ -73,6 +73,7 @@ export class BaseComponent implements OnInit, OnDestroy {
       .pipe()
       .subscribe((res: any) => {
         this.message.user = res;
+        this.message.selected = res.ageGroup;
         this.data.changeMessage(this.message);
       });
   }
@@ -81,6 +82,7 @@ export class BaseComponent implements OnInit, OnDestroy {
     const id: any = auth.getUserId();
     api.getLearner({ learnerId: id.jti }).subscribe((res: any) => {
       this.message.user = res;
+      this.message.selected = res.ageGroup;
       this.data.changeMessage(this.message);
     });
   }
