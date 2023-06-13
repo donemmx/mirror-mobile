@@ -8,15 +8,15 @@ import { LearnersService } from 'src/app/api/services';
 @Component({
   selector: 'app-base',
   templateUrl: './base.component.html',
-  styleUrls: ['./base.component.css']
+  styleUrls: ['./base.component.css'],
 })
 export class BaseComponent implements OnInit, OnDestroy {
   message: { [k: string]: any } = {};
   subscrption: Subscription = new Subscription();
   category$: Observable<any>;
-  learnerId: any
-  learnerApi = inject(LearnersService)
-  learnerAuth = inject(AuthService)
+  learnerId: any;
+  learnerApi = inject(LearnersService);
+  learnerAuth = inject(AuthService);
   constructor(public data: DataService, public router: Router) {}
 
   ngOnInit(): void {
@@ -25,20 +25,21 @@ export class BaseComponent implements OnInit, OnDestroy {
     );
 
     this.data.currentMessage.subscribe((res: any) => {
-      this.category$ = of(res)
-      const id: any = this.learnerAuth.getUserId()
-      if(res.user == null){
-            this.learnerApi.getLearner({
-              learnerId: id.jti
-            }).subscribe((data)=> {
-              this.message.user = data
-              this.message.cart = []
-              this.data.changeMessage(this.message)
-            })
-          }
-    })
-
-
+      this.category$ = of(res);
+      const id: any = this.learnerAuth.getUserId();
+      if (res.user == null) {
+        this.learnerApi
+          .getLearner({
+            learnerId: id.jti,
+          })
+          .subscribe((data) => {
+            this.message.user = data;
+            this.message.cart = [];
+            this.message.selected = res.ageGroup;
+            this.data.changeMessage(this.message);
+          });
+      }
+    });
   }
 
   ngOnDestroy(): void {
@@ -59,31 +60,28 @@ export class BaseComponent implements OnInit, OnDestroy {
     }
   }
 
-  resetUpdate(){
-    this.message.update =null
-    this.data.changeMessage(this.message)
+  resetUpdate() {
+    this.message.update = null;
+    this.data.changeMessage(this.message);
   }
 
-  getLearnerProfile(api: any){
-
-    api.getLearner({
-      learnerId: this.learnerId
-    }).pipe().subscribe((res: any)=> {
-      this.message.user = res
-      this.data.changeMessage(this.message)
-    }
-    )
+  getLearnerProfile(api: any) {
+    api
+      .getLearner({
+        learnerId: this.learnerId,
+      })
+      .pipe()
+      .subscribe((res: any) => {
+        this.message.user = res;
+        this.data.changeMessage(this.message);
+      });
   }
 
-
-  getUser(api: any, auth: any){
-    const id: any = auth.getUserId()
-    api.getLearner({learnerId: id.jti}).subscribe((res: any)=> {
-      this.message.user = res
-      this.data.changeMessage(this.message)
-  })
-}
-
-
-
+  getUser(api: any, auth: any) {
+    const id: any = auth.getUserId();
+    api.getLearner({ learnerId: id.jti }).subscribe((res: any) => {
+      this.message.user = res;
+      this.data.changeMessage(this.message);
+    });
+  }
 }
