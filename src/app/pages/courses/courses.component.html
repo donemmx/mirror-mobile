@@ -20,21 +20,22 @@
       </div>
     </div>
   </div>
+  <div class="flex items-center justify-center pb-3 pt-2">
+    <p-selectButton
+      [options]="courseCategories"
+      [(ngModel)]="selectedCategory"
+      (onChange)="changeCategory($event)"
+    >
+      <ng-template let-item>
+        <div class="grouped__data">
+          <p>{{ item }}</p>
+        </div>
+      </ng-template>
+    </p-selectButton>
+  </div>
   <ng-template [ngIf]="category.selected == 'young adult'">
-    <div class="main__course pt-2 pb-5">
-      <div class="flex items-center justify-center pb-3">
-        <p-selectButton
-          [options]="courseCategories"
-          [(ngModel)]="selectedCategory"
-          (onChange)="changeCategory($event)"
-        >
-          <ng-template let-item>
-            <div class="grouped__data">
-              <p>{{ item }}</p>
-            </div>
-          </ng-template>
-        </p-selectButton>
-      </div>
+    <div class="main__course pb-5">
+    
       <p-table
         #dt
         [value]="courses$ | async"

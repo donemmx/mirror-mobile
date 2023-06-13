@@ -27,6 +27,8 @@ export class BaseComponent implements OnInit, OnDestroy {
     this.data.currentMessage.subscribe((res: any) => {
       this.category$ = of(res);
       const id: any = this.learnerAuth.getUserId();
+      console.log(id);
+      
       if (res.user == null) {
         this.learnerApi
           .getLearner({
