@@ -19,11 +19,11 @@
             [videoId$]="of(item.link)"
             [item]="item" [courseId]="courseId"
           ></app-video-frame>
-          <app-text-item *ngIf="item.chapterItemName === 'text'" [item]="item" [courseId]="courseId"></app-text-item>
-          <app-assignment-item *ngIf="item.chapterItemName === 'assignment'" [item]="item" [courseId]="courseId"></app-assignment-item>
-          <app-image-item *ngIf="item.chapterItemName === 'picture'" [item]="item" [courseId]="courseId"></app-image-item>
-          <app-pdf-item *ngIf="item.chapterItemName === 'pdf'" [item]="item" [courseId]="courseId"></app-pdf-item>
-          <app-quiz-item *ngIf="item.chapterItemName === 'quiz'" [item]="item" [courseId]="courseId"></app-quiz-item>
+          <app-text-item *ngIf="item.chapterItemName === 'text'" [item]="item" [courseId]="courseId" (done)="getevent($event)"></app-text-item>
+          <app-assignment-item *ngIf="item.chapterItemName === 'assignment'" [item]="item" [courseId]="courseId" (done)="getevent($event)"></app-assignment-item>
+          <app-image-item *ngIf="item.chapterItemName === 'picture'" [item]="item" [courseId]="courseId" (done)="getevent($event)"></app-image-item>
+          <app-pdf-item *ngIf="item.chapterItemName === 'pdf'" [item]="item" [courseId]="courseId"> (done)="getevent($event)"</app-pdf-item>
+          <app-quiz-item *ngIf="item.chapterItemName === 'quiz'" [item]="item" [courseId]="courseId" (done)="getevent($event)" ></app-quiz-item>
         </div>
       </div>
     </div>

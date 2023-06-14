@@ -12,7 +12,7 @@ export class VideoItemsComponent implements OnInit{
  @Input() activeIndex: number
  @Input() courseId: any;
  @Output() chapterItem = new EventEmitter()
- 
+
   progress$: Observable<any>
 
  constructor(){
@@ -27,4 +27,5 @@ export class VideoItemsComponent implements OnInit{
   getChapterItem(event: any){
     this.chapterItem.emit(event)
   }
+
  }

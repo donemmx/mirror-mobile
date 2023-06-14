@@ -58,5 +58,24 @@ export class VideoComponent implements OnInit {
 
   }
 
-  // done()
+  getevent(event: any){
+    this.getChapers()
+  }
+
+
+  getChapers(){
+ this.api
+    .getChaptersForLoggedInLearners({
+      courseId: this.courseId,
+    })
+    .pipe(
+      tap((res: any) => {
+        this.chapterItem = res[0].chapterItems[0];
+        this.loading = false
+      })
+    ).subscribe((res) => {
+      this.chapters$ = of(res)
+    })
+  }
+
 }

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ChaptersService, CourseProgressService } from '../api/services';
 import { AuthService } from '../services/auth.service';
 import { NotificationService } from '../services/notification.service';
@@ -6,7 +6,6 @@ import { BehaviorSubject, Observable, Subject, of } from 'rxjs';
 import { BaseComponent } from '../pages/base/base.component';
 import { DataService } from '../services/data.service';
 import { Router } from '@angular/router';
-import { EventEmitter } from 'stream';
 
 @Component({
   selector: 'app-quiz-item',
@@ -82,12 +81,13 @@ export class QuizItemComponent extends BaseComponent {
 
   continue(data: any) {
     console.log(data);
+    this.done.emit(true)
+
     if (data.isPassed) {
       this.updateCourseProgress(this.progressApi, this.courseId, this.item.chapterId, this.item.chapterItemId)
         .subscribe((res) => {
           this.notify.success('congratulations on passing the quiz');
           this.openModal();
-           this.done.emit('')
 
         });
     } else {

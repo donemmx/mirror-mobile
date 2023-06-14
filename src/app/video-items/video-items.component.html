@@ -16,7 +16,6 @@
             </ng-template>
             <ng-template pTemplate="content">
               <div class="chapter__items" *ngFor="let details of data.chapterItems">
-
                 <div class="outcome__card mt-1" (click)="getChapterItem(details)">
                   <div [ngSwitch]="details.chapterItemName">
                     <img class="itemsIcon " *ngSwitchCase="'text'" src="../../assets/items/content.svg" alt="" />
@@ -28,6 +27,8 @@
                   <div class="outcomeHeading text-sm" >
                     {{ details.title }}
                   </div>
+                  <div class="green ml-auto" *ngIf="!details.isChapterItemLocked"></div>
+                  <div class="red ml-auto" *ngIf="details.isChapterItemLocked"></div>
                 </div>
               </div>
             </ng-template>

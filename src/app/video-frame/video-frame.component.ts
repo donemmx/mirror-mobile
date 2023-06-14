@@ -73,6 +73,7 @@ export class VideoFrameComponent extends BaseComponent {
   }
 
   continue() {
+    this.done.emit(true)
     this.updateCourseProgress(
       this.api,
       this.courseId,
@@ -81,7 +82,6 @@ export class VideoFrameComponent extends BaseComponent {
     ).subscribe((res) => {
       this.notify.success('marked as completed');
     });
-    this.done.emit(true)
 
   }
 }

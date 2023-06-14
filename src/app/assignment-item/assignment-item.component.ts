@@ -26,6 +26,11 @@ export class AssignmentItemComponent extends BaseComponent {
   ngOnInit(): void {
     super.ngOnInit();
   }
+
+  submitAssignment(){
+    
+  }
+
   continue() {
     this.updateCourseProgress(this.api, this.courseId, this.item.chapterId, this.item.chapterItemId)
       .subscribe((res) => {
