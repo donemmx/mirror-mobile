@@ -90,4 +90,15 @@ export class BaseComponent implements OnInit, OnDestroy {
       this.data.changeMessage(this.message);
     });
   }
+
+  updateCourseProgress(api: any, courseId:any, chapterId:any, chapterItemId:any): Observable<any>{
+   return api
+        .addCourseProgress({
+          body: {
+            courseId: courseId,
+            chapterId: chapterId,
+            chapterItemId: chapterItemId,
+          },
+        })
+  }
 }

@@ -17,12 +17,13 @@
           <app-video-frame
             *ngIf="item.chapterItemName === 'link'"
             [videoId$]="of(item.link)"
+            [item]="item" [courseId]="courseId"
           ></app-video-frame>
-          <app-text-item *ngIf="item.chapterItemName === 'text'" [item]="item"></app-text-item>
-          <app-assignment-item *ngIf="item.chapterItemName === 'assignment'" [item]="item"></app-assignment-item>
-          <app-image-item *ngIf="item.chapterItemName === 'picture'" [item]="item"></app-image-item>
-          <app-pdf-item *ngIf="item.chapterItemName === 'pdf'" [item]="item"></app-pdf-item>
-          <app-quiz-item *ngIf="item.chapterItemName === 'quiz'" [item]="item"></app-quiz-item>
+          <app-text-item *ngIf="item.chapterItemName === 'text'" [item]="item" [courseId]="courseId"></app-text-item>
+          <app-assignment-item *ngIf="item.chapterItemName === 'assignment'" [item]="item" [courseId]="courseId"></app-assignment-item>
+          <app-image-item *ngIf="item.chapterItemName === 'picture'" [item]="item" [courseId]="courseId"></app-image-item>
+          <app-pdf-item *ngIf="item.chapterItemName === 'pdf'" [item]="item" [courseId]="courseId"></app-pdf-item>
+          <app-quiz-item *ngIf="item.chapterItemName === 'quiz'" [item]="item" [courseId]="courseId"></app-quiz-item>
         </div>
       </div>
     </div>

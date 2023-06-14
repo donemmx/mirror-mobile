@@ -3,16 +3,18 @@ import { ChaptersService, CourseProgressService } from '../api/services';
 import { AuthService } from '../services/auth.service';
 import { NotificationService } from '../services/notification.service';
 import { BehaviorSubject, Observable, Subject, of } from 'rxjs';
+import { BaseComponent } from '../pages/base/base.component';
+import { DataService } from '../services/data.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-quiz-item',
   templateUrl: './quiz-item.component.html',
   styleUrls: ['./quiz-item.component.css'],
 })
-export class QuizItemComponent implements OnInit {
+export class QuizItemComponent extends BaseComponent {
   @Input() item: any;
-  @Input() course: any;
-  @Input() chapter: any;
+  @Input() courseId: any;
   quiz: boolean = false;
   score: boolean = false;
   questions: any;
@@ -21,13 +23,21 @@ export class QuizItemComponent implements OnInit {
   hideQuiz: boolean = false;
   myscore$ = new BehaviorSubject<any>({});
   constructor(
+    data: DataService, 
+    router: Router,
     private api: ChaptersService,
     private progressApi: CourseProgressService,
     private auth: AuthService,
     private notify: NotificationService
-  ) {}
+  ) {
+    super(data, router)
+  }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    super.ngOnInit()
+    console.log(this.item);
+    
+  }
 
   openModal() {
     this.quiz = !this.quiz;
@@ -70,14 +80,7 @@ export class QuizItemComponent implements OnInit {
   continue(data: any) {
     console.log(data);
     if (data.isPassed) {
-      this.progressApi
-        .addCourseProgress({
-          body: {
-            courseId: this.course.courseId,
-            chapterId: this.chapter.chapterId,
-            chapterItemId: this.item.chapterItemId,
-          },
-        })
+      this.updateCourseProgress(this.progressApi, this.courseId, this.item.chapterId, this.item.chapterItemId)
         .subscribe((res) => {
           this.notify.success('congratulations on passing the quiz');
           this.openModal();
