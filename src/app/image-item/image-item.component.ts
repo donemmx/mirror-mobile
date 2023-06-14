@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { BaseComponent } from '../pages/base/base.component';
 import { DataService } from '../services/data.service';
 import { Router } from '@angular/router';
@@ -13,7 +13,7 @@ import { NotificationService } from '../services/notification.service';
 export class ImageItemComponent extends BaseComponent {
   @Input() item: any;
   @Input() courseId: any;
-
+  @Output() done = new EventEmitter()
   constructor(
     data: DataService,
     router: Router,
@@ -32,5 +32,6 @@ export class ImageItemComponent extends BaseComponent {
         .subscribe((res) => {
           this.notify.success('marked as completed');
         });
+        this.done.emit(true)
   }
 }

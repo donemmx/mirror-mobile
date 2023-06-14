@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Observable } from 'rxjs';
 import { BaseComponent } from '../pages/base/base.component';
@@ -16,6 +16,7 @@ export class VideoFrameComponent extends BaseComponent {
   @Input() item: any;
   @Input() courseId: any;
   @Input() videoId$: Observable<any>;
+  @Output() done = new EventEmitter()
   videoUrl: any;
   constructor(
     data: DataService,
@@ -80,5 +81,7 @@ export class VideoFrameComponent extends BaseComponent {
     ).subscribe((res) => {
       this.notify.success('marked as completed');
     });
+    this.done.emit(true)
+
   }
 }

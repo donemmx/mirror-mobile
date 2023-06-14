@@ -32,5 +32,7 @@ export class TextItemComponent extends BaseComponent {
         .subscribe((res) => {
           this.notify.success('marked as completed');
         });
+        this.done.emit(true)
+
   }
 }

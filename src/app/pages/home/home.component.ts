@@ -13,7 +13,7 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent extends BaseComponent {
-  totalNote: any = 0;
+  totalNote: any = '';
   totalNotification$: Observable<any>;
   constructor(
     data: DataService,

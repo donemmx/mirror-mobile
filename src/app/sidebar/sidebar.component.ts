@@ -11,7 +11,7 @@ import { DataService } from '../services/data.service';
   styleUrls: ['./sidebar.component.css'],
 })
 export class SidebarComponent extends BaseComponent {
-  totalNote: any = 0;
+  totalNote: any = '';
   constructor(
     data: DataService,
     router: Router,

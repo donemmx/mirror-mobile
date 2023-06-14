@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output } from '@angular/core';
 import { ChaptersService, CourseProgressService } from '../api/services';
 import { AuthService } from '../services/auth.service';
 import { NotificationService } from '../services/notification.service';
@@ -6,6 +6,7 @@ import { BehaviorSubject, Observable, Subject, of } from 'rxjs';
 import { BaseComponent } from '../pages/base/base.component';
 import { DataService } from '../services/data.service';
 import { Router } from '@angular/router';
+import { EventEmitter } from 'stream';
 
 @Component({
   selector: 'app-quiz-item',
@@ -15,6 +16,8 @@ import { Router } from '@angular/router';
 export class QuizItemComponent extends BaseComponent {
   @Input() item: any;
   @Input() courseId: any;
+  @Output() done = new EventEmitter()
+
   quiz: boolean = false;
   score: boolean = false;
   questions: any;
@@ -84,6 +87,8 @@ export class QuizItemComponent extends BaseComponent {
         .subscribe((res) => {
           this.notify.success('congratulations on passing the quiz');
           this.openModal();
+           this.done.emit('')
+
         });
     } else {
       this.selectedQuestions = [];
@@ -91,6 +96,7 @@ export class QuizItemComponent extends BaseComponent {
       this.score = false,
       this.hideQuiz = false
       this.myscore$.next(null)
+      
     }
   }
 }
