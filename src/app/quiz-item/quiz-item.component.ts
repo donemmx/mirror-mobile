@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ChaptersService } from '../api/services';
+import { ChaptersService, CourseProgressService } from '../api/services';
 import { AuthService } from '../services/auth.service';
 import { NotificationService } from '../services/notification.service';
 import { BehaviorSubject, Observable, Subject, of } from 'rxjs';
@@ -11,6 +11,8 @@ import { BehaviorSubject, Observable, Subject, of } from 'rxjs';
 })
 export class QuizItemComponent implements OnInit {
   @Input() item: any;
+  @Input() course: any;
+  @Input() chapter: any;
   quiz: boolean = false;
   score: boolean = false;
   questions: any;
@@ -20,6 +22,7 @@ export class QuizItemComponent implements OnInit {
   myscore$ = new BehaviorSubject<any>({});
   constructor(
     private api: ChaptersService,
+    private progressApi: CourseProgressService,
     private auth: AuthService,
     private notify: NotificationService
   ) {}
@@ -33,6 +36,8 @@ export class QuizItemComponent implements OnInit {
   startQuiz(item: any) {
     this.questions = item;
     this.openModal();
+    console.log(item);
+    
   }
 
   submitQuiz() {
@@ -53,7 +58,7 @@ export class QuizItemComponent implements OnInit {
         },
       })
       .subscribe((scores: any) => {
-        this.myscore$.next(JSON.parse(scores))
+        this.myscore$.next(JSON.parse(scores));
         this.notify.success('Quiz submitted successfully');
         this.hideQuiz = true;
         setTimeout(() => {
@@ -62,8 +67,27 @@ export class QuizItemComponent implements OnInit {
       });
   }
 
-  continue(data: any){
+  continue(data: any) {
     console.log(data);
-    
+    if (data.isPassed) {
+      this.progressApi
+        .addCourseProgress({
+          body: {
+            courseId: this.course.courseId,
+            chapterId: this.chapter.chapterId,
+            chapterItemId: this.item.chapterItemId,
+          },
+        })
+        .subscribe((res) => {
+          this.notify.success('congratulations on passing the quiz');
+          this.openModal();
+        });
+    } else {
+      this.selectedQuestions = [];
+      this.openModal();
+      this.score = false,
+      this.hideQuiz = false
+      this.myscore$.next(null)
+    }
   }
 }

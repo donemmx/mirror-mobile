@@ -35,3 +35,7 @@
   .groupedQuestion{
     
   }
+
+  :host ::ng-deep .p-knob-text{
+    font-size: .85rem;
+  }

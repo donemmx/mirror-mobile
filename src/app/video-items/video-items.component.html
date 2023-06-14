@@ -14,7 +14,6 @@
 
               </div>
             </ng-template>
-            <!-- <ng-template pTemplate="content" *ngIf="progress$ | async as progress"> -->
             <ng-template pTemplate="content">
               <div class="chapter__items" *ngFor="let details of data.chapterItems">
 
@@ -26,7 +25,7 @@
                     <img class="itemsIcon" *ngSwitchCase="'picture'" src="../../assets/items/image-icon.svg" alt="" />
                     <img class="itemsIcon" *ngSwitchCase="'video'" src="../../assets/items/video.svg" alt="" />
                   </div>
-                  <div class="outcomeHeading" >
+                  <div class="outcomeHeading text-sm" >
                     {{ details.title }}
                   </div>
                 </div>
