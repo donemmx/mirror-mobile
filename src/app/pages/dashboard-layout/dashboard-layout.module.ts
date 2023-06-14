@@ -96,6 +96,7 @@ import { ImageItemComponent } from 'src/app/image-item/image-item.component';
 import { PdfItemComponent } from 'src/app/pdf-item/pdf-item.component';
 import { QuizItemComponent } from 'src/app/quiz-item/quiz-item.component';
 import { RadioButtonModule } from 'primeng/radiobutton';
+import { NotificationPageComponent } from 'src/app/notification-page/notification-page.component';
 
 @NgModule({
   declarations: [
@@ -165,7 +166,9 @@ import { RadioButtonModule } from 'primeng/radiobutton';
     NotificationComponent,
     ImageItemComponent,
     PdfItemComponent,
-    QuizItemComponent
+    QuizItemComponent,
+    NotificationPageComponent,
+
   ],
   imports: [
     CommonModule,

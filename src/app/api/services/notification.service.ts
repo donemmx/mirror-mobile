@@ -117,96 +117,56 @@ export class NotificationService extends BaseService {
   }
 
   /**
-   * Path part for operation getAllNotifications_1
+   * Path part for operation seeNotification
    */
-  static readonly GetAllNotifications_1Path = '/notification/{notificationId}';
+  static readonly SeeNotificationPath = '/notification/{notificationId}';
 
   /**
-   * Get All Notifications.
+   * See Notification.
    *
-   * Get All Notifications
+   * See Notification
    *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `getAllNotifications_1()` instead.
+   * To access only the response body, use `seeNotification()` instead.
    *
    * This method doesn't expect any request body.
    */
-  getAllNotifications_1$Response(params: {
+  seeNotification$Response(params: {
     notificationId: string;
-  }): Observable<StrictHttpResponse<{
-'notificationId'?: string;
-'userId'?: string;
-'title'?: string;
-'description'?: string;
-'descriptionSummary'?: string;
-'date'?: string;
-'isSeen'?: boolean;
-}>> {
+  }): Observable<StrictHttpResponse<void>> {
 
-    const rb = new RequestBuilder(this.rootUrl, NotificationService.GetAllNotifications_1Path, 'get');
+    const rb = new RequestBuilder(this.rootUrl, NotificationService.SeeNotificationPath, 'patch');
     if (params) {
       rb.path('notificationId', params.notificationId, {});
     }
 
     return this.http.request(rb.build({
-      responseType: 'json',
-      accept: 'application/json'
+      responseType: 'text',
+      accept: '*/*'
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return r as StrictHttpResponse<{
-        'notificationId'?: string;
-        'userId'?: string;
-        'title'?: string;
-        'description'?: string;
-        'descriptionSummary'?: string;
-        'date'?: string;
-        'isSeen'?: boolean;
-        }>;
+        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
       })
     );
   }
 
   /**
-   * Get All Notifications.
+   * See Notification.
    *
-   * Get All Notifications
+   * See Notification
    *
    * This method provides access to only to the response body.
-   * To access the full response (for headers, for example), `getAllNotifications_1$Response()` instead.
+   * To access the full response (for headers, for example), `seeNotification$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
-  getAllNotifications_1(params: {
+  seeNotification(params: {
     notificationId: string;
-  }): Observable<{
-'notificationId'?: string;
-'userId'?: string;
-'title'?: string;
-'description'?: string;
-'descriptionSummary'?: string;
-'date'?: string;
-'isSeen'?: boolean;
-}> {
+  }): Observable<void> {
 
-    return this.getAllNotifications_1$Response(params).pipe(
-      map((r: StrictHttpResponse<{
-'notificationId'?: string;
-'userId'?: string;
-'title'?: string;
-'description'?: string;
-'descriptionSummary'?: string;
-'date'?: string;
-'isSeen'?: boolean;
-}>) => r.body as {
-'notificationId'?: string;
-'userId'?: string;
-'title'?: string;
-'description'?: string;
-'descriptionSummary'?: string;
-'date'?: string;
-'isSeen'?: boolean;
-})
+    return this.seeNotification$Response(params).pipe(
+      map((r: StrictHttpResponse<void>) => r.body as void)
     );
   }
 

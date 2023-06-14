@@ -21,4 +21,14 @@ export class NotificationComponent extends BaseComponent {
       super.ngOnInit();
       this.notifications$ = this.api.getAllNotifications().pipe(map((res:any)=> res.data))
   }
+
+  openMessage(data: any){
+      this.message.notification = data
+      this.data.changeMessage(this.message)
+      this.api.seeNotification({
+        notificationId: data.notificationId
+      }).subscribe((res)=> {
+        this.router.navigateByUrl('/notification-page')
+      })
+  }
 }

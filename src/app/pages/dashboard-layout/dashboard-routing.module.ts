@@ -17,6 +17,7 @@ import { RegistrationComponent } from '../registration/registration.component';
 import { WelcomeComponent } from '../welcome/welcome.component';
 import { SidebarComponent } from 'src/app/sidebar/sidebar.component';
 import { NotificationComponent } from '../notification/notification.component';
+import { NotificationPageComponent } from 'src/app/notification-page/notification-page.component';
 
 const routes: Routes = [
   {
@@ -86,6 +87,10 @@ const routes: Routes = [
       {
         path: 'notification',
         component: NotificationComponent,
+      },
+      {
+        path: 'notification-page',
+        component: NotificationPageComponent,
       },
       {
         path: '',

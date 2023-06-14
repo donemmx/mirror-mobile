@@ -1,0 +1,24 @@
+<div class="mylearning__top">
+  <div class="profile__top flex gap-3 pt-1 md:pt-[80px]">
+    <div class="hero__two">
+      <div class="heroTwo__body">
+        <div class="heroTwo__content flex items-center cursor-pointer gap-2" routerLink="/notification">
+          <i class="pi pi-angle-left text-white text-[2rem]"></i>
+          <h2
+            data-aos="fade-down"
+            data-aos-duration="800"
+            class="head__two font-bold text-white text-[1rem]"
+          >
+            {{ message.notification.title }}
+          </h2>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="message p-5">
+  {{ message.notification.description }}
+</div>
+
+<app-footer-bottom></app-footer-bottom>

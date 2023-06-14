@@ -1,40 +1,41 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { LearnersService } from '../api/services';
+import { LearnersService, NotificationService } from '../api/services';
 import { BaseComponent } from '../pages/base/base.component';
 import { AuthService } from '../services/auth.service';
 import { DataService } from '../services/data.service';
-import { NotificationService } from '../services/notification.service';
 
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
-  styleUrls: ['./sidebar.component.css']
+  styleUrls: ['./sidebar.component.css'],
 })
 export class SidebarComponent extends BaseComponent {
-
+  totalNote: any = 0;
   constructor(
     data: DataService,
     router: Router,
     private auth: AuthService,
     private notify: NotificationService,
-    private api: LearnersService
+    private api: LearnersService,
+    private noteApi: NotificationService
   ) {
     super(data, router);
   }
 
-  logout() {
-    this.api.logOutLearner().subscribe(
-      () => {
-        this.auth.logout();
-        this.message.cart = [];
-        this.message.courseSelected = null;
-        this.notify.success('user logged out successfully');
+  ngOnInit(): void {
+    super.ngOnInit();
 
-      },
-      (error) => {
-        this.notify.error(error.message);
-      }
-    );
+    this.noteApi.getAllNotifications().subscribe((res: any) => {
+      this.totalNote = res.data.filter((res: any) => res.isSeen == false);
+    });
+  }
+
+  logout() {
+    this.api.logOutLearner().subscribe(() => {
+      this.auth.logout();
+      this.message.cart = [];
+      this.message.courseSelected = null;
+    });
   }
 }

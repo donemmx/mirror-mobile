@@ -29,7 +29,7 @@
       <hr>
       <div *ngIf="category$ | async as category" routerLink="/cart" class="cursor-pointer grid grid-cols-2 p-1 bg-slate-50 " > <p class=" pr-4 w-fit text-sm" pBadge [value]="category.cart?.length">Cart </p>  <i class="pi pi-angle-right ml-auto  p-1"></i></div>
       <hr>
-      <div routerLink="/notification" class="cursor-pointer grid grid-cols-2 p-1 bg-slate-50 text-sm">Notification <i class="pi pi-angle-right ml-auto  p-1"></i></div>
+      <div routerLink="/notification" class="cursor-pointer grid grid-cols-2 p-1 bg-slate-50 text-sm" > <p class="pr-4 w-fit text-sm" pBadge [value]="totalNote.length"> Notification </p>  <i class="pi pi-angle-right ml-auto  p-1"></i></div>
       <hr>
       <div routerLink="/my-learning" class="cursor-pointer grid grid-cols-2 p-1 bg-slate-50 text-sm">My Learning <i class="pi pi-angle-right ml-auto  p-1"></i></div>
       <hr>
