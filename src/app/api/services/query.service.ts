@@ -1,7 +1,7 @@
 /* tslint:disable */
 /* eslint-disable */
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpResponse, HttpContext } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { BaseService } from '../base-service';
 import { ApiConfiguration } from '../api-configuration';
 import { StrictHttpResponse } from '../strict-http-response';
@@ -40,10 +40,7 @@ export class QueryService extends BaseService {
     queryDomainId: string;
     queryDomain: 'assignment';
     isResponded?: true | false;
-  },
-  context?: HttpContext
-
-): Observable<StrictHttpResponse<Array<{
+  }): Observable<StrictHttpResponse<Array<{
 'adminName'?: string;
 'queryDate'?: string;
 'query'?: string;
@@ -62,8 +59,7 @@ export class QueryService extends BaseService {
 
     return this.http.request(rb.build({
       responseType: 'json',
-      accept: 'application/json',
-      context: context
+      accept: 'application/json'
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -85,7 +81,7 @@ export class QueryService extends BaseService {
    *
    * Get Queries
    *
-   * This method provides access only to the response body.
+   * This method provides access to only to the response body.
    * To access the full response (for headers, for example), `getQueries$Response()` instead.
    *
    * This method doesn't expect any request body.
@@ -94,10 +90,7 @@ export class QueryService extends BaseService {
     queryDomainId: string;
     queryDomain: 'assignment';
     isResponded?: true | false;
-  },
-  context?: HttpContext
-
-): Observable<Array<{
+  }): Observable<Array<{
 'adminName'?: string;
 'queryDate'?: string;
 'query'?: string;
@@ -107,7 +100,7 @@ export class QueryService extends BaseService {
 'queryId'?: string;
 }>> {
 
-    return this.getQueries$Response(params,context).pipe(
+    return this.getQueries$Response(params).pipe(
       map((r: StrictHttpResponse<Array<{
 'adminName'?: string;
 'queryDate'?: string;
@@ -152,10 +145,7 @@ export class QueryService extends BaseService {
 'queryId': string;
 'learnerId': string;
 }
-  },
-  context?: HttpContext
-
-): Observable<StrictHttpResponse<void>> {
+  }): Observable<StrictHttpResponse<void>> {
 
     const rb = new RequestBuilder(this.rootUrl, QueryService.CreateQueryPath, 'post');
     if (params) {
@@ -166,8 +156,7 @@ export class QueryService extends BaseService {
 
     return this.http.request(rb.build({
       responseType: 'text',
-      accept: '*/*',
-      context: context
+      accept: '*/*'
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -181,7 +170,7 @@ export class QueryService extends BaseService {
    *
    * Create Query
    *
-   * This method provides access only to the response body.
+   * This method provides access to only to the response body.
    * To access the full response (for headers, for example), `createQuery$Response()` instead.
    *
    * This method sends `application/json` and handles request body of type `application/json`.
@@ -195,12 +184,9 @@ export class QueryService extends BaseService {
 'queryId': string;
 'learnerId': string;
 }
-  },
-  context?: HttpContext
+  }): Observable<void> {
 
-): Observable<void> {
-
-    return this.createQuery$Response(params,context).pipe(
+    return this.createQuery$Response(params).pipe(
       map((r: StrictHttpResponse<void>) => r.body as void)
     );
   }
@@ -227,10 +213,7 @@ export class QueryService extends BaseService {
 'response': string;
 'queryId': string;
 }
-  },
-  context?: HttpContext
-
-): Observable<StrictHttpResponse<void>> {
+  }): Observable<StrictHttpResponse<void>> {
 
     const rb = new RequestBuilder(this.rootUrl, QueryService.RespondToQueryPath, 'patch');
     if (params) {
@@ -241,8 +224,7 @@ export class QueryService extends BaseService {
 
     return this.http.request(rb.build({
       responseType: 'text',
-      accept: '*/*',
-      context: context
+      accept: '*/*'
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -256,7 +238,7 @@ export class QueryService extends BaseService {
    *
    * Respond to a Query
    *
-   * This method provides access only to the response body.
+   * This method provides access to only to the response body.
    * To access the full response (for headers, for example), `respondToQuery$Response()` instead.
    *
    * This method sends `application/json` and handles request body of type `application/json`.
@@ -268,12 +250,9 @@ export class QueryService extends BaseService {
 'response': string;
 'queryId': string;
 }
-  },
-  context?: HttpContext
+  }): Observable<void> {
 
-): Observable<void> {
-
-    return this.respondToQuery$Response(params,context).pipe(
+    return this.respondToQuery$Response(params).pipe(
       map((r: StrictHttpResponse<void>) => r.body as void)
     );
   }

@@ -50,7 +50,6 @@ export class ProfileComponent extends BaseComponent {
       .then(
         (result: string) => {
           this.imgResult = result;
-          console.log(result);
         },
         (result: string) => {
           console.error(

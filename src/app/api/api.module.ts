@@ -7,6 +7,7 @@ import { ApiConfiguration, ApiConfigurationParams } from './api-configuration';
 import { LearnersService } from './services/learners.service';
 import { AdminService } from './services/admin.service';
 import { CoursesService } from './services/courses.service';
+import { LearnerService } from './services/learner.service';
 import { ChaptersService } from './services/chapters.service';
 import { CertificatesService } from './services/certificates.service';
 import { QueryService } from './services/query.service';
@@ -27,6 +28,7 @@ import { NotificationService } from './services/notification.service';
     LearnersService,
     AdminService,
     CoursesService,
+    LearnerService,
     ChaptersService,
     CertificatesService,
     QueryService,

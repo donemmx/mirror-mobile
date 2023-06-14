@@ -1,7 +1,7 @@
 /* tslint:disable */
 /* eslint-disable */
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpResponse, HttpContext } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { BaseService } from '../base-service';
 import { ApiConfiguration } from '../api-configuration';
 import { StrictHttpResponse } from '../strict-http-response';
@@ -44,10 +44,7 @@ export class CertificatesService extends BaseService {
 'serialNumber': string;
 'dateIssued': string;
 }
-  },
-  context?: HttpContext
-
-): Observable<StrictHttpResponse<void>> {
+  }): Observable<StrictHttpResponse<void>> {
 
     const rb = new RequestBuilder(this.rootUrl, CertificatesService.GenerateCourseCertificatePath, 'post');
     if (params) {
@@ -56,8 +53,7 @@ export class CertificatesService extends BaseService {
 
     return this.http.request(rb.build({
       responseType: 'text',
-      accept: '*/*',
-      context: context
+      accept: '*/*'
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -71,7 +67,7 @@ export class CertificatesService extends BaseService {
    *
    * Generate Course Certificate
    *
-   * This method provides access only to the response body.
+   * This method provides access to only to the response body.
    * To access the full response (for headers, for example), `generateCourseCertificate$Response()` instead.
    *
    * This method sends `application/json` and handles request body of type `application/json`.
@@ -84,12 +80,9 @@ export class CertificatesService extends BaseService {
 'serialNumber': string;
 'dateIssued': string;
 }
-  },
-  context?: HttpContext
+  }): Observable<void> {
 
-): Observable<void> {
-
-    return this.generateCourseCertificate$Response(params,context).pipe(
+    return this.generateCourseCertificate$Response(params).pipe(
       map((r: StrictHttpResponse<void>) => r.body as void)
     );
   }
@@ -118,10 +111,7 @@ export class CertificatesService extends BaseService {
 'serialNumber': string;
 'dateIssued': string;
 }
-  },
-  context?: HttpContext
-
-): Observable<StrictHttpResponse<void>> {
+  }): Observable<StrictHttpResponse<void>> {
 
     const rb = new RequestBuilder(this.rootUrl, CertificatesService.GenerateQuizCertificatePath, 'post');
     if (params) {
@@ -130,8 +120,7 @@ export class CertificatesService extends BaseService {
 
     return this.http.request(rb.build({
       responseType: 'text',
-      accept: '*/*',
-      context: context
+      accept: '*/*'
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -145,7 +134,7 @@ export class CertificatesService extends BaseService {
    *
    * Generate Quiz Certificate
    *
-   * This method provides access only to the response body.
+   * This method provides access to only to the response body.
    * To access the full response (for headers, for example), `generateQuizCertificate$Response()` instead.
    *
    * This method sends `application/json` and handles request body of type `application/json`.
@@ -159,12 +148,9 @@ export class CertificatesService extends BaseService {
 'serialNumber': string;
 'dateIssued': string;
 }
-  },
-  context?: HttpContext
+  }): Observable<void> {
 
-): Observable<void> {
-
-    return this.generateQuizCertificate$Response(params,context).pipe(
+    return this.generateQuizCertificate$Response(params).pipe(
       map((r: StrictHttpResponse<void>) => r.body as void)
     );
   }

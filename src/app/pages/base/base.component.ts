@@ -27,7 +27,6 @@ export class BaseComponent implements OnInit, OnDestroy {
     this.data.currentMessage.subscribe((res: any) => {
       this.category$ = of(res);
       const id: any = this.learnerAuth.getUserId();
-      console.log(id);
       
       if (res.user == null) {
         this.learnerApi
@@ -84,6 +83,9 @@ export class BaseComponent implements OnInit, OnDestroy {
     const id: any = auth.getUserId();
     api.getLearner({ learnerId: id.jti }).subscribe((res: any) => {
       this.message.user = res;
+      if(this.message.cart.length! !== 0){
+        this.message.cart = [];
+      }
       this.message.selected = res.ageGroup;
       this.data.changeMessage(this.message);
     });

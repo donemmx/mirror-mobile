@@ -47,8 +47,6 @@ export class PaymentCardComponent extends BaseComponent {
     this.getMethod$.subscribe((res)=> {
       if(res === 'paypal'){
         this.initConfig();
-        console.log(this.method);
-
       }
     })
 
@@ -76,7 +74,6 @@ export class PaymentCardComponent extends BaseComponent {
           amount: res.amount,
           ref: res.reference,
           onSuccess: (transaction: any) => {
-            console.log(transaction);
             this.api
               .paystackCallback({ payId: res.reference })
               .subscribe(() => {

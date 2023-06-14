@@ -1,7 +1,7 @@
 /* tslint:disable */
 /* eslint-disable */
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpResponse, HttpContext } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { BaseService } from '../base-service';
 import { ApiConfiguration } from '../api-configuration';
 import { StrictHttpResponse } from '../strict-http-response';
@@ -41,10 +41,7 @@ export class CountryService extends BaseService {
    * This method doesn't expect any request body.
    */
   getAllCountries$Response(params?: {
-  },
-  context?: HttpContext
-
-): Observable<StrictHttpResponse<Array<{
+  }): Observable<StrictHttpResponse<Array<{
 'countryId'?: string;
 'name'?: string;
 'capital'?: string;
@@ -59,8 +56,7 @@ export class CountryService extends BaseService {
 
     return this.http.request(rb.build({
       responseType: 'json',
-      accept: 'application/json',
-      context: context
+      accept: 'application/json'
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -81,16 +77,13 @@ export class CountryService extends BaseService {
    *
    * Get All Countries
    *
-   * This method provides access only to the response body.
+   * This method provides access to only to the response body.
    * To access the full response (for headers, for example), `getAllCountries$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
   getAllCountries(params?: {
-  },
-  context?: HttpContext
-
-): Observable<Array<{
+  }): Observable<Array<{
 'countryId'?: string;
 'name'?: string;
 'capital'?: string;
@@ -99,7 +92,7 @@ export class CountryService extends BaseService {
 'currencies'?: Array<any>;
 }>> {
 
-    return this.getAllCountries$Response(params,context).pipe(
+    return this.getAllCountries$Response(params).pipe(
       map((r: StrictHttpResponse<Array<{
 'countryId'?: string;
 'name'?: string;
@@ -135,10 +128,7 @@ export class CountryService extends BaseService {
    */
   getAllStatesByCountryId$Response(params: {
     countryId: string;
-  },
-  context?: HttpContext
-
-): Observable<StrictHttpResponse<Array<{
+  }): Observable<StrictHttpResponse<Array<{
 'countryId'?: string;
 'stateId'?: string;
 'name'?: string;
@@ -152,8 +142,7 @@ export class CountryService extends BaseService {
 
     return this.http.request(rb.build({
       responseType: 'json',
-      accept: 'application/json',
-      context: context
+      accept: 'application/json'
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -172,24 +161,21 @@ export class CountryService extends BaseService {
    *
    * Get All States By Country
    *
-   * This method provides access only to the response body.
+   * This method provides access to only to the response body.
    * To access the full response (for headers, for example), `getAllStatesByCountryId$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
   getAllStatesByCountryId(params: {
     countryId: string;
-  },
-  context?: HttpContext
-
-): Observable<Array<{
+  }): Observable<Array<{
 'countryId'?: string;
 'stateId'?: string;
 'name'?: string;
 'stateCode'?: string;
 }>> {
 
-    return this.getAllStatesByCountryId$Response(params,context).pipe(
+    return this.getAllStatesByCountryId$Response(params).pipe(
       map((r: StrictHttpResponse<Array<{
 'countryId'?: string;
 'stateId'?: string;

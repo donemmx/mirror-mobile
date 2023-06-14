@@ -39,8 +39,6 @@ export class CoursesComponent extends BaseComponent {
     super.ngOnInit();
 
     this.courseCategory.subscribe((res: any) => {
-      console.log(res);
-
       this.courses$ = this.api
         .getAllCourses({
           ageCategory: this.message.selected,

@@ -48,7 +48,6 @@ export class ResetPasswordComponent extends BaseComponent{
         },
       })
       .subscribe((res) => {
-        console.log(res);
         this.loading = false;
         const id: any = this.auth.getUserId();
         this.api.getLearner({ learnerId: id.jti }).subscribe((res) => {

@@ -1,7 +1,7 @@
 /* tslint:disable */
 /* eslint-disable */
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpResponse, HttpContext } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { BaseService } from '../base-service';
 import { ApiConfiguration } from '../api-configuration';
 import { StrictHttpResponse } from '../strict-http-response';
@@ -47,10 +47,7 @@ export class PaymentService extends BaseService {
 'courseIds': Array<any>;
 'method'?: 'free' | 'paystack' | 'paypal';
 }
-  },
-  context?: HttpContext
-
-): Observable<StrictHttpResponse<{
+  }): Observable<StrictHttpResponse<{
 'amount'?: number;
 'callbackUrl'?: string;
 'email'?: string;
@@ -68,8 +65,7 @@ export class PaymentService extends BaseService {
 
     return this.http.request(rb.build({
       responseType: 'json',
-      accept: 'application/json',
-      context: context
+      accept: 'application/json'
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -91,7 +87,7 @@ export class PaymentService extends BaseService {
    *
    * Register Payment
    *
-   * This method provides access only to the response body.
+   * This method provides access to only to the response body.
    * To access the full response (for headers, for example), `registerPayment$Response()` instead.
    *
    * This method sends `application/json` and handles request body of type `application/json`.
@@ -102,10 +98,7 @@ export class PaymentService extends BaseService {
 'courseIds': Array<any>;
 'method'?: 'free' | 'paystack' | 'paypal';
 }
-  },
-  context?: HttpContext
-
-): Observable<{
+  }): Observable<{
 'amount'?: number;
 'callbackUrl'?: string;
 'email'?: string;
@@ -115,7 +108,7 @@ export class PaymentService extends BaseService {
 'key'?: string;
 }> {
 
-    return this.registerPayment$Response(params,context).pipe(
+    return this.registerPayment$Response(params).pipe(
       map((r: StrictHttpResponse<{
 'amount'?: number;
 'callbackUrl'?: string;
@@ -153,10 +146,7 @@ export class PaymentService extends BaseService {
    */
   paystackCallback$Response(params: {
     payId: string;
-  },
-  context?: HttpContext
-
-): Observable<StrictHttpResponse<void>> {
+  }): Observable<StrictHttpResponse<void>> {
 
     const rb = new RequestBuilder(this.rootUrl, PaymentService.PaystackCallbackPath, 'get');
     if (params) {
@@ -165,8 +155,7 @@ export class PaymentService extends BaseService {
 
     return this.http.request(rb.build({
       responseType: 'text',
-      accept: '*/*',
-      context: context
+      accept: '*/*'
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -180,19 +169,16 @@ export class PaymentService extends BaseService {
    *
    * Paystack Payment Callback
    *
-   * This method provides access only to the response body.
+   * This method provides access to only to the response body.
    * To access the full response (for headers, for example), `paystackCallback$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
   paystackCallback(params: {
     payId: string;
-  },
-  context?: HttpContext
+  }): Observable<void> {
 
-): Observable<void> {
-
-    return this.paystackCallback$Response(params,context).pipe(
+    return this.paystackCallback$Response(params).pipe(
       map((r: StrictHttpResponse<void>) => r.body as void)
     );
   }
@@ -214,10 +200,7 @@ export class PaymentService extends BaseService {
    */
   paypalCallback$Response(params: {
     payId: string;
-  },
-  context?: HttpContext
-
-): Observable<StrictHttpResponse<void>> {
+  }): Observable<StrictHttpResponse<void>> {
 
     const rb = new RequestBuilder(this.rootUrl, PaymentService.PaypalCallbackPath, 'get');
     if (params) {
@@ -226,8 +209,7 @@ export class PaymentService extends BaseService {
 
     return this.http.request(rb.build({
       responseType: 'text',
-      accept: '*/*',
-      context: context
+      accept: '*/*'
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -241,19 +223,16 @@ export class PaymentService extends BaseService {
    *
    * Paypal Payment Callback
    *
-   * This method provides access only to the response body.
+   * This method provides access to only to the response body.
    * To access the full response (for headers, for example), `paypalCallback$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
   paypalCallback(params: {
     payId: string;
-  },
-  context?: HttpContext
+  }): Observable<void> {
 
-): Observable<void> {
-
-    return this.paypalCallback$Response(params,context).pipe(
+    return this.paypalCallback$Response(params).pipe(
       map((r: StrictHttpResponse<void>) => r.body as void)
     );
   }
@@ -275,10 +254,7 @@ export class PaymentService extends BaseService {
    */
   getExchangeRateByCurrency$Response(params?: {
     currency?: 'NGN' | 'EUR' | 'GBP' | 'JPY' | 'ZAR' | 'CNY';
-  },
-  context?: HttpContext
-
-): Observable<StrictHttpResponse<Currency>> {
+  }): Observable<StrictHttpResponse<Currency>> {
 
     const rb = new RequestBuilder(this.rootUrl, PaymentService.GetExchangeRateByCurrencyPath, 'get');
     if (params) {
@@ -287,8 +263,7 @@ export class PaymentService extends BaseService {
 
     return this.http.request(rb.build({
       responseType: 'json',
-      accept: 'application/json',
-      context: context
+      accept: 'application/json'
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -302,19 +277,16 @@ export class PaymentService extends BaseService {
    *
    * Get Exchange Rate by Currency
    *
-   * This method provides access only to the response body.
+   * This method provides access to only to the response body.
    * To access the full response (for headers, for example), `getExchangeRateByCurrency$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
   getExchangeRateByCurrency(params?: {
     currency?: 'NGN' | 'EUR' | 'GBP' | 'JPY' | 'ZAR' | 'CNY';
-  },
-  context?: HttpContext
+  }): Observable<Currency> {
 
-): Observable<Currency> {
-
-    return this.getExchangeRateByCurrency$Response(params,context).pipe(
+    return this.getExchangeRateByCurrency$Response(params).pipe(
       map((r: StrictHttpResponse<Currency>) => r.body as Currency)
     );
   }
@@ -336,10 +308,7 @@ export class PaymentService extends BaseService {
    */
   addExchangeRate$Response(params?: {
     body?: Currency
-  },
-  context?: HttpContext
-
-): Observable<StrictHttpResponse<void>> {
+  }): Observable<StrictHttpResponse<void>> {
 
     const rb = new RequestBuilder(this.rootUrl, PaymentService.AddExchangeRatePath, 'post');
     if (params) {
@@ -348,8 +317,7 @@ export class PaymentService extends BaseService {
 
     return this.http.request(rb.build({
       responseType: 'text',
-      accept: '*/*',
-      context: context
+      accept: '*/*'
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -363,19 +331,16 @@ export class PaymentService extends BaseService {
    *
    * Add Exchange Rate i.e. how much of your currency amounts to 1 dollar. For example 721.0 naira makes a dollar, so I will pass 721 as exchangeRate and NGN as currency
    *
-   * This method provides access only to the response body.
+   * This method provides access to only to the response body.
    * To access the full response (for headers, for example), `addExchangeRate$Response()` instead.
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
   addExchangeRate(params?: {
     body?: Currency
-  },
-  context?: HttpContext
+  }): Observable<void> {
 
-): Observable<void> {
-
-    return this.addExchangeRate$Response(params,context).pipe(
+    return this.addExchangeRate$Response(params).pipe(
       map((r: StrictHttpResponse<void>) => r.body as void)
     );
   }
@@ -397,10 +362,7 @@ export class PaymentService extends BaseService {
    */
   getAllExchangeRates$Response(params?: {
     currency?: 'NGN' | 'EUR' | 'GBP' | 'JPY' | 'ZAR' | 'CNY';
-  },
-  context?: HttpContext
-
-): Observable<StrictHttpResponse<Currency>> {
+  }): Observable<StrictHttpResponse<Currency>> {
 
     const rb = new RequestBuilder(this.rootUrl, PaymentService.GetAllExchangeRatesPath, 'get');
     if (params) {
@@ -409,8 +371,7 @@ export class PaymentService extends BaseService {
 
     return this.http.request(rb.build({
       responseType: 'json',
-      accept: 'application/json',
-      context: context
+      accept: 'application/json'
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -424,19 +385,16 @@ export class PaymentService extends BaseService {
    *
    * Get All Exchange Rates
    *
-   * This method provides access only to the response body.
+   * This method provides access to only to the response body.
    * To access the full response (for headers, for example), `getAllExchangeRates$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
   getAllExchangeRates(params?: {
     currency?: 'NGN' | 'EUR' | 'GBP' | 'JPY' | 'ZAR' | 'CNY';
-  },
-  context?: HttpContext
+  }): Observable<Currency> {
 
-): Observable<Currency> {
-
-    return this.getAllExchangeRates$Response(params,context).pipe(
+    return this.getAllExchangeRates$Response(params).pipe(
       map((r: StrictHttpResponse<Currency>) => r.body as Currency)
     );
   }

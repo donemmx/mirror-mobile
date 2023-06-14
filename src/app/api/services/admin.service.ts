@@ -1,7 +1,7 @@
 /* tslint:disable */
 /* eslint-disable */
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpResponse, HttpContext } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { BaseService } from '../base-service';
 import { ApiConfiguration } from '../api-configuration';
 import { StrictHttpResponse } from '../strict-http-response';
@@ -45,10 +45,7 @@ export class AdminService extends BaseService {
    */
   makeLearnerAnAdmin$Response(params: {
     learnerId: string;
-  },
-  context?: HttpContext
-
-): Observable<StrictHttpResponse<void>> {
+  }): Observable<StrictHttpResponse<void>> {
 
     const rb = new RequestBuilder(this.rootUrl, AdminService.MakeLearnerAnAdminPath, 'patch');
     if (params) {
@@ -57,8 +54,7 @@ export class AdminService extends BaseService {
 
     return this.http.request(rb.build({
       responseType: 'text',
-      accept: '*/*',
-      context: context
+      accept: '*/*'
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -72,19 +68,16 @@ export class AdminService extends BaseService {
    *
    * Make Learner An Administrator
    *
-   * This method provides access only to the response body.
+   * This method provides access to only to the response body.
    * To access the full response (for headers, for example), `makeLearnerAnAdmin$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
   makeLearnerAnAdmin(params: {
     learnerId: string;
-  },
-  context?: HttpContext
+  }): Observable<void> {
 
-): Observable<void> {
-
-    return this.makeLearnerAnAdmin$Response(params,context).pipe(
+    return this.makeLearnerAnAdmin$Response(params).pipe(
       map((r: StrictHttpResponse<void>) => r.body as void)
     );
   }
@@ -106,10 +99,7 @@ export class AdminService extends BaseService {
    */
   getAdmin$Response(params: {
     adminId: string;
-  },
-  context?: HttpContext
-
-): Observable<StrictHttpResponse<Admin>> {
+  }): Observable<StrictHttpResponse<Admin>> {
 
     const rb = new RequestBuilder(this.rootUrl, AdminService.GetAdminPath, 'get');
     if (params) {
@@ -118,8 +108,7 @@ export class AdminService extends BaseService {
 
     return this.http.request(rb.build({
       responseType: 'json',
-      accept: 'application/json',
-      context: context
+      accept: 'application/json'
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -133,19 +122,16 @@ export class AdminService extends BaseService {
    *
    * Get an Admin
    *
-   * This method provides access only to the response body.
+   * This method provides access to only to the response body.
    * To access the full response (for headers, for example), `getAdmin$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
   getAdmin(params: {
     adminId: string;
-  },
-  context?: HttpContext
+  }): Observable<Admin> {
 
-): Observable<Admin> {
-
-    return this.getAdmin$Response(params,context).pipe(
+    return this.getAdmin$Response(params).pipe(
       map((r: StrictHttpResponse<Admin>) => r.body as Admin)
     );
   }
@@ -168,10 +154,7 @@ export class AdminService extends BaseService {
   registerAdmin$Response(params: {
     adminId: string;
     body?: Admin
-  },
-  context?: HttpContext
-
-): Observable<StrictHttpResponse<void>> {
+  }): Observable<StrictHttpResponse<void>> {
 
     const rb = new RequestBuilder(this.rootUrl, AdminService.RegisterAdminPath, 'post');
     if (params) {
@@ -181,8 +164,7 @@ export class AdminService extends BaseService {
 
     return this.http.request(rb.build({
       responseType: 'text',
-      accept: '*/*',
-      context: context
+      accept: '*/*'
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -196,7 +178,7 @@ export class AdminService extends BaseService {
    *
    * Register an Admin
    *
-   * This method provides access only to the response body.
+   * This method provides access to only to the response body.
    * To access the full response (for headers, for example), `registerAdmin$Response()` instead.
    *
    * This method sends `application/json` and handles request body of type `application/json`.
@@ -204,12 +186,9 @@ export class AdminService extends BaseService {
   registerAdmin(params: {
     adminId: string;
     body?: Admin
-  },
-  context?: HttpContext
+  }): Observable<void> {
 
-): Observable<void> {
-
-    return this.registerAdmin$Response(params,context).pipe(
+    return this.registerAdmin$Response(params).pipe(
       map((r: StrictHttpResponse<void>) => r.body as void)
     );
   }
@@ -231,10 +210,7 @@ export class AdminService extends BaseService {
    */
   deleteAdmin$Response(params: {
     adminId: string;
-  },
-  context?: HttpContext
-
-): Observable<StrictHttpResponse<void>> {
+  }): Observable<StrictHttpResponse<void>> {
 
     const rb = new RequestBuilder(this.rootUrl, AdminService.DeleteAdminPath, 'delete');
     if (params) {
@@ -243,8 +219,7 @@ export class AdminService extends BaseService {
 
     return this.http.request(rb.build({
       responseType: 'text',
-      accept: '*/*',
-      context: context
+      accept: '*/*'
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -258,19 +233,16 @@ export class AdminService extends BaseService {
    *
    * Delete Admin
    *
-   * This method provides access only to the response body.
+   * This method provides access to only to the response body.
    * To access the full response (for headers, for example), `deleteAdmin$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
   deleteAdmin(params: {
     adminId: string;
-  },
-  context?: HttpContext
+  }): Observable<void> {
 
-): Observable<void> {
-
-    return this.deleteAdmin$Response(params,context).pipe(
+    return this.deleteAdmin$Response(params).pipe(
       map((r: StrictHttpResponse<void>) => r.body as void)
     );
   }
@@ -295,10 +267,7 @@ export class AdminService extends BaseService {
     body?: {
 'role': 'super admin' | 'editor' | 'mentor' | 'instructor';
 }
-  },
-  context?: HttpContext
-
-): Observable<StrictHttpResponse<void>> {
+  }): Observable<StrictHttpResponse<void>> {
 
     const rb = new RequestBuilder(this.rootUrl, AdminService.AssignAdminRolePath, 'patch');
     if (params) {
@@ -308,8 +277,7 @@ export class AdminService extends BaseService {
 
     return this.http.request(rb.build({
       responseType: 'text',
-      accept: '*/*',
-      context: context
+      accept: '*/*'
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -323,7 +291,7 @@ export class AdminService extends BaseService {
    *
    * Assign Role to Admin
    *
-   * This method provides access only to the response body.
+   * This method provides access to only to the response body.
    * To access the full response (for headers, for example), `assignAdminRole$Response()` instead.
    *
    * This method sends `application/json` and handles request body of type `application/json`.
@@ -333,12 +301,9 @@ export class AdminService extends BaseService {
     body?: {
 'role': 'super admin' | 'editor' | 'mentor' | 'instructor';
 }
-  },
-  context?: HttpContext
+  }): Observable<void> {
 
-): Observable<void> {
-
-    return this.assignAdminRole$Response(params,context).pipe(
+    return this.assignAdminRole$Response(params).pipe(
       map((r: StrictHttpResponse<void>) => r.body as void)
     );
   }
@@ -362,10 +327,7 @@ export class AdminService extends BaseService {
     body?: {
 'mentees': Array<any>;
 }
-  },
-  context?: HttpContext
-
-): Observable<StrictHttpResponse<void>> {
+  }): Observable<StrictHttpResponse<void>> {
 
     const rb = new RequestBuilder(this.rootUrl, AdminService.AssignMenteesToAdminPath, 'patch');
     if (params) {
@@ -374,8 +336,7 @@ export class AdminService extends BaseService {
 
     return this.http.request(rb.build({
       responseType: 'text',
-      accept: '*/*',
-      context: context
+      accept: '*/*'
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -389,7 +350,7 @@ export class AdminService extends BaseService {
    *
    * Assign Mentees to Admin
    *
-   * This method provides access only to the response body.
+   * This method provides access to only to the response body.
    * To access the full response (for headers, for example), `assignMenteesToAdmin$Response()` instead.
    *
    * This method sends `application/json` and handles request body of type `application/json`.
@@ -398,12 +359,9 @@ export class AdminService extends BaseService {
     body?: {
 'mentees': Array<any>;
 }
-  },
-  context?: HttpContext
+  }): Observable<void> {
 
-): Observable<void> {
-
-    return this.assignMenteesToAdmin$Response(params,context).pipe(
+    return this.assignMenteesToAdmin$Response(params).pipe(
       map((r: StrictHttpResponse<void>) => r.body as void)
     );
   }
@@ -424,10 +382,7 @@ export class AdminService extends BaseService {
    * This method doesn't expect any request body.
    */
   getMentees$Response(params?: {
-  },
-  context?: HttpContext
-
-): Observable<StrictHttpResponse<Array<Learner>>> {
+  }): Observable<StrictHttpResponse<Array<Learner>>> {
 
     const rb = new RequestBuilder(this.rootUrl, AdminService.GetMenteesPath, 'get');
     if (params) {
@@ -435,8 +390,7 @@ export class AdminService extends BaseService {
 
     return this.http.request(rb.build({
       responseType: 'json',
-      accept: 'application/json',
-      context: context
+      accept: 'application/json'
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -450,18 +404,15 @@ export class AdminService extends BaseService {
    *
    * Get Mentees Assigned To Admin
    *
-   * This method provides access only to the response body.
+   * This method provides access to only to the response body.
    * To access the full response (for headers, for example), `getMentees$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
   getMentees(params?: {
-  },
-  context?: HttpContext
+  }): Observable<Array<Learner>> {
 
-): Observable<Array<Learner>> {
-
-    return this.getMentees$Response(params,context).pipe(
+    return this.getMentees$Response(params).pipe(
       map((r: StrictHttpResponse<Array<Learner>>) => r.body as Array<Learner>)
     );
   }
@@ -486,10 +437,7 @@ export class AdminService extends BaseService {
 'email': string;
 'password': string;
 }
-  },
-  context?: HttpContext
-
-): Observable<StrictHttpResponse<AuthToken>> {
+  }): Observable<StrictHttpResponse<AuthToken>> {
 
     const rb = new RequestBuilder(this.rootUrl, AdminService.LogInAdminPath, 'post');
     if (params) {
@@ -498,8 +446,7 @@ export class AdminService extends BaseService {
 
     return this.http.request(rb.build({
       responseType: 'json',
-      accept: 'application/json',
-      context: context
+      accept: 'application/json'
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -513,7 +460,7 @@ export class AdminService extends BaseService {
    *
    * Log in a Admin
    *
-   * This method provides access only to the response body.
+   * This method provides access to only to the response body.
    * To access the full response (for headers, for example), `logInAdmin$Response()` instead.
    *
    * This method sends `application/json` and handles request body of type `application/json`.
@@ -523,12 +470,9 @@ export class AdminService extends BaseService {
 'email': string;
 'password': string;
 }
-  },
-  context?: HttpContext
+  }): Observable<AuthToken> {
 
-): Observable<AuthToken> {
-
-    return this.logInAdmin$Response(params,context).pipe(
+    return this.logInAdmin$Response(params).pipe(
       map((r: StrictHttpResponse<AuthToken>) => r.body as AuthToken)
     );
   }
@@ -549,10 +493,7 @@ export class AdminService extends BaseService {
    * This method doesn't expect any request body.
    */
   logOutAdmin$Response(params?: {
-  },
-  context?: HttpContext
-
-): Observable<StrictHttpResponse<void>> {
+  }): Observable<StrictHttpResponse<void>> {
 
     const rb = new RequestBuilder(this.rootUrl, AdminService.LogOutAdminPath, 'patch');
     if (params) {
@@ -560,8 +501,7 @@ export class AdminService extends BaseService {
 
     return this.http.request(rb.build({
       responseType: 'text',
-      accept: '*/*',
-      context: context
+      accept: '*/*'
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -575,18 +515,15 @@ export class AdminService extends BaseService {
    *
    * Log out a Logged in Admin
    *
-   * This method provides access only to the response body.
+   * This method provides access to only to the response body.
    * To access the full response (for headers, for example), `logOutAdmin$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
   logOutAdmin(params?: {
-  },
-  context?: HttpContext
+  }): Observable<void> {
 
-): Observable<void> {
-
-    return this.logOutAdmin$Response(params,context).pipe(
+    return this.logOutAdmin$Response(params).pipe(
       map((r: StrictHttpResponse<void>) => r.body as void)
     );
   }
@@ -611,10 +548,7 @@ export class AdminService extends BaseService {
 'email': string;
 'otp': string;
 }
-  },
-  context?: HttpContext
-
-): Observable<StrictHttpResponse<AuthToken>> {
+  }): Observable<StrictHttpResponse<AuthToken>> {
 
     const rb = new RequestBuilder(this.rootUrl, AdminService.ValidateOtpPath, 'post');
     if (params) {
@@ -623,8 +557,7 @@ export class AdminService extends BaseService {
 
     return this.http.request(rb.build({
       responseType: 'json',
-      accept: 'application/json',
-      context: context
+      accept: 'application/json'
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -638,7 +571,7 @@ export class AdminService extends BaseService {
    *
    * Validate Learner OTP
    *
-   * This method provides access only to the response body.
+   * This method provides access to only to the response body.
    * To access the full response (for headers, for example), `validateOtp$Response()` instead.
    *
    * This method sends `application/json` and handles request body of type `application/json`.
@@ -648,12 +581,9 @@ export class AdminService extends BaseService {
 'email': string;
 'otp': string;
 }
-  },
-  context?: HttpContext
+  }): Observable<AuthToken> {
 
-): Observable<AuthToken> {
-
-    return this.validateOtp$Response(params,context).pipe(
+    return this.validateOtp$Response(params).pipe(
       map((r: StrictHttpResponse<AuthToken>) => r.body as AuthToken)
     );
   }
@@ -677,10 +607,7 @@ export class AdminService extends BaseService {
     body?: {
 'email': string;
 }
-  },
-  context?: HttpContext
-
-): Observable<StrictHttpResponse<void>> {
+  }): Observable<StrictHttpResponse<void>> {
 
     const rb = new RequestBuilder(this.rootUrl, AdminService.GenerateOtpPath, 'post');
     if (params) {
@@ -689,8 +616,7 @@ export class AdminService extends BaseService {
 
     return this.http.request(rb.build({
       responseType: 'text',
-      accept: '*/*',
-      context: context
+      accept: '*/*'
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -704,7 +630,7 @@ export class AdminService extends BaseService {
    *
    * Generate Learner OTP
    *
-   * This method provides access only to the response body.
+   * This method provides access to only to the response body.
    * To access the full response (for headers, for example), `generateOtp$Response()` instead.
    *
    * This method sends `application/json` and handles request body of type `application/json`.
@@ -713,12 +639,9 @@ export class AdminService extends BaseService {
     body?: {
 'email': string;
 }
-  },
-  context?: HttpContext
+  }): Observable<void> {
 
-): Observable<void> {
-
-    return this.generateOtp$Response(params,context).pipe(
+    return this.generateOtp$Response(params).pipe(
       map((r: StrictHttpResponse<void>) => r.body as void)
     );
   }
@@ -742,10 +665,7 @@ export class AdminService extends BaseService {
     body?: {
 'email': string;
 }
-  },
-  context?: HttpContext
-
-): Observable<StrictHttpResponse<void>> {
+  }): Observable<StrictHttpResponse<void>> {
 
     const rb = new RequestBuilder(this.rootUrl, AdminService.ResetOtpPath, 'post');
     if (params) {
@@ -754,8 +674,7 @@ export class AdminService extends BaseService {
 
     return this.http.request(rb.build({
       responseType: 'text',
-      accept: '*/*',
-      context: context
+      accept: '*/*'
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -769,7 +688,7 @@ export class AdminService extends BaseService {
    *
    * Reset Learner OTP
    *
-   * This method provides access only to the response body.
+   * This method provides access to only to the response body.
    * To access the full response (for headers, for example), `resetOtp$Response()` instead.
    *
    * This method sends `application/json` and handles request body of type `application/json`.
@@ -778,12 +697,9 @@ export class AdminService extends BaseService {
     body?: {
 'email': string;
 }
-  },
-  context?: HttpContext
+  }): Observable<void> {
 
-): Observable<void> {
-
-    return this.resetOtp$Response(params,context).pipe(
+    return this.resetOtp$Response(params).pipe(
       map((r: StrictHttpResponse<void>) => r.body as void)
     );
   }
@@ -808,10 +724,7 @@ export class AdminService extends BaseService {
 'password': string;
 'confirmPassword': string;
 }
-  },
-  context?: HttpContext
-
-): Observable<StrictHttpResponse<void>> {
+  }): Observable<StrictHttpResponse<void>> {
 
     const rb = new RequestBuilder(this.rootUrl, AdminService.ChangePasswordPath, 'post');
     if (params) {
@@ -820,8 +733,7 @@ export class AdminService extends BaseService {
 
     return this.http.request(rb.build({
       responseType: 'text',
-      accept: '*/*',
-      context: context
+      accept: '*/*'
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -835,7 +747,7 @@ export class AdminService extends BaseService {
    *
    * Change User Password
    *
-   * This method provides access only to the response body.
+   * This method provides access to only to the response body.
    * To access the full response (for headers, for example), `changePassword$Response()` instead.
    *
    * This method sends `application/json` and handles request body of type `application/json`.
@@ -845,12 +757,9 @@ export class AdminService extends BaseService {
 'password': string;
 'confirmPassword': string;
 }
-  },
-  context?: HttpContext
+  }): Observable<void> {
 
-): Observable<void> {
-
-    return this.changePassword$Response(params,context).pipe(
+    return this.changePassword$Response(params).pipe(
       map((r: StrictHttpResponse<void>) => r.body as void)
     );
   }
@@ -876,10 +785,7 @@ export class AdminService extends BaseService {
     name?: string;
     email?: string;
     role?: 'super admin' | 'editor' | 'mentor' | 'instructor';
-  },
-  context?: HttpContext
-
-): Observable<StrictHttpResponse<{
+  }): Observable<StrictHttpResponse<{
 'totalRecords'?: number;
 'data'?: Array<Admin>;
 }>> {
@@ -895,8 +801,7 @@ export class AdminService extends BaseService {
 
     return this.http.request(rb.build({
       responseType: 'json',
-      accept: 'application/json',
-      context: context
+      accept: 'application/json'
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -913,7 +818,7 @@ export class AdminService extends BaseService {
    *
    * Get All Admins
    *
-   * This method provides access only to the response body.
+   * This method provides access to only to the response body.
    * To access the full response (for headers, for example), `getAllAdmins$Response()` instead.
    *
    * This method doesn't expect any request body.
@@ -924,15 +829,12 @@ export class AdminService extends BaseService {
     name?: string;
     email?: string;
     role?: 'super admin' | 'editor' | 'mentor' | 'instructor';
-  },
-  context?: HttpContext
-
-): Observable<{
+  }): Observable<{
 'totalRecords'?: number;
 'data'?: Array<Admin>;
 }> {
 
-    return this.getAllAdmins$Response(params,context).pipe(
+    return this.getAllAdmins$Response(params).pipe(
       map((r: StrictHttpResponse<{
 'totalRecords'?: number;
 'data'?: Array<Admin>;

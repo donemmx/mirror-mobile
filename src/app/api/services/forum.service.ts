@@ -1,7 +1,7 @@
 /* tslint:disable */
 /* eslint-disable */
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpResponse, HttpContext } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { BaseService } from '../base-service';
 import { ApiConfiguration } from '../api-configuration';
 import { StrictHttpResponse } from '../strict-http-response';
@@ -40,11 +40,9 @@ export class ForumService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  getForumsByUserId$Response(params?: {
-  },
-  context?: HttpContext
-
-): Observable<StrictHttpResponse<{
+  getForumsByUserId$Response(params: {
+    forumId: string;
+  }): Observable<StrictHttpResponse<{
 'forumName'?: string;
 'description'?: string;
 'forumId'?: string;
@@ -54,12 +52,12 @@ export class ForumService extends BaseService {
 
     const rb = new RequestBuilder(this.rootUrl, ForumService.GetForumsByUserIdPath, 'get');
     if (params) {
+      rb.path('forumId', params.forumId, {});
     }
 
     return this.http.request(rb.build({
       responseType: 'json',
-      accept: 'application/json',
-      context: context
+      accept: 'application/json'
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -79,16 +77,14 @@ export class ForumService extends BaseService {
    *
    * Get Forums By User ID
    *
-   * This method provides access only to the response body.
+   * This method provides access to only to the response body.
    * To access the full response (for headers, for example), `getForumsByUserId$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
-  getForumsByUserId(params?: {
-  },
-  context?: HttpContext
-
-): Observable<{
+  getForumsByUserId(params: {
+    forumId: string;
+  }): Observable<{
 'forumName'?: string;
 'description'?: string;
 'forumId'?: string;
@@ -96,7 +92,7 @@ export class ForumService extends BaseService {
 'date'?: string;
 }> {
 
-    return this.getForumsByUserId$Response(params,context).pipe(
+    return this.getForumsByUserId$Response(params).pipe(
       map((r: StrictHttpResponse<{
 'forumName'?: string;
 'description'?: string;
@@ -128,25 +124,23 @@ export class ForumService extends BaseService {
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  createForum$Response(params?: {
+  createForum$Response(params: {
+    forumId: string;
     body?: {
 'forumName'?: string;
 'description'?: string;
 }
-  },
-  context?: HttpContext
-
-): Observable<StrictHttpResponse<void>> {
+  }): Observable<StrictHttpResponse<void>> {
 
     const rb = new RequestBuilder(this.rootUrl, ForumService.CreateForumPath, 'post');
     if (params) {
+      rb.path('forumId', params.forumId, {});
       rb.body(params.body, 'application/json');
     }
 
     return this.http.request(rb.build({
       responseType: 'text',
-      accept: '*/*',
-      context: context
+      accept: '*/*'
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -160,22 +154,20 @@ export class ForumService extends BaseService {
    *
    * Create Forum
    *
-   * This method provides access only to the response body.
+   * This method provides access to only to the response body.
    * To access the full response (for headers, for example), `createForum$Response()` instead.
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  createForum(params?: {
+  createForum(params: {
+    forumId: string;
     body?: {
 'forumName'?: string;
 'description'?: string;
 }
-  },
-  context?: HttpContext
+  }): Observable<void> {
 
-): Observable<void> {
-
-    return this.createForum$Response(params,context).pipe(
+    return this.createForum$Response(params).pipe(
       map((r: StrictHttpResponse<void>) => r.body as void)
     );
   }
@@ -195,11 +187,9 @@ export class ForumService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  getAllPostsByForumId$Response(params?: {
-  },
-  context?: HttpContext
-
-): Observable<StrictHttpResponse<{
+  getAllPostsByForumId$Response(params: {
+    forumId: string;
+  }): Observable<StrictHttpResponse<{
 'postId'?: string;
 'forumId'?: string;
 'senderId'?: string;
@@ -215,12 +205,12 @@ export class ForumService extends BaseService {
 
     const rb = new RequestBuilder(this.rootUrl, ForumService.GetAllPostsByForumIdPath, 'get');
     if (params) {
+      rb.path('forumId', params.forumId, {});
     }
 
     return this.http.request(rb.build({
       responseType: 'json',
-      accept: 'application/json',
-      context: context
+      accept: 'application/json'
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -246,16 +236,14 @@ export class ForumService extends BaseService {
    *
    * Get All Posts By Forum ID
    *
-   * This method provides access only to the response body.
+   * This method provides access to only to the response body.
    * To access the full response (for headers, for example), `getAllPostsByForumId$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
-  getAllPostsByForumId(params?: {
-  },
-  context?: HttpContext
-
-): Observable<{
+  getAllPostsByForumId(params: {
+    forumId: string;
+  }): Observable<{
 'postId'?: string;
 'forumId'?: string;
 'senderId'?: string;
@@ -269,7 +257,7 @@ export class ForumService extends BaseService {
 }>;
 }> {
 
-    return this.getAllPostsByForumId$Response(params,context).pipe(
+    return this.getAllPostsByForumId$Response(params).pipe(
       map((r: StrictHttpResponse<{
 'postId'?: string;
 'forumId'?: string;
@@ -314,10 +302,7 @@ export class ForumService extends BaseService {
    * This method doesn't expect any request body.
    */
   getAllForums$Response(params?: {
-  },
-  context?: HttpContext
-
-): Observable<StrictHttpResponse<Array<{
+  }): Observable<StrictHttpResponse<Array<{
 'postId'?: string;
 'forumId'?: string;
 'senderId'?: string;
@@ -337,8 +322,7 @@ export class ForumService extends BaseService {
 
     return this.http.request(rb.build({
       responseType: 'json',
-      accept: 'application/json',
-      context: context
+      accept: 'application/json'
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -364,16 +348,13 @@ export class ForumService extends BaseService {
    *
    * Get All Forums
    *
-   * This method provides access only to the response body.
+   * This method provides access to only to the response body.
    * To access the full response (for headers, for example), `getAllForums$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
   getAllForums(params?: {
-  },
-  context?: HttpContext
-
-): Observable<Array<{
+  }): Observable<Array<{
 'postId'?: string;
 'forumId'?: string;
 'senderId'?: string;
@@ -387,7 +368,7 @@ export class ForumService extends BaseService {
 }>;
 }>> {
 
-    return this.getAllForums$Response(params,context).pipe(
+    return this.getAllForums$Response(params).pipe(
       map((r: StrictHttpResponse<Array<{
 'postId'?: string;
 'forumId'?: string;
@@ -441,10 +422,7 @@ export class ForumService extends BaseService {
 'isSeen'?: boolean;
 'date'?: string;
 }
-  },
-  context?: HttpContext
-
-): Observable<StrictHttpResponse<void>> {
+  }): Observable<StrictHttpResponse<void>> {
 
     const rb = new RequestBuilder(this.rootUrl, ForumService.CreatePostPath, 'post');
     if (params) {
@@ -453,8 +431,7 @@ export class ForumService extends BaseService {
 
     return this.http.request(rb.build({
       responseType: 'text',
-      accept: '*/*',
-      context: context
+      accept: '*/*'
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -468,7 +445,7 @@ export class ForumService extends BaseService {
    *
    * Create Post
    *
-   * This method provides access only to the response body.
+   * This method provides access to only to the response body.
    * To access the full response (for headers, for example), `createPost$Response()` instead.
    *
    * This method sends `application/json` and handles request body of type `application/json`.
@@ -483,12 +460,9 @@ export class ForumService extends BaseService {
 'isSeen'?: boolean;
 'date'?: string;
 }
-  },
-  context?: HttpContext
+  }): Observable<void> {
 
-): Observable<void> {
-
-    return this.createPost$Response(params,context).pipe(
+    return this.createPost$Response(params).pipe(
       map((r: StrictHttpResponse<void>) => r.body as void)
     );
   }
@@ -512,10 +486,7 @@ export class ForumService extends BaseService {
     body?: {
 'response'?: string;
 }
-  },
-  context?: HttpContext
-
-): Observable<StrictHttpResponse<void>> {
+  }): Observable<StrictHttpResponse<void>> {
 
     const rb = new RequestBuilder(this.rootUrl, ForumService.GetForumsByUserId_1Path, 'patch');
     if (params) {
@@ -524,8 +495,7 @@ export class ForumService extends BaseService {
 
     return this.http.request(rb.build({
       responseType: 'text',
-      accept: '*/*',
-      context: context
+      accept: '*/*'
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -539,7 +509,7 @@ export class ForumService extends BaseService {
    *
    * Get Forums By User ID
    *
-   * This method provides access only to the response body.
+   * This method provides access to only to the response body.
    * To access the full response (for headers, for example), `getForumsByUserId_1$Response()` instead.
    *
    * This method sends `application/json` and handles request body of type `application/json`.
@@ -548,12 +518,9 @@ export class ForumService extends BaseService {
     body?: {
 'response'?: string;
 }
-  },
-  context?: HttpContext
+  }): Observable<void> {
 
-): Observable<void> {
-
-    return this.getForumsByUserId_1$Response(params,context).pipe(
+    return this.getForumsByUserId_1$Response(params).pipe(
       map((r: StrictHttpResponse<void>) => r.body as void)
     );
   }
@@ -577,10 +544,7 @@ export class ForumService extends BaseService {
     body?: {
 'adminId'?: string;
 }
-  },
-  context?: HttpContext
-
-): Observable<StrictHttpResponse<void>> {
+  }): Observable<StrictHttpResponse<void>> {
 
     const rb = new RequestBuilder(this.rootUrl, ForumService.AddAdminToForumPath, 'patch');
     if (params) {
@@ -589,8 +553,7 @@ export class ForumService extends BaseService {
 
     return this.http.request(rb.build({
       responseType: 'text',
-      accept: '*/*',
-      context: context
+      accept: '*/*'
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -604,7 +567,7 @@ export class ForumService extends BaseService {
    *
    * Add Admin To Forum
    *
-   * This method provides access only to the response body.
+   * This method provides access to only to the response body.
    * To access the full response (for headers, for example), `addAdminToForum$Response()` instead.
    *
    * This method sends `application/json` and handles request body of type `application/json`.
@@ -613,12 +576,9 @@ export class ForumService extends BaseService {
     body?: {
 'adminId'?: string;
 }
-  },
-  context?: HttpContext
+  }): Observable<void> {
 
-): Observable<void> {
-
-    return this.addAdminToForum$Response(params,context).pipe(
+    return this.addAdminToForum$Response(params).pipe(
       map((r: StrictHttpResponse<void>) => r.body as void)
     );
   }

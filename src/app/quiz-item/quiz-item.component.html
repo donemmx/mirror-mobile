@@ -17,31 +17,91 @@
   [resizable]="false"
 >
   <div class="quiz__body">
-    <div class="quizQuestions mb-5">
+    <div class="quizQuestions mb-5" *ngIf="!hideQuiz">
       <div class="question"></div>
       <div class="options">
         <div class="grid gap-2">
           <div *ngFor="let question of item.questions" class="w-full grid">
             <div class="groupedQuestion flex gap-4 w-full">
-              <div class="number font-bold">{{ question.questionNumber }}</div>
+              <div class="number font-bold">{{ question.questionNumber }}.</div>
               <div class="question">
                 <p class="font-bold">{{ question.questionText }}</p>
-                <div class="group flex gap-2 p-2" *ngFor="let option of question.options">
+                <div
+                  class="group flex gap-2 p-2"
+                  *ngFor="let option of question.options"
+                >
                   <p-checkbox
                     name="group"
-                    [value]="{answer: option, questionId: question.questionNumber}"
-                    name="groupname" 
+                    [value]="{
+                      answer: option,
+                      questionId: question.questionNumber
+                    }"
+                    name="groupname"
                     [label]="option"
+                    [inputId]="question.questionId"
                     [(ngModel)]="selectedQuestions"
                   ></p-checkbox>
-
-                  <!-- <label [for]="question.questionId">{{ option }}</label> -->
+                  <!-- <p-radioButton
+                    [inputId]="question.questionId"
+                    [value]="{
+                      answer: option,
+                      questionId: question.questionNumber
+                    }"
+                    [(ngModel)]="selectedQuestions"
+                  ></p-radioButton>
+                  <label [for]="question.questionId" class="ml-2">{{
+                    option
+                  }}</label
+                  > -->
                 </div>
               </div>
             </div>
           </div>
-          <button class="primary__btn mt-2 mb-2" (click)="submitQuiz()">Submit Quiz</button>
+          <button
+            class="primary__btn w-full mt-2 mb-2"
+            (click)="submitQuiz()"
+            [disabled]="item.questions.length !== selectedQuestions.length"
+          >
+            Submit Quiz
+          </button>
         </div>
+      </div>
+    </div>
+    <div class="progress" *ngIf="hideQuiz && !score">
+      <small>
+        <i class="pi pi-spin pi-spinner"></i> Please Wait while we score you
+        ...</small
+      >
+      <p-progressBar
+        mode="indeterminate"
+        [style]="{ height: '6px' }"
+      ></p-progressBar>
+    </div>
+    <div
+      class="score pt-5 pb-5 flex flex-col gap-2 items-center justify-center"
+      *ngIf="score"
+    >
+      <div
+        class="knob flex flex-col gap-2 items-center"
+        *ngIf="myscore$ | async as myscore"
+      >
+        <div class="data">
+          You {{ myscore.isPassed ? "Passed" : "Failed" }} this Quiz
+        </div>
+        <div class="data text-xl font-bold">
+          Total Score: {{ myscore.totalScore }}
+        </div>
+        <div class="text-lg">
+          Passed {{ myscore?.questionsPassed?.length }} /
+          {{ myscore?.totalQuestions }}
+        </div>
+        <p-knob
+          [(ngModel)]="myscore.scorePercentage"
+          valueTemplate="{value}%"
+        ></p-knob>
+        <button class="primary__btn" (click)="continue(myscore)">
+          {{ myscore.isPassed ? "Continue" : "Try Again" }}
+        </button>
       </div>
     </div>
   </div>

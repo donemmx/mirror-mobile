@@ -108,7 +108,6 @@ export class RegistrationComponent extends BaseComponent {
   change(event: any){
     this.country = event.value.name
     this.countryId$.next({data: event.value.countryId})
-    console.log(this.country);
   }
 
   changeTerms(event: any){

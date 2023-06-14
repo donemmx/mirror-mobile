@@ -1,7 +1,7 @@
 /* tslint:disable */
 /* eslint-disable */
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpResponse, HttpContext } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { BaseService } from '../base-service';
 import { ApiConfiguration } from '../api-configuration';
 import { StrictHttpResponse } from '../strict-http-response';
@@ -46,10 +46,7 @@ export class LearnersService extends BaseService {
    */
   getLearner$Response(params: {
     learnerId: string;
-  },
-  context?: HttpContext
-
-): Observable<StrictHttpResponse<Learner>> {
+  }): Observable<StrictHttpResponse<Learner>> {
 
     const rb = new RequestBuilder(this.rootUrl, LearnersService.GetLearnerPath, 'get');
     if (params) {
@@ -58,8 +55,7 @@ export class LearnersService extends BaseService {
 
     return this.http.request(rb.build({
       responseType: 'json',
-      accept: 'application/json',
-      context: context
+      accept: 'application/json'
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -73,19 +69,16 @@ export class LearnersService extends BaseService {
    *
    * Get a Learner
    *
-   * This method provides access only to the response body.
+   * This method provides access to only to the response body.
    * To access the full response (for headers, for example), `getLearner$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
   getLearner(params: {
     learnerId: string;
-  },
-  context?: HttpContext
+  }): Observable<Learner> {
 
-): Observable<Learner> {
-
-    return this.getLearner$Response(params,context).pipe(
+    return this.getLearner$Response(params).pipe(
       map((r: StrictHttpResponse<Learner>) => r.body as Learner)
     );
   }
@@ -108,10 +101,7 @@ export class LearnersService extends BaseService {
   createLearner$Response(params: {
     learnerId: string;
     body?: Learner
-  },
-  context?: HttpContext
-
-): Observable<StrictHttpResponse<void>> {
+  }): Observable<StrictHttpResponse<void>> {
 
     const rb = new RequestBuilder(this.rootUrl, LearnersService.CreateLearnerPath, 'post');
     if (params) {
@@ -121,8 +111,7 @@ export class LearnersService extends BaseService {
 
     return this.http.request(rb.build({
       responseType: 'text',
-      accept: '*/*',
-      context: context
+      accept: '*/*'
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -136,7 +125,7 @@ export class LearnersService extends BaseService {
    *
    * create a Learner
    *
-   * This method provides access only to the response body.
+   * This method provides access to only to the response body.
    * To access the full response (for headers, for example), `createLearner$Response()` instead.
    *
    * This method sends `application/json` and handles request body of type `application/json`.
@@ -144,12 +133,9 @@ export class LearnersService extends BaseService {
   createLearner(params: {
     learnerId: string;
     body?: Learner
-  },
-  context?: HttpContext
+  }): Observable<void> {
 
-): Observable<void> {
-
-    return this.createLearner$Response(params,context).pipe(
+    return this.createLearner$Response(params).pipe(
       map((r: StrictHttpResponse<void>) => r.body as void)
     );
   }
@@ -179,10 +165,7 @@ export class LearnersService extends BaseService {
 'educationComponent': true | false;
 'spiritualComponent': true | false;
 }
-  },
-  context?: HttpContext
-
-): Observable<StrictHttpResponse<void>> {
+  }): Observable<StrictHttpResponse<void>> {
 
     const rb = new RequestBuilder(this.rootUrl, LearnersService.UpdateLearnerInfoPath, 'patch');
     if (params) {
@@ -192,8 +175,7 @@ export class LearnersService extends BaseService {
 
     return this.http.request(rb.build({
       responseType: 'text',
-      accept: '*/*',
-      context: context
+      accept: '*/*'
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -207,7 +189,7 @@ export class LearnersService extends BaseService {
    *
    * update Learner Information
    *
-   * This method provides access only to the response body.
+   * This method provides access to only to the response body.
    * To access the full response (for headers, for example), `updateLearnerInfo$Response()` instead.
    *
    * This method sends `application/json` and handles request body of type `application/json`.
@@ -222,12 +204,9 @@ export class LearnersService extends BaseService {
 'educationComponent': true | false;
 'spiritualComponent': true | false;
 }
-  },
-  context?: HttpContext
+  }): Observable<void> {
 
-): Observable<void> {
-
-    return this.updateLearnerInfo$Response(params,context).pipe(
+    return this.updateLearnerInfo$Response(params).pipe(
       map((r: StrictHttpResponse<void>) => r.body as void)
     );
   }
@@ -249,10 +228,7 @@ export class LearnersService extends BaseService {
    */
   deleteLearnerAccount$Response(params: {
     learnerId: string;
-  },
-  context?: HttpContext
-
-): Observable<StrictHttpResponse<void>> {
+  }): Observable<StrictHttpResponse<void>> {
 
     const rb = new RequestBuilder(this.rootUrl, LearnersService.DeleteLearnerAccountPath, 'patch');
     if (params) {
@@ -261,8 +237,7 @@ export class LearnersService extends BaseService {
 
     return this.http.request(rb.build({
       responseType: 'text',
-      accept: '*/*',
-      context: context
+      accept: '*/*'
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -276,19 +251,16 @@ export class LearnersService extends BaseService {
    *
    * Delete Learner Account
    *
-   * This method provides access only to the response body.
+   * This method provides access to only to the response body.
    * To access the full response (for headers, for example), `deleteLearnerAccount$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
   deleteLearnerAccount(params: {
     learnerId: string;
-  },
-  context?: HttpContext
+  }): Observable<void> {
 
-): Observable<void> {
-
-    return this.deleteLearnerAccount$Response(params,context).pipe(
+    return this.deleteLearnerAccount$Response(params).pipe(
       map((r: StrictHttpResponse<void>) => r.body as void)
     );
   }
@@ -310,10 +282,7 @@ export class LearnersService extends BaseService {
    */
   reinstateLearnerAccount$Response(params: {
     learnerId: string;
-  },
-  context?: HttpContext
-
-): Observable<StrictHttpResponse<void>> {
+  }): Observable<StrictHttpResponse<void>> {
 
     const rb = new RequestBuilder(this.rootUrl, LearnersService.ReinstateLearnerAccountPath, 'patch');
     if (params) {
@@ -322,8 +291,7 @@ export class LearnersService extends BaseService {
 
     return this.http.request(rb.build({
       responseType: 'text',
-      accept: '*/*',
-      context: context
+      accept: '*/*'
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -337,19 +305,16 @@ export class LearnersService extends BaseService {
    *
    * Reinstate Learner Account
    *
-   * This method provides access only to the response body.
+   * This method provides access to only to the response body.
    * To access the full response (for headers, for example), `reinstateLearnerAccount$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
   reinstateLearnerAccount(params: {
     learnerId: string;
-  },
-  context?: HttpContext
+  }): Observable<void> {
 
-): Observable<void> {
-
-    return this.reinstateLearnerAccount$Response(params,context).pipe(
+    return this.reinstateLearnerAccount$Response(params).pipe(
       map((r: StrictHttpResponse<void>) => r.body as void)
     );
   }
@@ -371,10 +336,7 @@ export class LearnersService extends BaseService {
    */
   banLearnerAccount$Response(params: {
     learnerId: string;
-  },
-  context?: HttpContext
-
-): Observable<StrictHttpResponse<void>> {
+  }): Observable<StrictHttpResponse<void>> {
 
     const rb = new RequestBuilder(this.rootUrl, LearnersService.BanLearnerAccountPath, 'patch');
     if (params) {
@@ -383,8 +345,7 @@ export class LearnersService extends BaseService {
 
     return this.http.request(rb.build({
       responseType: 'text',
-      accept: '*/*',
-      context: context
+      accept: '*/*'
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -398,19 +359,16 @@ export class LearnersService extends BaseService {
    *
    * Ban Learner Account
    *
-   * This method provides access only to the response body.
+   * This method provides access to only to the response body.
    * To access the full response (for headers, for example), `banLearnerAccount$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
   banLearnerAccount(params: {
     learnerId: string;
-  },
-  context?: HttpContext
+  }): Observable<void> {
 
-): Observable<void> {
-
-    return this.banLearnerAccount$Response(params,context).pipe(
+    return this.banLearnerAccount$Response(params).pipe(
       map((r: StrictHttpResponse<void>) => r.body as void)
     );
   }
@@ -432,10 +390,7 @@ export class LearnersService extends BaseService {
    */
   getLearnerProfile$Response(params: {
     learnerId: string;
-  },
-  context?: HttpContext
-
-): Observable<StrictHttpResponse<{
+  }): Observable<StrictHttpResponse<{
 'email': string;
 'name': string;
 'learnerId'?: string;
@@ -448,8 +403,7 @@ export class LearnersService extends BaseService {
 
     return this.http.request(rb.build({
       responseType: 'json',
-      accept: 'application/json',
-      context: context
+      accept: 'application/json'
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -467,23 +421,20 @@ export class LearnersService extends BaseService {
    *
    * Get Learner Profile
    *
-   * This method provides access only to the response body.
+   * This method provides access to only to the response body.
    * To access the full response (for headers, for example), `getLearnerProfile$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
   getLearnerProfile(params: {
     learnerId: string;
-  },
-  context?: HttpContext
-
-): Observable<{
+  }): Observable<{
 'email': string;
 'name': string;
 'learnerId'?: string;
 }> {
 
-    return this.getLearnerProfile$Response(params,context).pipe(
+    return this.getLearnerProfile$Response(params).pipe(
       map((r: StrictHttpResponse<{
 'email': string;
 'name': string;
@@ -516,10 +467,7 @@ export class LearnersService extends BaseService {
 'email': string;
 'password': string;
 }
-  },
-  context?: HttpContext
-
-): Observable<StrictHttpResponse<AuthToken>> {
+  }): Observable<StrictHttpResponse<AuthToken>> {
 
     const rb = new RequestBuilder(this.rootUrl, LearnersService.LogInLearnerPath, 'post');
     if (params) {
@@ -528,8 +476,7 @@ export class LearnersService extends BaseService {
 
     return this.http.request(rb.build({
       responseType: 'json',
-      accept: 'application/json',
-      context: context
+      accept: 'application/json'
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -543,7 +490,7 @@ export class LearnersService extends BaseService {
    *
    * Log in a Learner
    *
-   * This method provides access only to the response body.
+   * This method provides access to only to the response body.
    * To access the full response (for headers, for example), `logInLearner$Response()` instead.
    *
    * This method sends `application/json` and handles request body of type `application/json`.
@@ -553,12 +500,9 @@ export class LearnersService extends BaseService {
 'email': string;
 'password': string;
 }
-  },
-  context?: HttpContext
+  }): Observable<AuthToken> {
 
-): Observable<AuthToken> {
-
-    return this.logInLearner$Response(params,context).pipe(
+    return this.logInLearner$Response(params).pipe(
       map((r: StrictHttpResponse<AuthToken>) => r.body as AuthToken)
     );
   }
@@ -579,10 +523,7 @@ export class LearnersService extends BaseService {
    * This method doesn't expect any request body.
    */
   logOutLearner$Response(params?: {
-  },
-  context?: HttpContext
-
-): Observable<StrictHttpResponse<void>> {
+  }): Observable<StrictHttpResponse<void>> {
 
     const rb = new RequestBuilder(this.rootUrl, LearnersService.LogOutLearnerPath, 'patch');
     if (params) {
@@ -590,8 +531,7 @@ export class LearnersService extends BaseService {
 
     return this.http.request(rb.build({
       responseType: 'text',
-      accept: '*/*',
-      context: context
+      accept: '*/*'
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -605,18 +545,15 @@ export class LearnersService extends BaseService {
    *
    * Log out a Logged in Learner
    *
-   * This method provides access only to the response body.
+   * This method provides access to only to the response body.
    * To access the full response (for headers, for example), `logOutLearner$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
   logOutLearner(params?: {
-  },
-  context?: HttpContext
+  }): Observable<void> {
 
-): Observable<void> {
-
-    return this.logOutLearner$Response(params,context).pipe(
+    return this.logOutLearner$Response(params).pipe(
       map((r: StrictHttpResponse<void>) => r.body as void)
     );
   }
@@ -641,10 +578,7 @@ export class LearnersService extends BaseService {
 'email': string;
 'otp': string;
 }
-  },
-  context?: HttpContext
-
-): Observable<StrictHttpResponse<AuthToken>> {
+  }): Observable<StrictHttpResponse<AuthToken>> {
 
     const rb = new RequestBuilder(this.rootUrl, LearnersService.ValidateOtpPath, 'post');
     if (params) {
@@ -653,8 +587,7 @@ export class LearnersService extends BaseService {
 
     return this.http.request(rb.build({
       responseType: 'json',
-      accept: 'application/json',
-      context: context
+      accept: 'application/json'
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -668,7 +601,7 @@ export class LearnersService extends BaseService {
    *
    * Validate Learner OTP
    *
-   * This method provides access only to the response body.
+   * This method provides access to only to the response body.
    * To access the full response (for headers, for example), `validateOtp$Response()` instead.
    *
    * This method sends `application/json` and handles request body of type `application/json`.
@@ -678,12 +611,9 @@ export class LearnersService extends BaseService {
 'email': string;
 'otp': string;
 }
-  },
-  context?: HttpContext
+  }): Observable<AuthToken> {
 
-): Observable<AuthToken> {
-
-    return this.validateOtp$Response(params,context).pipe(
+    return this.validateOtp$Response(params).pipe(
       map((r: StrictHttpResponse<AuthToken>) => r.body as AuthToken)
     );
   }
@@ -707,10 +637,7 @@ export class LearnersService extends BaseService {
     body?: {
 'email': string;
 }
-  },
-  context?: HttpContext
-
-): Observable<StrictHttpResponse<void>> {
+  }): Observable<StrictHttpResponse<void>> {
 
     const rb = new RequestBuilder(this.rootUrl, LearnersService.GenerateOtpPath, 'post');
     if (params) {
@@ -719,8 +646,7 @@ export class LearnersService extends BaseService {
 
     return this.http.request(rb.build({
       responseType: 'text',
-      accept: '*/*',
-      context: context
+      accept: '*/*'
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -734,7 +660,7 @@ export class LearnersService extends BaseService {
    *
    * Generate Learner OTP
    *
-   * This method provides access only to the response body.
+   * This method provides access to only to the response body.
    * To access the full response (for headers, for example), `generateOtp$Response()` instead.
    *
    * This method sends `application/json` and handles request body of type `application/json`.
@@ -743,12 +669,9 @@ export class LearnersService extends BaseService {
     body?: {
 'email': string;
 }
-  },
-  context?: HttpContext
+  }): Observable<void> {
 
-): Observable<void> {
-
-    return this.generateOtp$Response(params,context).pipe(
+    return this.generateOtp$Response(params).pipe(
       map((r: StrictHttpResponse<void>) => r.body as void)
     );
   }
@@ -772,10 +695,7 @@ export class LearnersService extends BaseService {
     body?: {
 'email': string;
 }
-  },
-  context?: HttpContext
-
-): Observable<StrictHttpResponse<void>> {
+  }): Observable<StrictHttpResponse<void>> {
 
     const rb = new RequestBuilder(this.rootUrl, LearnersService.ResetOtpPath, 'post');
     if (params) {
@@ -784,8 +704,7 @@ export class LearnersService extends BaseService {
 
     return this.http.request(rb.build({
       responseType: 'text',
-      accept: '*/*',
-      context: context
+      accept: '*/*'
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -799,7 +718,7 @@ export class LearnersService extends BaseService {
    *
    * Reset Learner OTP
    *
-   * This method provides access only to the response body.
+   * This method provides access to only to the response body.
    * To access the full response (for headers, for example), `resetOtp$Response()` instead.
    *
    * This method sends `application/json` and handles request body of type `application/json`.
@@ -808,12 +727,9 @@ export class LearnersService extends BaseService {
     body?: {
 'email': string;
 }
-  },
-  context?: HttpContext
+  }): Observable<void> {
 
-): Observable<void> {
-
-    return this.resetOtp$Response(params,context).pipe(
+    return this.resetOtp$Response(params).pipe(
       map((r: StrictHttpResponse<void>) => r.body as void)
     );
   }
@@ -838,10 +754,7 @@ export class LearnersService extends BaseService {
 'password': string;
 'confirmPassword': string;
 }
-  },
-  context?: HttpContext
-
-): Observable<StrictHttpResponse<void>> {
+  }): Observable<StrictHttpResponse<void>> {
 
     const rb = new RequestBuilder(this.rootUrl, LearnersService.ChangePasswordPath, 'post');
     if (params) {
@@ -850,8 +763,7 @@ export class LearnersService extends BaseService {
 
     return this.http.request(rb.build({
       responseType: 'text',
-      accept: '*/*',
-      context: context
+      accept: '*/*'
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -865,7 +777,7 @@ export class LearnersService extends BaseService {
    *
    * Change User Password
    *
-   * This method provides access only to the response body.
+   * This method provides access to only to the response body.
    * To access the full response (for headers, for example), `changePassword$Response()` instead.
    *
    * This method sends `application/json` and handles request body of type `application/json`.
@@ -875,12 +787,9 @@ export class LearnersService extends BaseService {
 'password': string;
 'confirmPassword': string;
 }
-  },
-  context?: HttpContext
+  }): Observable<void> {
 
-): Observable<void> {
-
-    return this.changePassword$Response(params,context).pipe(
+    return this.changePassword$Response(params).pipe(
       map((r: StrictHttpResponse<void>) => r.body as void)
     );
   }
@@ -903,10 +812,7 @@ export class LearnersService extends BaseService {
   uploadUserPicture$Response(params: {
     userId: string;
     body?: Upload
-  },
-  context?: HttpContext
-
-): Observable<StrictHttpResponse<void>> {
+  }): Observable<StrictHttpResponse<void>> {
 
     const rb = new RequestBuilder(this.rootUrl, LearnersService.UploadUserPicturePath, 'patch');
     if (params) {
@@ -916,8 +822,7 @@ export class LearnersService extends BaseService {
 
     return this.http.request(rb.build({
       responseType: 'text',
-      accept: '*/*',
-      context: context
+      accept: '*/*'
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -931,7 +836,7 @@ export class LearnersService extends BaseService {
    *
    * Upload User Profile Picture
    *
-   * This method provides access only to the response body.
+   * This method provides access to only to the response body.
    * To access the full response (for headers, for example), `uploadUserPicture$Response()` instead.
    *
    * This method sends `application/json` and handles request body of type `application/json`.
@@ -939,12 +844,9 @@ export class LearnersService extends BaseService {
   uploadUserPicture(params: {
     userId: string;
     body?: Upload
-  },
-  context?: HttpContext
+  }): Observable<void> {
 
-): Observable<void> {
-
-    return this.uploadUserPicture$Response(params,context).pipe(
+    return this.uploadUserPicture$Response(params).pipe(
       map((r: StrictHttpResponse<void>) => r.body as void)
     );
   }
@@ -966,10 +868,7 @@ export class LearnersService extends BaseService {
    */
   retrieveUserPicture$Response(params: {
     userId: string;
-  },
-  context?: HttpContext
-
-): Observable<StrictHttpResponse<Blob>> {
+  }): Observable<StrictHttpResponse<Blob>> {
 
     const rb = new RequestBuilder(this.rootUrl, LearnersService.RetrieveUserPicturePath, 'get');
     if (params) {
@@ -978,8 +877,7 @@ export class LearnersService extends BaseService {
 
     return this.http.request(rb.build({
       responseType: 'blob',
-      accept: 'application/octet-stream',
-      context: context
+      accept: 'application/octet-stream'
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -993,19 +891,16 @@ export class LearnersService extends BaseService {
    *
    * Retrieve User Profile Picture
    *
-   * This method provides access only to the response body.
+   * This method provides access to only to the response body.
    * To access the full response (for headers, for example), `retrieveUserPicture$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
   retrieveUserPicture(params: {
     userId: string;
-  },
-  context?: HttpContext
+  }): Observable<Blob> {
 
-): Observable<Blob> {
-
-    return this.retrieveUserPicture$Response(params,context).pipe(
+    return this.retrieveUserPicture$Response(params).pipe(
       map((r: StrictHttpResponse<Blob>) => r.body as Blob)
     );
   }
@@ -1030,10 +925,7 @@ export class LearnersService extends BaseService {
     limit?: number;
     confirmationStatus?: true | false;
     name?: string;
-  },
-  context?: HttpContext
-
-): Observable<StrictHttpResponse<{
+  }): Observable<StrictHttpResponse<{
 'totalRecords'?: number;
 'data'?: Array<Learner>;
 }>> {
@@ -1048,8 +940,7 @@ export class LearnersService extends BaseService {
 
     return this.http.request(rb.build({
       responseType: 'json',
-      accept: 'application/json',
-      context: context
+      accept: 'application/json'
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -1066,7 +957,7 @@ export class LearnersService extends BaseService {
    *
    * Get All Learners
    *
-   * This method provides access only to the response body.
+   * This method provides access to only to the response body.
    * To access the full response (for headers, for example), `getAllLearners$Response()` instead.
    *
    * This method doesn't expect any request body.
@@ -1076,15 +967,12 @@ export class LearnersService extends BaseService {
     limit?: number;
     confirmationStatus?: true | false;
     name?: string;
-  },
-  context?: HttpContext
-
-): Observable<{
+  }): Observable<{
 'totalRecords'?: number;
 'data'?: Array<Learner>;
 }> {
 
-    return this.getAllLearners$Response(params,context).pipe(
+    return this.getAllLearners$Response(params).pipe(
       map((r: StrictHttpResponse<{
 'totalRecords'?: number;
 'data'?: Array<Learner>;
@@ -1111,10 +999,7 @@ export class LearnersService extends BaseService {
    * This method doesn't expect any request body.
    */
   getLearnerPaidCourses$Response(params?: {
-  },
-  context?: HttpContext
-
-): Observable<StrictHttpResponse<Course>> {
+  }): Observable<StrictHttpResponse<Course>> {
 
     const rb = new RequestBuilder(this.rootUrl, LearnersService.GetLearnerPaidCoursesPath, 'get');
     if (params) {
@@ -1122,8 +1007,7 @@ export class LearnersService extends BaseService {
 
     return this.http.request(rb.build({
       responseType: 'json',
-      accept: 'application/json',
-      context: context
+      accept: 'application/json'
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -1137,18 +1021,15 @@ export class LearnersService extends BaseService {
    *
    * Get User Paid Courses
    *
-   * This method provides access only to the response body.
+   * This method provides access to only to the response body.
    * To access the full response (for headers, for example), `getLearnerPaidCourses$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
   getLearnerPaidCourses(params?: {
-  },
-  context?: HttpContext
+  }): Observable<Course> {
 
-): Observable<Course> {
-
-    return this.getLearnerPaidCourses$Response(params,context).pipe(
+    return this.getLearnerPaidCourses$Response(params).pipe(
       map((r: StrictHttpResponse<Course>) => r.body as Course)
     );
   }

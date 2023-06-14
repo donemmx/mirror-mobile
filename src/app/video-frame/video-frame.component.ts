@@ -54,8 +54,6 @@ export class VideoFrameComponent {
      this.videoId$.subscribe((res)=> {
      if (res.includes('be/')) {
        const tempLink = value.split('be/')[1];
-       console.log(tempLink);
-       
        this.videoUrl = this.sanitize.bypassSecurityTrustResourceUrl(
          `https://www.youtube.com/embed/${tempLink}`
        );

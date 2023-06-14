@@ -87,7 +87,6 @@ export class SignupTwoComponent extends BaseComponent{
       })
       .subscribe(
         (res) => {
-          console.log(res);
           this.loading = false;
           this.notify.success('otp has been sent');
           this.message.email = this.signupForm.value.email;
