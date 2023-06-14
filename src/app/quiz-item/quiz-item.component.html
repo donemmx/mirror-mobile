@@ -1,0 +1,48 @@
+<div class="text">
+  <div class="title">Quiz</div>
+  <div class="desc">
+    {{ item.instructions }}
+  </div>
+  <button class="primary__btn download mt-3" (click)="startQuiz(item)">
+    Start Quiz
+  </button>
+</div>
+
+<p-dialog
+  header="Quiz"
+  [(visible)]="quiz"
+  [modal]="true"
+  [style]="{ width: '95vw' }"
+  [draggable]="false"
+  [resizable]="false"
+>
+  <div class="quiz__body">
+    <div class="quizQuestions mb-5">
+      <div class="question"></div>
+      <div class="options">
+        <div class="grid gap-2">
+          <div *ngFor="let question of item.questions" class="w-full grid">
+            <div class="groupedQuestion flex gap-4 w-full">
+              <div class="number font-bold">{{ question.questionNumber }}</div>
+              <div class="question">
+                <p class="font-bold">{{ question.questionText }}</p>
+                <div class="group flex gap-2 p-2" *ngFor="let option of question.options">
+                  <p-checkbox
+                    name="group"
+                    [value]="{answer: option, questionId: question.questionNumber}"
+                    name="groupname" 
+                    [label]="option"
+                    [(ngModel)]="selectedQuestions"
+                  ></p-checkbox>
+
+                  <!-- <label [for]="question.questionId">{{ option }}</label> -->
+                </div>
+              </div>
+            </div>
+          </div>
+          <button class="primary__btn mt-2 mb-2" (click)="submitQuiz()">Submit Quiz</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</p-dialog>

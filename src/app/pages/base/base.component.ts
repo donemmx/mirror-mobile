@@ -33,7 +33,7 @@ export class BaseComponent implements OnInit, OnDestroy {
         this.learnerApi
           .getLearner({
             learnerId: id.jti,
-          })
+          })    
           .subscribe((data) => {
             this.message.user = data;
             this.message.cart = [];

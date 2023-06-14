@@ -92,6 +92,10 @@ import { TextItemComponent } from 'src/app/text-item/text-item.component';
 import { SidebarComponent } from 'src/app/sidebar/sidebar.component';
 import { NgxPayPalModule } from 'ngx-paypal';
 import { NotificationComponent } from '../notification/notification.component';
+import { ImageItemComponent } from 'src/app/image-item/image-item.component';
+import { PdfItemComponent } from 'src/app/pdf-item/pdf-item.component';
+import { QuizItemComponent } from 'src/app/quiz-item/quiz-item.component';
+import { RadioButtonModule } from 'primeng/radiobutton';
 
 @NgModule({
   declarations: [
@@ -159,6 +163,9 @@ import { NotificationComponent } from '../notification/notification.component';
     TextItemComponent,
     SidebarComponent,
     NotificationComponent,
+    ImageItemComponent,
+    PdfItemComponent,
+    QuizItemComponent
   ],
   imports: [
     CommonModule,
@@ -180,6 +187,7 @@ import { NotificationComponent } from '../notification/notification.component';
     KnobModule,
     MultiSelectModule,
     SelectButtonModule,
+    RadioButtonModule,
     InputMaskModule,
     NgxPayPalModule,
     MessagesModule,
