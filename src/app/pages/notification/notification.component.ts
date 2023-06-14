@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { NotificationService } from 'src/app/api/services';
 import { DataService } from 'src/app/services/data.service';
 import { BaseComponent } from '../base/base.component';
-import * as moment from 'moment'
 
 @Component({
   selector: 'app-notification',
@@ -13,7 +12,6 @@ import * as moment from 'moment'
 })
 export class NotificationComponent extends BaseComponent {
   notifications$: Observable<any>
-  moment = moment
 
     constructor(data: DataService, router:Router, private api: NotificationService){
     super(data,router)
@@ -21,6 +19,6 @@ export class NotificationComponent extends BaseComponent {
 
   ngOnInit(): void {
       super.ngOnInit();
-      this.notifications$ = this.api.getAllNotifications()
+      this.notifications$ = this.api.getAllNotifications().pipe(map((res:any)=> res.data))
   }
 }

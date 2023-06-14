@@ -1,4 +1,4 @@
-import { AfterContentInit, Component, OnInit } from '@angular/core';
+import { AfterContentInit, Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { CoursesService } from 'src/app/api/services';
@@ -14,6 +14,7 @@ export class HeroComponent extends BaseComponent {
   videoModal: boolean = false
   id$ = new BehaviorSubject<any>('http://youtube.com/watch/v=ujcEft1JJUQ')
   label: any
+  @Input() totalNote: any;
 
   afterViewInit: boolean = false;
   course: any

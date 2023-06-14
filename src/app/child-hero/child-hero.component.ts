@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { BaseComponent } from '../pages/base/base.component';
 import { DataService } from '../services/data.service';
 import { CoursesService } from '../api/services';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-child-hero',
@@ -11,6 +12,8 @@ import { Router } from '@angular/router';
 })
 export class ChildHeroComponent extends BaseComponent {
   label: any
+  @Input() totalNote: any;
+
   course: any
   constructor(data: DataService, router: Router, private api: CoursesService) {
     super(data, router)

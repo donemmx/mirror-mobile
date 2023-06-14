@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { CoursesService } from 'src/app/api/services';
@@ -12,7 +12,7 @@ import { DataService } from 'src/app/services/data.service';
 })
 export class AdultHeroComponent extends BaseComponent {
   label: any;
-
+  @Input() totalNote: any;
   afterViewInit: boolean = false;
   course: any;
   constructor(data: DataService, router: Router, private api: CoursesService) {

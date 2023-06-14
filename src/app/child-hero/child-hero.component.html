@@ -5,7 +5,7 @@
         <div class="top p-4 flex items-center justify-between">
           <div class="name text-white ">Hi, {{message?.user?.name}} 👋</div>
           <div class="icons flex gap-1">
-            <i class="pi pi-bell text-white" ></i>
+            <i class="pi pi-bell text-white" routerLink="/notification"  pBadge severity="danger" [value]="totalNote" ></i>
           </div>
         </div>
         <div class="bottom p-4 ">

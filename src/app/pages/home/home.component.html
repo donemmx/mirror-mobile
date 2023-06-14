@@ -1,21 +1,21 @@
 
 <div *ngIf="category$ | async as category">
   <ng-template [ngIf]="category.selected == 'adult'">
-      <app-adult-hero></app-adult-hero>
+      <app-adult-hero [totalNote]="totalNote.length"></app-adult-hero>
       <main>
         <app-course-section></app-course-section>
         <app-footer></app-footer>
       </main>
   </ng-template>
   <ng-template [ngIf]="category.selected == 'young adult'">
-      <app-hero></app-hero>
+      <app-hero [totalNote]="totalNote.length"></app-hero>
       <main>
         <app-course-section></app-course-section>
         <app-footer></app-footer>
       </main>
   </ng-template>
   <ng-template [ngIf]="category.selected == 'children'">
-      <app-child-hero></app-child-hero>
+      <app-child-hero [totalNote]="totalNote.length"></app-child-hero>
       <main>
         <app-course-section [bg]="true"></app-course-section>
         <app-footer></app-footer>

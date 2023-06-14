@@ -11,10 +11,21 @@
     </div>
   </div>
 </div>
-<div class="notication__body" *ngFor="let notification of (notifications$ | async)">
-  <div class="notification__card">
-    <div class="title"></div>
-    <div class="description"></div>
+<div class="notication__body cursor-pointer mt-1" *ngFor="let note of notifications$ | async">
+  <div
+    class="notification__card p-4 bg-white flex items-center gap-5 w-[90%] mx-auto rounded-md drop-shadow-sm border-solid'"
+  >
+    <div class="group">
+          <div class="red" *ngIf="!note.isSeen"></div>
+          <div class="green" *ngIf="note.isSeen"></div>
+    </div>
+    <div class="group w-full grid p-2 gap-1">
+      <div class="title font-bold flex items-center w-full justify-between">
+        {{ note.title }}
+        <small class="font-light">{{ note.date }}</small>
+      </div>
+      <small class="description">{{ note.descriptionSummary }}</small>
+    </div>
   </div>
 </div>
 <app-footer-bottom></app-footer-bottom>
