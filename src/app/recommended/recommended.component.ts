@@ -23,7 +23,7 @@ export class RecommendedComponent extends BaseComponent{
 
     this.courses$ = this.api.getAllCourses({
       ageCategory: this.message.selected
-    }).pipe(map((res)=> res.data), tap((res)=> {
+    }).pipe(map((res)=> res.data.splice(0,3)), tap((res)=> {
       this.loading = false
     }))
 
