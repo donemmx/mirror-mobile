@@ -35,6 +35,8 @@ const routes: Routes = [
     component: OtpComponent,  canActivate: [LoginGuard]
   },
 
+
+
   {
     path: '',
     loadChildren: () =>

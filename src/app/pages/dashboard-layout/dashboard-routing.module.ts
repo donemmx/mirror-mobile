@@ -93,9 +93,9 @@ const routes: Routes = [
         component: NotificationPageComponent,
       },
       {
-        path: '',
+        path: "**",
         redirectTo: '/home',
-        pathMatch: 'full',
+        pathMatch: 'full'
       },
     ],
   },

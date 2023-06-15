@@ -28,10 +28,16 @@ export class HomeComponent extends BaseComponent {
 
   ngOnInit(): void {
     super.ngOnInit();
-    this.getUser(this.api, this.auth);
+    if(this.auth.isUserLoggedIn()){
+      this.getUser(this.api, this.auth);
+      this.noteApi.getAllNotifications().subscribe((res: any) => {
+        this.totalNote = res.data.filter((res: any) => res.isSeen == false);
+      });
+    }
+    else{
+      this.auth.logout()
+    }
 
-    this.noteApi.getAllNotifications().subscribe((res: any) => {
-      this.totalNote = res.data.filter((res: any) => res.isSeen == false);
-    });
+  
   }
 }
