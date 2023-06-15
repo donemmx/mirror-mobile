@@ -28,7 +28,6 @@ export class AssignmentItemComponent extends BaseComponent {
 
   ngOnInit(): void {
     super.ngOnInit();
-    console.log(this.item);
     
   }
 
@@ -36,11 +35,13 @@ export class AssignmentItemComponent extends BaseComponent {
     const id: any = this.auth.getUserId();
     this.chapterApi.submitAssignment({
       body: {
-        url: this.upload,
+        url: this.message.upload,
         use: 'assignment',
         learnerId: id.jti,
         assignmentId: this.item.chapterItemId
       }
+    }).subscribe((res)=> {
+      this.notify.success('Assignment Submitted')
     })
   }
 
@@ -69,7 +70,8 @@ export class AssignmentItemComponent extends BaseComponent {
   manageUpload(files: Array<any>) {
     var myReader = new FileReader()
     myReader.onloadend = (e) => {
-      this.upload  = myReader.result;
+      this.message.upload  = myReader.result;
+      this.data.changeMessage(this.message)
       // console.log(this.message.upload.url)
     };
     myReader.readAsDataURL(files[0]);
