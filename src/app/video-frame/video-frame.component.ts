@@ -33,15 +33,15 @@ export class VideoFrameComponent extends BaseComponent {
   ngOnInit(): void {
     super.ngOnInit();
     this.videoId$ = of(this.link)
-    this.videoId$.subscribe((res) => {
-      if (res.includes('youtube')) {
-        this.getYoutubeId(res);
-      } else if (res.includes('youtu.be')) {
-        this.getIframLink(res);
+    // this.videoId$.subscribe((res) => {
+      if (this.link.includes('youtube')) {
+        this.getYoutubeId(this.link);
+      } else if (this.link.includes('youtu.be')) {
+        this.getIframLink(this.link);
       } else {
-        this.videoUrl = this.sanitize.bypassSecurityTrustResourceUrl(res);
+        this.videoUrl = this.sanitize.bypassSecurityTrustResourceUrl(this.link);
       }
-    });
+    // });
   }
 
   getYoutubeId(value: any) {
