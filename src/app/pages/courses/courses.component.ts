@@ -23,8 +23,8 @@ export class CoursesComponent extends BaseComponent {
   courses$: Observable<any>;
   loading: boolean = true;
   courseCategory = new BehaviorSubject('education');
-  courseCategories = ['education', 'spiritual', 'identity']
-  selectedCategory:any  = 'education'
+  courseCategories = ['identity', 'education', 'spiritual' ]
+  selectedCategory:any  = 'identity'
   constructor(
     data: DataService,
     router: Router,
