@@ -1,6 +1,6 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { BaseComponent } from '../pages/base/base.component';
 import { DataService } from '../services/data.service';
 import { Router } from '@angular/router';
@@ -11,11 +11,13 @@ import { CourseProgressService } from '../api/services';
   selector: 'app-video-frame',
   templateUrl: './video-frame.component.html',
   styleUrls: ['./video-frame.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class VideoFrameComponent extends BaseComponent {
   @Input() item: any;
   @Input() courseId: any;
-  @Input() videoId$: Observable<any>;
+  @Input() link: any = ''
+  videoId$: Observable<any>;
   @Output() done = new EventEmitter()
   videoUrl: any;
   constructor(
@@ -30,7 +32,7 @@ export class VideoFrameComponent extends BaseComponent {
 
   ngOnInit(): void {
     super.ngOnInit();
-
+    this.videoId$ = of(this.link)
     this.videoId$.subscribe((res) => {
       if (res.includes('youtube')) {
         this.getYoutubeId(res);

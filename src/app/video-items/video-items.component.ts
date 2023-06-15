@@ -25,6 +25,7 @@ export class VideoItemsComponent implements OnInit {
 
   getChapterItem(event: any) {
     this.chapterItem.emit(event);
+    
     window.scroll({
       top: 0,
       left: 0,

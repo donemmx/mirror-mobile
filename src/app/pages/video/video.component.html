@@ -16,7 +16,7 @@
         <div class="video" *ngIf="chapterItem as item">
           <app-video-frame
             *ngIf="item.chapterItemName === 'link'"
-            [videoId$]="of(item.link)"
+            [link]="item.link"
             [item]="item" [courseId]="courseId"
           ></app-video-frame>
           <app-text-item *ngIf="item.chapterItemName === 'text'" [item]="item" [courseId]="courseId" (done)="getevent($event)"></app-text-item>
