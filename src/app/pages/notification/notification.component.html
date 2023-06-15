@@ -21,11 +21,11 @@
             <div class="green" *ngIf="note.isSeen"></div>
       </div>
       <div class="group w-full grid p-2 gap-1">
-        <div class="title font-bold flex items-center w-full justify-between">
+        <div class="title font-bold flex items-center w-full justify-between text-[.9rem]">
           {{ note.title }}
-          <small class="font-light">{{ note.date }}</small>
         </div>
         <small class="description">{{ note.descriptionSummary }}</small>
+        <small class="font-light">{{ note.date }}</small>
       </div>
     </div>
   </div>
