@@ -1,31 +1,34 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Observable } from 'rxjs';
-import {  CoursesService, LearnersService } from '../api/services';
+import { CoursesService, LearnersService } from '../api/services';
 
 @Component({
   selector: 'app-video-items',
   templateUrl: './video-items.component.html',
-  styleUrls: ['./video-items.component.css']
+  styleUrls: ['./video-items.component.css'],
 })
-export class VideoItemsComponent implements OnInit{
- @Input() chapters$: Observable<any>
- @Input() activeIndex: number
- @Input() courseId: any;
- @Output() chapterItem = new EventEmitter()
+export class VideoItemsComponent implements OnInit {
+  @Input() chapters$: Observable<any>;
+  @Input() activeIndex: number;
+  @Input() courseId: any;
+  @Output() chapterItem = new EventEmitter();
 
-  progress$: Observable<any>
+  progress$: Observable<any>;
 
- constructor(){
- }
+  constructor() {}
 
- ngOnInit(): void {
-  // this.progress$ = this.api.getCourseProgress({
-  //   courseId: this.courseId
-  // })
- }
-
-  getChapterItem(event: any){
-    this.chapterItem.emit(event)
+  ngOnInit(): void {
+    // this.progress$ = this.api.getCourseProgress({
+    //   courseId: this.courseId
+    // })
   }
 
- }
+  getChapterItem(event: any) {
+    this.chapterItem.emit(event);
+    window.scroll({
+      top: 0,
+      left: 0,
+      behavior: 'smooth',
+    });
+  }
+}
