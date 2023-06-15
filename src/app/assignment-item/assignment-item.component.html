@@ -8,13 +8,18 @@
     {{item.instructions}}
   </div>
     <a href={{item.assignmentTemplateUrl}} class="primary__btn download mt-3" download="">Download Assignment</a>
-  <form class="form mt-4 ">
-    <div class="form__group ">
-      <label for=""> Upload Assignment</label>
-     <input type="file" name="" id="">
-   </div>
-   <button class="outline__btn">Submit</button>
-  </form>
+    <div class="container" uploadDnd (fileDropped)="onFileDropped($event)">
+      <input
+        type="file"
+        accept=".jpg,.png,.csv"
+        #fileDropRef
+        id="fileDropRef"
+        (change)="fileBrowseHandler($event)"
+      />
+      <img src="../../assets/Upload to the Cloud.png" alt="" width="120px" />
+      <p class=" text-sm">Click to add file here</p>
+    </div>
+   <button class="outline__btn" (click)="submitAssignment()">Submit</button>
 </div>
 
 <div class=" absolute z-50 top-4 left-4">

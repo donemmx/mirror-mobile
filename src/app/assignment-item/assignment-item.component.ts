@@ -13,7 +13,7 @@ import { NotificationService } from '../services/notification.service';
 export class AssignmentItemComponent extends BaseComponent {
   @Input() item: any;
   @Input() courseId: any;
-
+  upload: any
   constructor(
     data: DataService,
     router: Router,
@@ -28,7 +28,38 @@ export class AssignmentItemComponent extends BaseComponent {
   }
 
   submitAssignment(){
-    
+
+  }
+
+  onFileDropped($event: any) {
+    this.manageUpload($event);
+  }
+
+  /**
+   * handle file from browsing
+   */
+  fileBrowseHandler($event: any) {
+
+    const files = $event.target.files
+    if(files[0].size > 5000000){
+        this.notify.error('Uploaded file is too large, Please reduce to a maximum size of 5MB');
+      } else {
+        this.manageUpload(files);
+    }
+  }
+
+
+  /**
+   * Convert Files list to normal array list
+   * @param files (Files List)
+   */
+  manageUpload(files: Array<any>) {
+    var myReader = new FileReader()
+    myReader.onloadend = (e) => {
+      this.upload  = myReader.result;
+      // console.log(this.message.upload.url)
+    };
+    myReader.readAsDataURL(files[0]);
   }
 
   continue() {
