@@ -1,4 +1,4 @@
-.text{
+.text {
   padding: 20px;
   height: 70vh;
   width: 100%;
@@ -9,39 +9,37 @@
   overflow-y: scroll;
 }
 
-
-.title{
+.title {
   font-size: clamp(1.7rem, 2.5vw, 3rem);
   font-weight: bold;
   margin-bottom: 20px;
 }
 
 .desc {
-  font-size: clamp(.75rem, 2.5vw, 1rem);
+  font-size: clamp(0.75rem, 2.5vw, 1rem);
   display: flex;
   flex-direction: column;
   gap: 10px;
- }
+}
 
- .desc span{
+.desc span {
   color: var(--primary-color);
   font-weight: bold;
- }
+}
 
-.download{
+.download {
   width: 170px;
 }
 
-.form{
+.form {
   display: flex;
   width: 100%;
   gap: 10px;
 }
 
-.primary__btn{
+.primary__btn {
   padding: 10px;
 }
-
 
 .container {
   width: 100%;
@@ -51,6 +49,10 @@
   border: dashed 1px #979797;
   position: relative;
   margin: 0 auto;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .container input {
   opacity: 0;

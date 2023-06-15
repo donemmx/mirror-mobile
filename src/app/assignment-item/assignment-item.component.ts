@@ -2,8 +2,9 @@ import { Component, Input } from '@angular/core';
 import { BaseComponent } from '../pages/base/base.component';
 import { DataService } from '../services/data.service';
 import { Router } from '@angular/router';
-import { CourseProgressService } from '../api/services';
+import { ChaptersService, CourseProgressService } from '../api/services';
 import { NotificationService } from '../services/notification.service';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-assignment-item',
@@ -18,6 +19,8 @@ export class AssignmentItemComponent extends BaseComponent {
     data: DataService,
     router: Router,
     private api: CourseProgressService,
+    private auth: AuthService,
+    private chapterApi: ChaptersService,
     private notify: NotificationService
   ) {
     super(data, router);
@@ -25,10 +28,20 @@ export class AssignmentItemComponent extends BaseComponent {
 
   ngOnInit(): void {
     super.ngOnInit();
+    console.log(this.item);
+    
   }
 
   submitAssignment(){
-
+    const id: any = this.auth.getUserId();
+    this.chapterApi.submitAssignment({
+      body: {
+        url: this.upload,
+        use: 'assignment',
+        learnerId: id.jti,
+        assignmentId: ''
+      }
+    })
   }
 
   onFileDropped($event: any) {
