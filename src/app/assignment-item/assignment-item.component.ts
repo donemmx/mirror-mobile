@@ -39,7 +39,7 @@ export class AssignmentItemComponent extends BaseComponent {
         url: this.upload,
         use: 'assignment',
         learnerId: id.jti,
-        assignmentId: ''
+        assignmentId: this.item.chapterItemId
       }
     })
   }
