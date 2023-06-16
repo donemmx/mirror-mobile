@@ -48,8 +48,6 @@ export class VideoFrameComponent extends BaseComponent {
     this.videoId$ = of(this.link);
     this.videoUrl = '';
       this.videoId$.subscribe((res) => {
-        this.videoUrl = '' 
-        setTimeout(function(){
           if (res.includes('youtube')) {
             self.getYoutubeId(res);
           } else if (res.includes('youtu.be')) {
@@ -59,7 +57,6 @@ export class VideoFrameComponent extends BaseComponent {
               res
             );
           }
-        }, 500)       
       });
   }
 
