@@ -51,7 +51,7 @@ body{
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  word-break: break-all;
+  word-break: break-word;
 }
 
 .bg__course {
