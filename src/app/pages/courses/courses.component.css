@@ -116,7 +116,8 @@
 }
 
 .hero__two {
-  padding: 50px 10px;
+  height: 220px;
+  padding:10px;
   background: var(--primary-color);
   background-repeat: no-repeat;
   display: flex;
@@ -153,7 +154,7 @@
   line-height: 1.5;
 }
 
-@media screen and (max-width: 576px) {
+@media screen and (min-width: 650px) {
   ::ng-deep .p-datatable-tbody {
     display: grid !important;
     grid-template-columns: repeat(2, 1fr) !important;

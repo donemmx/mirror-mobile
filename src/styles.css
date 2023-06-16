@@ -26,10 +26,17 @@ img {
 
 
 
+
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+
+
+p{
+ 
+}
 
 @font-face {
   font-family: 'jakarta';
@@ -44,6 +51,7 @@ body{
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  word-break: break-all;
 }
 
 .bg__course {

@@ -1,5 +1,6 @@
 .header__main{
   padding: 10px 20px;
+  height: 100px;
   background: var(--background-dark);
 }
 

@@ -42,8 +42,9 @@ object-fit: contain;
 
 .outcome__card{
 padding: 15px 10px;
-display: flex;
+display: grid;
 align-items: center;
+grid-template-columns: 1fr 10fr 1fr;
 gap: 20px;
 box-shadow: var(--shadow-three) !important;
 background:var(--white);

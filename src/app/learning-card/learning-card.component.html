@@ -4,18 +4,18 @@
   </div>
   <div class="learning__right">
       <div class="myTag"  >
-          <div class="tag" *ngFor="let tag of course.tags">
+          <small class="tag text-[8px]" *ngFor="let tag of course.tags">
               {{tag}}
-          </div>
+          </small>
       </div>
-          <h4 class="head__four mt-1">
+          <h4 class="text-[13px] leading-[1.2] font-black mt-1">
               {{course.title}}
           </h4>
-          <div class="progress flex flex-col gap-3 mt-2">
-              <div class="progress__left">
+          <div class="progress flex flex-col gap-3 mt-1">
+              <small class="pb-1">
                   progress:
                   <p-progressBar [value]="0" [showValue]="false"></p-progressBar>
-              </div>
+              </small>
           </div>
   </div>
 </div>
