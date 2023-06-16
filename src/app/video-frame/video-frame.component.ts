@@ -1,4 +1,12 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  Output,
+  ViewChild,
+} from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Observable, of } from 'rxjs';
 import { BaseComponent } from '../pages/base/base.component';
@@ -11,37 +19,48 @@ import { CourseProgressService } from '../api/services';
   selector: 'app-video-frame',
   templateUrl: './video-frame.component.html',
   styleUrls: ['./video-frame.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class VideoFrameComponent extends BaseComponent {
+  @ViewChild('video') video: ElementRef
   @Input() item: any;
   @Input() courseId: any;
-  @Input() link: any = ''
+  @Input() link: any = '';
   videoId$: Observable<any>;
-  @Output() done = new EventEmitter()
+  @Output() done = new EventEmitter();
+  
+  
   videoUrl: any;
   constructor(
     data: DataService,
     router: Router,
     private sanitize: DomSanitizer,
     private api: CourseProgressService,
-    private notify: NotificationService
+    private notify: NotificationService,
+    private Element:ElementRef 
   ) {
     super(data, router);
   }
 
   ngOnInit(): void {
     super.ngOnInit();
-    this.videoId$ = of(this.link)
-    // this.videoId$.subscribe((res) => {
-      if (this.link.includes('youtube')) {
-        this.getYoutubeId(this.link);
-      } else if (this.link.includes('youtu.be')) {
-        this.getIframLink(this.link);
-      } else {
-        this.videoUrl = this.sanitize.bypassSecurityTrustResourceUrl(this.link);
-      }
-    // });
+    let self  = this
+    this.videoId$ = of(this.link);
+    this.videoUrl = '';
+      this.videoId$.subscribe((res) => {
+        this.videoUrl = '' 
+        setTimeout(function(){
+          if (res.includes('youtube')) {
+            self.getYoutubeId(res);
+          } else if (res.includes('youtu.be')) {
+            self.getIframLink(res);
+          } else {
+            self.videoUrl = self.sanitize.bypassSecurityTrustResourceUrl(
+              res
+            );
+          }
+        }, 500)       
+      });
   }
 
   getYoutubeId(value: any) {
@@ -75,7 +94,7 @@ export class VideoFrameComponent extends BaseComponent {
   }
 
   continue() {
-    this.done.emit(true)
+    this.done.emit(true);
     this.updateCourseProgress(
       this.api,
       this.courseId,
@@ -84,6 +103,13 @@ export class VideoFrameComponent extends BaseComponent {
     ).subscribe((res) => {
       this.notify.success('marked as completed');
     });
+  }
 
+  resetLink() {
+   
+  }
+
+  refreshIframe() {
+    // this.renderer.setProperty(this.iframe.nativeElement, 'src', this.iframe.nativeElement.src);
   }
 }

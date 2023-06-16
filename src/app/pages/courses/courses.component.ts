@@ -22,7 +22,7 @@ import { AuthService } from 'src/app/services/auth.service';
 export class CoursesComponent extends BaseComponent {
   courses$: Observable<any>;
   loading: boolean = true;
-  courseCategory = new BehaviorSubject('education');
+  courseCategory = new BehaviorSubject('identity');
   courseCategories = ['identity', 'education', 'spiritual' ]
   selectedCategory:any  = 'identity'
   constructor(

@@ -33,15 +33,21 @@
       </ng-template>
     </p-selectButton>
   </div>
+
   <ng-template [ngIf]="category.selected == 'young adult'">
-    <div class="main__course pb-5">
-    
-      <p-table
-        #dt
-        [value]="courses$ | async"
-        dataKey="id"
-        [loading]="loading"
-      >
+    <div class="main__course pb-3">
+      <div class="search mb-3">
+        <i class="pi pi-search"></i>
+        <input
+          class="input_search"
+          pInputText
+          type="text"
+          placeholder="Search keyword"
+          (input)="dt2.filterGlobal($any($event.target).value, 'contains')"
+        />
+
+      </div>
+      <p-table #dt2 [value]="courses$ | async" dataKey="id" [loading]="loading">
         <ng-template let-item pTemplate="body" class="grid-3">
           <div
             class="course__card"
@@ -68,7 +74,9 @@
               ></div>
               <div class="course__text">
                 <h4 class="title">{{ item.title }}</h4>
-                <small class="instructor text-sm">Instructor:{{ item.instructor }}</small>
+                <small class="instructor text-sm"
+                  >Instructor:{{ item.instructor }}</small
+                >
                 <div class="myTag">
                   <div class="tag" *ngFor="let tag of item.tags">
                     {{ tag }}
@@ -94,13 +102,19 @@
   </ng-template>
 
   <ng-template [ngIf]="category.selected == 'children'">
-    <div class="main__course pt-2 pb-5">
-      <p-table
-        #dt
-        [value]="courses$ | async"
-        dataKey="id"
-        [loading]="loading"
-      >
+    <div class="main__course pt-2 pb-3">
+      <div class="search mb-3">
+        <i class="pi pi-search"></i>
+        <input
+          class="input_search"
+          pInputText
+          type="text"
+          placeholder="Search keyword"
+          (input)="dt3.filterGlobal($any($event.target).value, 'contains')"
+        />
+
+      </div>
+      <p-table #dt3 [value]="courses$ | async" dataKey="id" [loading]="loading">
         <ng-template let-item pTemplate="body" class="grid-3">
           <div
             class="course__card"
@@ -153,14 +167,31 @@
   </ng-template>
 
   <ng-template [ngIf]="category.selected == 'adult'">
-    <div class="main__course pt-2 pb-5">
+    <div class="main__course pt-2 pb-3">
+      <div>
+        <div class="search mb-3">
+          <i class="pi pi-search"></i>
+          <input
+            class="input_search"
+            pInputText
+            type="text"
+            placeholder="Search keyword"
+            (input)="dt1.filterGlobal($any($event.target).value, 'contains')"
+          />
+
+        </div>
+      </div>
       <p-table
-        #dt
+        #dt1
         [value]="courses$ | async"
         dataKey="id"
         [loading]="loading"
         [scrollable]="true"
         scrollHeight="55vh"
+        [globalFilterFields]="[
+        'title',
+        'instructor',
+      ]"
         [virtualScroll]="true"
         [virtualScrollItemSize]="46"
       >
@@ -169,6 +200,7 @@
             class="course__card"
             pRipple
             data-aos="fade-in"
+         
             data-aos-duration="1500"
             (click)="selectCourse(item)"
             [routerLink]="'/course-detail/' + item.courseId"
