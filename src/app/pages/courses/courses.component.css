@@ -3,11 +3,7 @@
   margin: auto;
 }
 
-::ng-deep .p-datatable-tbody {
-  display: grid !important;
-  grid-template-columns: repeat(1, 1fr) !important;
-  grid-gap: 10px !important;
-}
+
 
 :host ::ng-deep .p-button {
   padding: 0.45rem 1rem;
@@ -154,10 +150,18 @@
   line-height: 1.5;
 }
 
-@media screen and (min-width: 650px) {
+@media screen and (max-width: 650px) {
   ::ng-deep .p-datatable-tbody {
     display: grid !important;
     grid-template-columns: repeat(2, 1fr) !important;
+    grid-gap: 10px !important;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  ::ng-deep .p-datatable-tbody {
+    display: grid !important;
+    grid-template-columns: repeat(1, 1fr) !important;
     grid-gap: 10px !important;
   }
 }

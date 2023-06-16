@@ -195,11 +195,7 @@
         [value]="courses$ | async"
         dataKey="id"
         [loading]="loading"
-        [scrollable]="true"
-        scrollHeight="55vh"
         [globalFilterFields]="['title', 'instructor']"
-        [virtualScroll]="true"
-        [virtualScrollItemSize]="46"
       >
         <ng-template let-item pTemplate="body" class="grid-3">
           <div
