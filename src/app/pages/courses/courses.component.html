@@ -45,9 +45,14 @@
           placeholder="Search keyword"
           (input)="dt2.filterGlobal($any($event.target).value, 'contains')"
         />
-
       </div>
-      <p-table #dt2 [value]="courses$ | async" dataKey="id" [loading]="loading">
+      <p-table
+        #dt2
+        [value]="courses$ | async"
+        dataKey="id"
+        [loading]="loading"
+        [globalFilterFields]="['title', 'instructor']"
+      >
         <ng-template let-item pTemplate="body" class="grid-3">
           <div
             class="course__card"
@@ -112,9 +117,14 @@
           placeholder="Search keyword"
           (input)="dt3.filterGlobal($any($event.target).value, 'contains')"
         />
-
       </div>
-      <p-table #dt3 [value]="courses$ | async" dataKey="id" [loading]="loading">
+      <p-table
+        #dt3
+        [value]="courses$ | async"
+        dataKey="id"
+        [loading]="loading"
+        [globalFilterFields]="['title', 'instructor']"
+      >
         <ng-template let-item pTemplate="body" class="grid-3">
           <div
             class="course__card"
@@ -178,7 +188,6 @@
             placeholder="Search keyword"
             (input)="dt1.filterGlobal($any($event.target).value, 'contains')"
           />
-
         </div>
       </div>
       <p-table
@@ -188,10 +197,7 @@
         [loading]="loading"
         [scrollable]="true"
         scrollHeight="55vh"
-        [globalFilterFields]="[
-        'title',
-        'instructor',
-      ]"
+        [globalFilterFields]="['title', 'instructor']"
         [virtualScroll]="true"
         [virtualScrollItemSize]="46"
       >
@@ -200,7 +206,6 @@
             class="course__card"
             pRipple
             data-aos="fade-in"
-         
             data-aos-duration="1500"
             (click)="selectCourse(item)"
             [routerLink]="'/course-detail/' + item.courseId"
