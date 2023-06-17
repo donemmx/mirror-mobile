@@ -112,7 +112,7 @@ export class PaymentCardComponent extends BaseComponent {
     this.payPalConfig = {
       currency: 'USD',
       clientId:
-        'Aa_J7Jz-bl2PXv8KqHd3q84cTSatBKXwIyICnWYRBJToA4-MVKDkCHBWeXb8sMv0WOz-26IIhEv6l34v',
+        'AcBgk0JNRpoksb6hsE_2riwRlnF1S4VO6Wkl2hM-_X0blSZ2SaEcdU2ES3l7pILB_P45qkCWj6pUpxLX',
       createOrderOnClient: (data) =>
         <ICreateOrderRequest>{
           intent: 'CAPTURE',
