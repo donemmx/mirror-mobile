@@ -1,4 +1,4 @@
-<div class="text">
+<div class="text relative">
     <img src={{item.pictureUploadUrl}} alt="" class=" h-[40%] object-contain">
     <div class="title">
       {{item.title}}
@@ -6,8 +6,7 @@
     <div class="desc">
       {{item.description}}
     </div>
-  </div>
-  
-  <div class="absolute z-50 top-[35rem] right-4">
-    <button class="primary__btn" (click)="continue()">Done</button>
+    <div class="absolute z-50 bottom-[3rem] right-4">
+      <button class="primary__btn" (click)="continue()">Done</button>
+    </div>
   </div>

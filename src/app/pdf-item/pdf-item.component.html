@@ -1,7 +1,10 @@
-<div class="text">
+<div class="text relative" >
     <div class="desc">
       {{item.description}}
     </div>
     <a href={{item.pdfUploadUrl}} class="primary__btn download mt-3" download>Download Document</a>
+    <div class="absolute z-50 bottom-[3rem] right-4">
+      <button class="primary__btn" (click)="continue()">Done</button>
+    </div>
   </div>
   

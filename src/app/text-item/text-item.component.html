@@ -1,12 +1,12 @@
-<div class="text">
+<div class="text relative">
   <div class="title">
     {{ item.title }}
   </div>
   <div class="desc">
     {{ item.content }}
   </div>
-</div>
-
-<div class="absolute z-50 top-[42.5rem] right-4">
-  <button class="primary__btn" (click)="continue()">Done</button>
+  
+  <div class="absolute z-50 bottom-[3rem] right-4">
+    <button class="primary__btn" (click)="continue()">Done</button>
+  </div>
 </div>
