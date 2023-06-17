@@ -82,6 +82,7 @@ export class PricingCardComponent extends BaseComponent {
       })
       .subscribe(
         (res) => {
+          this.notify.success('Enrolled in Course Successfully')
           this.router.navigateByUrl('/my-learning');
         })
   }
