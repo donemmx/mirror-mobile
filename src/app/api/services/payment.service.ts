@@ -10,6 +10,7 @@ import { Observable } from 'rxjs';
 import { map, filter } from 'rxjs/operators';
 
 import { Currency } from '../models/currency';
+import { PaymentToken } from '../models/payment-token';
 
 
 /**
@@ -45,7 +46,8 @@ export class PaymentService extends BaseService {
     payId: string;
     body?: {
 'courseIds': Array<any>;
-'method'?: 'free' | 'paystack' | 'paypal';
+'method'?: 'free' | 'paystack' | 'paypal' | 'token';
+'token'?: string;
 }
   }): Observable<StrictHttpResponse<{
 'amount'?: number;
@@ -96,7 +98,8 @@ export class PaymentService extends BaseService {
     payId: string;
     body?: {
 'courseIds': Array<any>;
-'method'?: 'free' | 'paystack' | 'paypal';
+'method'?: 'free' | 'paystack' | 'paypal' | 'token';
+'token'?: string;
 }
   }): Observable<{
 'amount'?: number;
@@ -342,6 +345,118 @@ export class PaymentService extends BaseService {
 
     return this.addExchangeRate$Response(params).pipe(
       map((r: StrictHttpResponse<void>) => r.body as void)
+    );
+  }
+
+  /**
+   * Path part for operation getPaymentTokens
+   */
+  static readonly GetPaymentTokensPath = '/token';
+
+  /**
+   * Get Payment Tokens.
+   *
+   * Get Payment Tokens
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `getPaymentTokens()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  getPaymentTokens$Response(params?: {
+    isActive?: true | false;
+  }): Observable<StrictHttpResponse<PaymentToken>> {
+
+    const rb = new RequestBuilder(this.rootUrl, PaymentService.GetPaymentTokensPath, 'get');
+    if (params) {
+      rb.query('isActive', params.isActive, {});
+    }
+
+    return this.http.request(rb.build({
+      responseType: 'json',
+      accept: 'application/json'
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<PaymentToken>;
+      })
+    );
+  }
+
+  /**
+   * Get Payment Tokens.
+   *
+   * Get Payment Tokens
+   *
+   * This method provides access to only to the response body.
+   * To access the full response (for headers, for example), `getPaymentTokens$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  getPaymentTokens(params?: {
+    isActive?: true | false;
+  }): Observable<PaymentToken> {
+
+    return this.getPaymentTokens$Response(params).pipe(
+      map((r: StrictHttpResponse<PaymentToken>) => r.body as PaymentToken)
+    );
+  }
+
+  /**
+   * Path part for operation createPaymentToken
+   */
+  static readonly CreatePaymentTokenPath = '/token';
+
+  /**
+   * Create Payment Token.
+   *
+   * Create Payment Token
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `createPaymentToken()` instead.
+   *
+   * This method sends `application/json` and handles request body of type `application/json`.
+   */
+  createPaymentToken$Response(params?: {
+    body?: {
+'numberOfUse'?: number;
+}
+  }): Observable<StrictHttpResponse<PaymentToken>> {
+
+    const rb = new RequestBuilder(this.rootUrl, PaymentService.CreatePaymentTokenPath, 'post');
+    if (params) {
+      rb.body(params.body, 'application/json');
+    }
+
+    return this.http.request(rb.build({
+      responseType: 'json',
+      accept: 'application/json'
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<PaymentToken>;
+      })
+    );
+  }
+
+  /**
+   * Create Payment Token.
+   *
+   * Create Payment Token
+   *
+   * This method provides access to only to the response body.
+   * To access the full response (for headers, for example), `createPaymentToken$Response()` instead.
+   *
+   * This method sends `application/json` and handles request body of type `application/json`.
+   */
+  createPaymentToken(params?: {
+    body?: {
+'numberOfUse'?: number;
+}
+  }): Observable<PaymentToken> {
+
+    return this.createPaymentToken$Response(params).pipe(
+      map((r: StrictHttpResponse<PaymentToken>) => r.body as PaymentToken)
     );
   }
 

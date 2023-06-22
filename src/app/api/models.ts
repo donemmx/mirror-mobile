@@ -9,5 +9,6 @@ export { Question } from './models/question';
 export { SubmittedAssignment } from './models/submitted-assignment';
 export { PricePlan } from './models/price-plan';
 export { Currency } from './models/currency';
+export { PaymentToken } from './models/payment-token';
 export { ProblemDetail } from './models/problem-detail';
 export { Upload } from './models/upload';

@@ -13,6 +13,7 @@ export interface Course {
 'heading': string;
 'details': string;
 }>;
+  level: 'beginner' | 'advanced' | 'proficiency';
   mustCompleteSequentially?: true | false;
   mustCompleteVideoInChapter?: true | false;
   tags: Array<any>;
