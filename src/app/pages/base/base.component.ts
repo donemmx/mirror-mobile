@@ -20,25 +20,23 @@ export class BaseComponent implements OnInit, OnDestroy {
   constructor(public data: DataService, public router: Router) {}
 
   ngOnInit(): void {
-    this.subscrption = this.data.currentMessage.subscribe(
-      (message) => (this.message = message)
-    );
-
-    this.data.currentMessage.subscribe((res: any) => {
-      this.category$ = of(res);
-      const id: any = this.learnerAuth.getUserId();
-      
-      if (res.user == null) {
-        this.learnerApi
-          .getLearner({
-            learnerId: id.jti,
-          })    
-          .subscribe((data) => {
-            this.message.user = data;
-            this.message.cart = [];
-            this.message.selected = res.ageGroup;
-            this.data.changeMessage(this.message);
-          });
+    this.subscrption = this.data.currentMessage.subscribe((message: any) => {
+      this.message = message;
+      this.category$ = of(message);
+      if (message == null) {
+        const id: any = this.learnerAuth.getUserId();
+        if (id !== null) {
+          this.learnerApi
+            .getLearner({
+              learnerId: id.jti,
+            })
+            .subscribe((data) => {
+              this.message.user = data;
+              this.message.cart = [];
+              this.message.selected = message.ageGroup;
+              this.data.changeMessage(this.message);
+            });
+        }
       }
     });
   }
@@ -83,7 +81,7 @@ export class BaseComponent implements OnInit, OnDestroy {
     const id: any = auth.getUserId();
     api.getLearner({ learnerId: id.jti }).subscribe((res: any) => {
       this.message.user = res;
-      if(this.message.cart.length! !== 0){
+      if (this.message.cart.length! !== 0) {
         this.message.cart = [];
       }
       this.message.selected = res.ageGroup;
@@ -91,14 +89,18 @@ export class BaseComponent implements OnInit, OnDestroy {
     });
   }
 
-  updateCourseProgress(api: any, courseId:any, chapterId:any, chapterItemId:any): Observable<any>{
-   return api
-        .addCourseProgress({
-          body: {
-            courseId: courseId,
-            chapterId: chapterId,
-            chapterItemId: chapterItemId,
-          },
-        })
+  updateCourseProgress(
+    api: any,
+    courseId: any,
+    chapterId: any,
+    chapterItemId: any
+  ): Observable<any> {
+    return api.addCourseProgress({
+      body: {
+        courseId: courseId,
+        chapterId: chapterId,
+        chapterItemId: chapterItemId,
+      },
+    });
   }
 }
